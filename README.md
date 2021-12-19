@@ -21,12 +21,12 @@
 
  Components |  permsission  |    Path  |  Behavior |                              
 ------------|---------------| ---------| ---------
- Home       |  everbody     |`/`       |   main page 
-  Register  |  everbody     |`/Register`|    user can register there                 
+ Home       |  everybody     |`/`       |   main page 
+  Register  |  everybody     |`/Register`|    user can register there                 
    Login    | user + admin  |`/login`  |       page of signin              
  problems   | user + admin  |`/problems`|   page of problems and solution
-  About us  |   everbody    |`/aboutus` |  page includes information about us
- contact us |   everbody    |`/contact` |         page of contact and how to be touch with us
+  About us  |   everybody    |`/aboutus` |  page includes information about us
+ contact us |   everybody    |`/contact` |         page of contact and how to be touch with us
        
        
 
