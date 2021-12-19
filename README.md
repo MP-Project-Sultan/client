@@ -28,7 +28,8 @@
 
 
  Components       |    Path                                
--------------     | ---------------------------            
+-------------     | ---------------------------   
+ Home             |`/`          
   Register        |`/Register`                     
    Login          |`/login`                         
  problems         |`/problems`   
