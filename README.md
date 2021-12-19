@@ -17,11 +17,10 @@
 
 
 ## UML
-![UML](./finaluml.png)
+![UML](./front.png)
 
 
 
 
-## ERD
-![ERD](./ERD.png)
+
 
