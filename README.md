@@ -25,5 +25,3 @@
 ## ERD
 ![ERD](./ERD.png)
 
-## WireFrame
-![ERD](./wireframe.png)
