@@ -14,33 +14,23 @@
  ### Answer : Can add Answers to questions
  ### Admins there have full control like Delete and update and spam users with admin dashboard
  ### Users Can add and update thire own Posts 
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
 
 
 
- Components       |    Path                                
--------------     | ---------------------------   
- Home             |`/`          
-  Register        |`/Register`                     
-   Login          |`/login`                         
- problems         |`/problems`   
-  About us        |`/aboutus`   
- contact us       |`/contact`          
+ Components |  permsission  |    Path                                
+------------|---------------| ---------------------------   
+ Home       |  everbody     |`/`          
+  Register  |  everbody     |`/Register`                     
+   Login    | user + admin  |`/login`                         
+ problems   | user + admin  |`/problems`   
+  About us  |   everbody    |`/aboutus`   
+ contact us |   everbody    |`/contact`          
        
        
 
 
 ## UML
-![UML](./front.png)
+![UML](./UML.png)
 
 ## WireFrame
 ![ERD](./wireframe.png)
