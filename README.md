@@ -15,22 +15,24 @@
  ### Admins there have full control like Delete and update and spam users with admin dashboard
  ### Users Can add and update thire own Posts 
 
+#### server side url https://github.com/MP-Project-Sultan/server
+#### presentation slides http://www.sultan.com
+#### project deployed there http://heroku.sultan.com
 
-
- Components |  permsission  |    Path                                
-------------|---------------| ---------------------------   
- Home       |  everbody     |`/`          
-  Register  |  everbody     |`/Register`                     
-   Login    | user + admin  |`/login`                         
- problems   | user + admin  |`/problems`   
-  About us  |   everbody    |`/aboutus`   
- contact us |   everbody    |`/contact`          
+ Components |  permsission  |    Path  |  Behavior |                              
+------------|---------------| ---------| ---------
+ Home       |  everbody     |`/`       |   main page 
+  Register  |  everbody     |`/Register`|    user can register there                 
+   Login    | user + admin  |`/login`  |       page of signin              
+ problems   | user + admin  |`/problems`|   page of problems and solution
+  About us  |   everbody    |`/aboutus` |  page includes information about us
+ contact us |   everbody    |`/contact` |         page of contact and how to be touch with us
        
        
 
 
 ## UML
-![UML](./UML.png)
+![UML](./front.png)
 
 ## WireFrame
 ![ERD](./wireframe.png)
