@@ -18,6 +18,7 @@
 #### server side url https://github.com/MP-Project-Sultan/server
 #### presentation slides http://www.sultan.com
 #### project deployed there http://heroku.sultan.com
+#### Trello link https://trello.com/b/6I1hyUj7
 
  Components |  permsission  |    Path  |  Behavior |                              
 ------------|---------------| ---------| ---------
