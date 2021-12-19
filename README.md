@@ -16,8 +16,22 @@
  ### Users Can add and update thire own Posts 
 
 
+ Components       |    Path                                
+-------------     | ---------------------------            
+  Register        |`/Register`                     
+   Login          |`/login`                         
+ problems         |`/problems`   
+  About us        |`/aboutus`   
+ contact us       |`/contact`          
+       
+       
+
+
 ## UML
 ![UML](./front.png)
+
+## WireFrame
+![ERD](./wireframe.png)
 
 
 
