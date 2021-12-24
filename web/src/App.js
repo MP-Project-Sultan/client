@@ -1,4 +1,8 @@
 import React from 'react';
+import Home from './components/Home'
+import Register from './components/Register';
+
+
 import {
   ChakraProvider,
   Box,
@@ -10,7 +14,6 @@ import {
   theme,
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { Logo } from './Logo';
 
 function App() {
   return (
@@ -19,7 +22,8 @@ function App() {
         
             web Home Page
          
-       
+       <Home/>
+       <Register/>
       </Box>
     </ChakraProvider>
   );
