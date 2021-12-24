@@ -1,5 +1,6 @@
-import React from 'react'
-import { Route ,Routes} from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
 import {
   ChakraProvider,
   Box,
@@ -10,21 +11,54 @@ import {
   Grid,
   theme,
   Button,
-  Input
+  Input,
 } from '@chakra-ui/react';
+    const BASE_URL = process.env.REACT_APP_BASE_URL;
 
-const index = () => {
+const Register = () => {
+    const [email , setEmail] = useState('')
+    const [ username , setUsername] = useState('')
+    const [password , setPassword]= useState('')
+    const signup = async () =>{
+        const result = await axios.post(`${BASE_URL}/register` , {
+            email : email,
+            username : username,
+            password : password
+        })
+    }
+
+
     return (
       <ChakraProvider theme={theme}>
-        <Box textAlign="center" fontSize="xl">
-          web Register
-          <Input placeholder="Name" textAlign="Center" />
-          <Input placeholder="Email" textAlign="Center" type="email" />
-          <Input placeholder="Password" type="password" textAlign="Center" />
-          <Button />
+        <Box
+          borderRadius="3px"
+          border="solid silver"
+          textAlign="center"
+          w="300px"
+          mt="100px"
+          textAlign="center"
+          ml="500px"
+        >
+          <h1>Register</h1>
+          <Input onChange={e =>{setUsername(e.target.value)}} mt="10px" mb="10px" placeholder="Name" textAlign="Center" />
+          <Input
+          onChange={e =>{setEmail(e.target.value)}}
+            mb="10px"
+            placeholder="Email"
+            textAlign="Center"
+            type="email"
+          />
+          <Input
+          onChange={e =>{setPassword(e.target.value)}}
+            mb="10px"
+         placeholder="Password"
+            type="password"
+            textAlign="Center"
+          />
+          <Button onClick={signup}>LOGIN</Button>
         </Box>
       </ChakraProvider>
     );
 }
 
-export default index
+export default Register
