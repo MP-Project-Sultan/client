@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { sign } from '../../Reducer/login';
+
 import {
   ChakraProvider,
   Box,
@@ -82,7 +84,7 @@ const Login = () => {
                   }}
                 />
                 <br />
-                <Button className="btnMain" onClick={logInB}>
+                <Button className="btnMain" onClick={logIn}>
                   Login
                 </Button>
                 <Link exact href="/reset">
