@@ -1,6 +1,7 @@
 import React from 'react';
 import Home from './components/Home'
 import Register from './components/Register';
+import Login from './components/Login'
 
 
 import {
@@ -23,7 +24,9 @@ function App() {
             web Home Page
          
        <Home/>
+
        <Register/>
+       <Login/>
       </Box>
     </ChakraProvider>
   );
