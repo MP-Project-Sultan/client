@@ -1,6 +1,6 @@
-import React,{ useEffect, useState} from 'react'
-import axios from 'axios'
-import {useNavigate} from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   ChakraProvider,
@@ -15,25 +15,40 @@ import {
   HStack,
   Input,
 } from '@chakra-ui/react';
-const BASE_URL = process.env.REACT_APP_BASE_URL
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 const Login = () => {
-    const [email,setEmail] = useState("")
-    const [username , setUsername] = useState("")
-    const [ password, setPassword] = useState("")
-    const [local , setLocal] = useState("")
-    const navigate = useNavigate()
-    const state = useSelector(state =>{
-        return {
-            Login : state.Login,
-            postRD : state.PostRD
-        }
-    })
-    const dispatch = useDispatch()
-    return (
-        <div>
-            <h1>Login "" </h1>
-        </div>
-    )
-}
+  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [local, setLocal] = useState('');
+  const navigate = useNavigate();
+  const state = useSelector(state => {
+    return {
+      Login: state.Login,
+      postRD: state.PostRD,
+    };
+  });
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    setLocal(token);
+  }, []);
+  const logIn = async () => {
+    const result = await axios.post(`${BASE_URL}/login`, {
+      email,
+      password,
+      username,
+    });
+    const data = {
+        user : result.data.result,
+        token : result.data.token
+    }
+  };
+  return (
+    <div>
+      <h1>Login "" </h1>
+    </div>
+  );
+};
 
 export default Login;
