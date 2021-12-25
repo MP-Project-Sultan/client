@@ -13,18 +13,19 @@ import {
   Button,
   Input,
 } from '@chakra-ui/react';
-    const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const Register = () => {
+    const BASE_URL = process.env.REACT_APP_BASE_URL;
     const [email , setEmail] = useState('')
     const [ username , setUsername] = useState('')
     const [password , setPassword]= useState('')
     const signup = async () =>{
-        const result = await axios.post(`${BASE_URL}/register` , {
+        const result = await axios.post(`http://localhost:5000/register` , {
             email : email,
             username : username,
             password : password
         })
+        console.log(BASE_URL);
     }
 
 
