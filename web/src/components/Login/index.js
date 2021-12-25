@@ -43,11 +43,60 @@ const Login = () => {
         user : result.data.result,
         token : result.data.token
     }
+    dispatch(sign(data))
   };
   return (
-    <div>
-      <h1>Login "" </h1>
-    </div>
+    <ChakraProvider theme={theme}>
+      <Box
+        textAlign="center"
+        fontSize="xl"
+        mt="70px"
+        borderRadius="3px"
+        border="solid silver"
+        textAlign="center"
+        fontSize="xl"
+        w="300px"
+      >
+        <VStack mt="4">
+          {!state.token ? (
+            <div className="mainDiv">
+              <h1>Login</h1>
+              <VStack mt="4">
+                <Input
+                  textAlign="center"
+                  type="email"
+                  width="40"
+                  placeholder="enter Email"
+                  onChange={e => {
+                    setEmail(e.target.value);
+                  }}
+                />
+                <br />
+                <Input
+                  textAlign="center"
+                  type="password"
+                  width="40"
+                  placeholder="enter Password"
+                  onChange={e => {
+                    setPassword(e.target.value);
+                  }}
+                />
+                <br />
+                <Button className="btnMain" onClick={logInB}>
+                  Login
+                </Button>
+                <Link exact href="/reset">
+                  Forget password
+                </Link>
+                <br />
+              </VStack>
+            </div>
+          ) : (
+            <h3></h3>
+          )}
+        </VStack>
+      </Box>
+    </ChakraProvider>
   );
 };
 
