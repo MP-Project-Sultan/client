@@ -20,17 +20,17 @@ import ReactCodeInput from 'react-verification-code-input';
 
 
 const MySwal = withReactContent(Swal);
-
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const Reset = () => {
-  const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 
   const [email, setEmail] = useState('');
   const checkemail = async () => {
     try {
-      const result = await axios.post(`http://localhost:5000/check`, {
-      email: email,
-    });
+      const result = await axios.post(`${BASE_URL}/check`, {
+        email: email,
+      });
     Swal.fire({
       position: 'center',
       icon: 'success',

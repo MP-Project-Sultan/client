@@ -29,7 +29,7 @@ const Reset2 = () => {
   const resetPassword = async () => {
     if (code.length > 0) {
       try {
-        await axios.post(`http://localhost:5000/reset`, {
+        await axios.post(`${BASE_URL}/reset`, {
           id,
           code,
           password,

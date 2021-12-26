@@ -18,6 +18,7 @@ import {
   Input,
 } from '@chakra-ui/react';
 const MySwal = WithReactContent(Swal);
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const Active = () => {
   const [code, setCode] = useState('');
@@ -26,7 +27,7 @@ const Active = () => {
   const verifyAccount = async ()=>{
   if (code.length > 0){
       try {
-          const result = await axios.post('http://localhost:5000/active', {
+          const result = await axios.post(`${BASE_URL}/active`, {
             id,
             code,
           });
