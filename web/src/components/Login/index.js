@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { sign } from '../../Reducer/login';
 
@@ -23,7 +23,7 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [local, setLocal] = useState('');
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const state = useSelector(state => {
     return {
       Login: state.Login,

@@ -1,9 +1,9 @@
-import {createStore , combineReducer} from 'redux'
+import {createStore , combineReducers} from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension';
 import Login from "./login.js";
-import postRD from "./post.js"
+// import postRD from "./post.js"
 
-const reducers = combineReducer({Login ,postRD});
+const reducers = combineReducers({Login });
 const store = ()=>{
     return createStore(reducers , composeWithDevTools())
 }
