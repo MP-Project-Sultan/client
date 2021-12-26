@@ -17,7 +17,13 @@ import {
   HStack,
   Input,
 } from '@chakra-ui/react';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+import ReactCodeInput from 'react-verification-code-input';
+const MySwal = withReactContent(Swal);
+
 const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 const Login = () => {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
@@ -36,16 +42,35 @@ const Login = () => {
     setLocal(token);
   }, []);
   const logIn = async () => {
-    const result = await axios.post(`http://localhost:5000/login`, {
-      email,
-      password,
-      username,
-    });
-    const data = {
-        user : result.data.result,
-        token : result.data.token
+    try {
+      const result = await axios.post(`http://localhost:5000/login`, {
+        email,
+        password,
+        username,
+      });
+      const data = {
+        user: result.data.result,
+        token: result.data.token,
+      };
+      dispatch(sign(data));
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Login success',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      
+    } catch (error) {
+       MySwal.fire({
+         icon: 'error',
+         title: 'Oops...',
+         text: 'worng Email or password',
+         confirmButtonColor: 'black',
+       });
+      
     }
-    dispatch(sign(data))
+    
   };
   return (
     <ChakraProvider theme={theme}>
@@ -57,6 +82,8 @@ const Login = () => {
         mt="100px"
         textAlign="center"
         ml="500px"
+        bg="#fffb"
+        color="black"
       >
         <VStack mt="4">
           {!state.token ? (
@@ -64,6 +91,8 @@ const Login = () => {
               <h1>Login</h1>
               <VStack mt="4">
                 <Input
+                  bg="#222"
+                  color="white"
                   textAlign="center"
                   type="email"
                   width="40"
@@ -73,7 +102,10 @@ const Login = () => {
                   }}
                 />
                 <br />
+
                 <Input
+                  bg="#222"
+                  color="white"
                   textAlign="center"
                   type="password"
                   width="40"
@@ -82,8 +114,9 @@ const Login = () => {
                     setPassword(e.target.value);
                   }}
                 />
+
                 <br />
-                <Button className="btnMain" onClick={logIn}>
+                <Button bg="#777"  onClick={logIn}>
                   Login
                 </Button>
                 <Link exact href="/reset">

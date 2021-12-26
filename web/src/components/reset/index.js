@@ -60,17 +60,23 @@ const Reset = () => {
         mt="100px"
         textAlign="center"
         ml="500px"
+        bg="#fffb"
+        color="black"
       >
         <h1>Reset Password</h1>
         <Input
-          mt="20px"
+          m="10px"
+          bg="#222"
+          color="white"
           textAlign="center"
+          type="email"
+          width="40"
           placeholder="Your Email"
           onChange={e => {
             setEmail(e.target.value);
           }}
         ></Input>
-        <Button onClick={checkemail} mt="20px">
+        <Button bg="#777" onClick={checkemail} mt="20px">
           Send reset code
         </Button>
       </Box>

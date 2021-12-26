@@ -51,10 +51,12 @@ const Reset2 = () => {
         borderRadius="3px"
         border="solid silver"
         textAlign="center"
-        w="300px"
+        w="400px"
         mt="100px"
         textAlign="center"
-        ml="500px"
+        ml="450px"
+        bg="#fffb"
+        color="black"
       >
         <VStack mt="4">
           <h1>Reset Your Password</h1>
@@ -79,6 +81,10 @@ const Reset2 = () => {
             }}
           />
           <Input
+            bg="#222"
+            color="white"
+            textAlign="center"
+            width="40"
             type="password"
             placeholder="Password"
             className="resetPassword"
@@ -86,7 +92,7 @@ const Reset2 = () => {
             required
           />
           <ReactCodeInput fields={4} onComplete={val => setCode(val)} />
-          <Button id="resetPasswordButton" onClick={resetPassword}>
+          <Button bg="#777" id="resetPasswordButton" onClick={resetPassword}>
             Reset
           </Button>
         </VStack>

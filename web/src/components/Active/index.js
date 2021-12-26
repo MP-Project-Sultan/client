@@ -57,7 +57,7 @@ const Active = () => {
       color="black"
     >
       <h1>verify your account</h1>
-      <Box paddingLeft="30px">
+      <Box paddingLeft="25px" m="10px">
         <ReactCodeInput
           position="center"
           fields={4}
@@ -66,7 +66,7 @@ const Active = () => {
           }}
         />
       </Box>
-      <Button bg="#cbaf" onClick={verifyAccount}>
+      <Button id="resetPasswordButton" bg="#777" onClick={verifyAccount}>
         {' '}
         Active
       </Button>

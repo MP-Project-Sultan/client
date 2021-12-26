@@ -30,7 +30,7 @@ function App() {
             <Route exact path="/register" element={<Register />} />
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/reset" element={<Reset />} />
-            <Route exact path="/active" element={<Active />} />
+            <Route exact path="/active/:id" element={<Active />} />
 
             <Route exact path="/reset2/:id" element={<Reset2 />} />
           </Routes>
