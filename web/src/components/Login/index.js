@@ -36,7 +36,7 @@ const Login = () => {
     setLocal(token);
   }, []);
   const logIn = async () => {
-    const result = await axios.post(`${BASE_URL}/login`, {
+    const result = await axios.post(`http://localhost:5000/login`, {
       email,
       password,
       username,
@@ -50,14 +50,13 @@ const Login = () => {
   return (
     <ChakraProvider theme={theme}>
       <Box
-        textAlign="center"
-        fontSize="xl"
-        mt="70px"
         borderRadius="3px"
         border="solid silver"
         textAlign="center"
-        fontSize="xl"
         w="300px"
+        mt="100px"
+        textAlign="center"
+        ml="500px"
       >
         <VStack mt="4">
           {!state.token ? (
