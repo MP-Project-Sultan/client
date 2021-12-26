@@ -24,10 +24,11 @@ function App() {
   return (
     <ChakraProvider theme={theme}>
       <Box textAlign="center" fontSize="xl">
-        web Home Page
         <>
           <Routes>
+            <Route exact path="/" element={<Home />} />
             <Route exact path="/register" element={<Register />} />
+
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/reset" element={<Reset />} />
             <Route exact path="/active/:id" element={<Active />} />

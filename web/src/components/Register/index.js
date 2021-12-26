@@ -114,6 +114,7 @@ const Register = () => {
                 button.disabled = true;
               }
             }}
+            
           />
           <Input
             bg="#222"
