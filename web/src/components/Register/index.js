@@ -19,138 +19,109 @@ import Swal from 'sweetalert2';
 const MySwal = withReactContent(Swal);
 
 const Register = () => {
-    const BASE_URL = process.env.REACT_APP_BASE_URL;
-    const [email , setEmail] = useState('')
-    const [ username , setUsername] = useState('')
-    const [password , setPassword]= useState('')
-    const signup = async () =>{
-      try {
-        const result = await axios.post(`${BASE_URL}/register`, {
-          email: email,
-          username: username,
-          password: password,
-        });
-        Swal.fire({
-          position: 'Register successfuly',
-          icon: 'success',
-          title: 'Login success',
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      } catch (error) {
-         MySwal.fire({
-           icon: 'error',
-           title: 'Oops...',
-           text: 'Email Already Registed',
-           confirmButtonColor: 'black',
-         });
-        
-      }
-        
-        
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
+  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const signup = async () => {
+    try {
+      const result = await axios.post(`${BASE_URL}/register`, {
+        email: email,
+        username: username,
+        password: password,
+      });
+      Swal.fire({
+        position: 'Register successfuly',
+        icon: 'success',
+        title: 'Login success',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } catch (error) {
+      MySwal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Email Already Registed',
+        confirmButtonColor: 'black',
+      });
     }
+  };
 
-
-    return (
-      <ChakraProvider theme={theme}>
-        <Box
-          borderRadius="3px"
-          border="solid silver"
+  return (
+    <ChakraProvider theme={theme}>
+      <Box
+        borderRadius="3px"
+        border="solid silver"
+        textAlign="center"
+        w="300px"
+        mt="100px"
+        textAlign="start"
+        bg="#fffb"
+        color="black"
+      >
+        <h1>Register</h1>
+        <Input
+          bg="#222"
+          color="white"
           textAlign="center"
-          w="300px"
-          mt="100px"
+          type="name"
+          width="40"
+          placeholder="enter Email"
+          onChange={e => {
+            setUsername(e.target.value);
+          }}
+          mt="10px"
+          mb="10px"
+          placeholder="Name"
+          textAlign="Center"
+        />
+        <Input
+          bg="#222"
+          color="white"
           textAlign="center"
-          ml="500px"
-          bg="#fffb"
-          color="black"
-        >
-          <h1>Register</h1>
-          <Input
-            bg="#222"
-            color="white"
-            textAlign="center"
-            type="name"
-            width="40"
-            placeholder="enter Email"
-            onChange={e => {
-              setUsername(e.target.value);
-            }}
-            mt="10px"
-            mb="10px"
-            placeholder="Name"
-            textAlign="Center"
-          />
-          <Input
-            bg="#222"
-            color="white"
-            textAlign="center"
-            type="email"
-            width="40"
-            placeholder="enter Email"
-            onChange={e => {
-              setEmail(e.target.value);
-            }}
-            mb="10px"
-            placeholder="Email"
-            textAlign="Center"
-            type="email"
-          />
-          <PasswordChecklist
-            rules={[
-              'minLength',
-              'specialChar',
-              'number',
-              'capital',
-              'lowercase',
-            ]}
-            minLength={6}
-            value={password}
-            onChange={isValid => {
-              if (isValid) {
-                const button = document.querySelector('#resetPasswordButton');
-                button.disabled = false;
-              } else {
-                const button = document.querySelector('#resetPasswordButton');
-                button.disabled = true;
-              }
-            }}
-            
-          />
-          <Input
-            bg="#222"
-            color="white"
-            textAlign="center"
-            width="40"
-            type="password"
-            placeholder="Password"
-            className="resetPassword"
-            onChange={e => setPassword(e.target.value)}
-            required
-          />
-          {/* <Input
-            id="resetPasswordButton"
-            bg="#222"
-            color="white"
-            textAlign="center"
-            type="password"
-            width="40"
-            placeholder="enter Email"
-            onChange={e => {
-              setPassword(e.target.value);
-            }}
-            mb="10px"
-            placeholder="Password"
-            type="password"
-            textAlign="Center"
-          /> */}
-          <br />
+          type="email"
+          width="40"
+          placeholder="enter Email"
+          onChange={e => {
+            setEmail(e.target.value);
+          }}
+          mb="10px"
+          placeholder="Email"
+          textAlign="Center"
+          type="email"
+        />
+        <PasswordChecklist
+          rules={['minLength', 'specialChar', 'number', 'capital', 'lowercase']}
+          minLength={6}
+          value={password}
+          onChange={isValid => {
+            if (isValid) {
+              const button = document.querySelector('#resetPasswordButton');
+              button.disabled = false;
+            } else {
+              const button = document.querySelector('#resetPasswordButton');
+              button.disabled = true;
+            }
+          }}
+        />
+        <Input
+          bg="#222"
+          color="white"
+          textAlign="center"
+          width="40"
+          type="password"
+          placeholder="Password"
+          className="resetPassword"
+          onChange={e => setPassword(e.target.value)}
+          required
+        />
+        <br />
+        <Button bg="#777" onClick={signup}>
+          LOGIN
+        </Button>
+      </Box>
+    </ChakraProvider>
+  );
+};
 
-          <Button bg="#777" onClick={signup}>
-            LOGIN
-          </Button>
-        </Box>
-      </ChakraProvider>
-    );
-}
-
-export default Register
+export default Register;
