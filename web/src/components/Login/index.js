@@ -52,6 +52,7 @@ const Login = () => {
         user: result.data.result,
         token: result.data.token,
       };
+      console.log(data);
       dispatch(sign(data));
       Swal.fire({
         position: 'center',
@@ -92,6 +93,7 @@ const Login = () => {
               <VStack mt="4">
                 <Input
                   bg="#222"
+                  w='197px'
                   color="white"
                   textAlign="center"
                   type="email"

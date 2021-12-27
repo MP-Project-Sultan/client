@@ -34,9 +34,9 @@ const Reset = () => {
     Swal.fire({
       position: 'center',
       icon: 'success',
-      title: 'Email was sent',
+      title: 'please check your Email to reset your password',
       showConfirmButton: false,
-      timer: 1500,
+      timer: 2000,
     });
       
     } catch (error) {
@@ -66,6 +66,7 @@ const Reset = () => {
         <h1>Reset Password</h1>
         <Input
           m="10px"
+          w='200px'
           bg="#222"
           color="white"
           textAlign="center"

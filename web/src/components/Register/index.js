@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import {useNavigate} from 'react-router-dom'
 import withReactContent from 'sweetalert2-react-content';
 import ReactCodeInput from 'react-verification-code-input';
 import PasswordChecklist from 'react-password-checklist';
@@ -23,6 +24,7 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
   const signup = async () => {
     try {
       const result = await axios.post(`${BASE_URL}/register`, {
@@ -31,12 +33,13 @@ const Register = () => {
         password: password,
       });
       Swal.fire({
-        position: 'Register successfuly',
+        position: 'center',
         icon: 'success',
-        title: 'Login success',
+        title: 'Register successfuly',
         showConfirmButton: false,
         timer: 1500,
       });
+      navigate('/login')
     } catch (error) {
       MySwal.fire({
         icon: 'error',
@@ -54,8 +57,9 @@ const Register = () => {
         border="solid silver"
         textAlign="center"
         w="300px"
-        mt="100px"
-        textAlign="start"
+        mt="60px"
+        textAlign="center"
+        ml="500px"
         bg="#fffb"
         color="black"
       >
@@ -77,6 +81,7 @@ const Register = () => {
         />
         <Input
           bg="#222"
+          w='200px'
           color="white"
           textAlign="center"
           type="email"
@@ -100,12 +105,13 @@ const Register = () => {
               button.disabled = false;
             } else {
               const button = document.querySelector('#resetPasswordButton');
-              button.disabled = true;
+              button.disabled = false;
             }
           }}
         />
         <Input
           bg="#222"
+          id="resetPasswordButton"
           color="white"
           textAlign="center"
           width="40"
@@ -113,11 +119,11 @@ const Register = () => {
           placeholder="Password"
           className="resetPassword"
           onChange={e => setPassword(e.target.value)}
-          required
+          
         />
         <br />
         <Button bg="#777" onClick={signup}>
-          LOGIN
+          Register
         </Button>
       </Box>
     </ChakraProvider>
