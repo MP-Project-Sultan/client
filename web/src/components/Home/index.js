@@ -12,6 +12,7 @@ import {
   HStack,
   Input,
   SimpleGrid,
+  Image,
 } from '@chakra-ui/react';
 import axios from 'axios';
 
@@ -25,9 +26,11 @@ const News = () => {
   const result = async () => {
     try {
       const data = await axios
-        .get(`https://hn.algolia.com/api/v1/search?query=news`)
+        .get(
+          `https://newsapi.org/v2/everything?q=javascript&language=en&from=2021-11-27&sortBy=publishedAt&apiKey=941e34ca80a2416498f8b4c2b895c22d`
+        )
         .then(result => {
-          SetNews(result.data.hits);
+          SetNews(result.data.articles);
           // console.log(result.data.hits[0].author);
         });
       // console.log(news);
@@ -40,30 +43,38 @@ const News = () => {
     <Box>
       <VStack>
         <Text fontSize="4rem">Programmer News</Text>
-        <SimpleGrid padding="3rem" columns={2} spacing={10}>
+        <SimpleGrid padding="3rem" columns={3} spacing={10}>
           {news.map(e => (
             <HStack>
               {' '}
               <Box
-                background="gold"
+                position="relative"
+                color="black"
+                background="#E2E8F0"
                 width="250px"
-                height="300px"
+                height="500px"
                 borderRadius="3"
-                border="solid orange"
+                border=" 2px solid #0BC5EA"
                 column="2"
               >
+                <Image src={e.urlToImage} />
                 <Text>{e.title}</Text>
                 <Text pt="100px" fontSize="15px">
                   Author: {e.author}
-                  {console.log(news)}
                 </Text>
-                <br/><br/>
-              <Link position="end" href={e.url}  fontSize="15px">
-                Read More
-                {console.log(news)}
-              </Link></Box>
-              
-              
+                <br />
+                <br />
+                <Link
+                  position="absolute"
+                  bottom="0"
+                  right="15Vh"
+                  href={e.url}
+                  fontSize="15px"
+                >
+                  Read More
+                  {console.log(e.urlToImage)}
+                </Link>
+              </Box>
             </HStack>
           ))}{' '}
         </SimpleGrid>
