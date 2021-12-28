@@ -37,7 +37,7 @@ const Reset2 = () => {
          Swal.fire({
            position: 'center',
            icon: 'success',
-           title: 'Email was sent',
+           title: 'Password Changed successfully',
            showConfirmButton: false,
            timer: 1500,
          });
