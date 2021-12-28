@@ -7,6 +7,8 @@ import Reset from './components/reset';
 import Reset2 from './components/reset2';
 import Active from './components/Active';
 import Posts from './components/Posts';
+import Message from './components/message';
+
 
 import {
   ChakraProvider,
@@ -33,6 +35,7 @@ function App() {
             <Route exact path="/reset" element={<Reset />} />
             <Route exact path="/active/:id" element={<Active />} />
             <Route exact path="/reset2/:id" element={<Reset2 />} />
+            <Route exact path="/message/" element={<Message />} />
           </Routes>
         </>
       </Box>
