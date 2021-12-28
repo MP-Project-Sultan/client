@@ -34,6 +34,13 @@ const Reset2 = () => {
           code,
           password,
         });
+         Swal.fire({
+           position: 'center',
+           icon: 'success',
+           title: 'Email was sent',
+           showConfirmButton: false,
+           timer: 1500,
+         });
         navigate('/login');
       } catch (error) {
         MySwal.fire({
