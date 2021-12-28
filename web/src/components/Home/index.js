@@ -42,11 +42,12 @@ const News = () => {
   return (
     <Box>
       <VStack>
-        <Text mb='12' color="rgb(100, 107, 119)" fontSize="3rem">
+        <Text mt='30' mb='12' color="rgb(100, 107, 119)" fontSize="3rem">
           Programmer News
         </Text>
         <Input
-          
+          placeholder='Search News'
+          textAlign="center"
           value={text}
           onChange={e => setText(e.target.value)}
           w="190"
@@ -67,7 +68,7 @@ const News = () => {
               >
                 <Image w="100%" height="300" src={e.urlToImage} />
                 <Text>{e.title}</Text>
-                <Text mt='10' fontSize="15px">
+                <Text mt='10' fontSize="12px">
                  {e.content}
                 </Text>
                 
