@@ -56,7 +56,7 @@ const Register = () => {
         borderRadius="3px"
         border="solid silver"
         textAlign="center"
-        w="300px"
+        w="400px"
         mt="60px"
         textAlign="center"
         ml="500px"

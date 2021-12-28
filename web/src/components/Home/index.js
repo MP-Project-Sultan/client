@@ -27,7 +27,7 @@ const News = () => {
     try {
       const data = await axios
         .get(
-          `https://newsapi.org/v2/everything?q=javascript&language=en&from=2021-11-27&sortBy=publishedAt&apiKey=941e34ca80a2416498f8b4c2b895c22d`
+          `https://newsapi.org/v2/everything?q=javascript&from=2021-11-28&language=en&sortBy=publishedAt&apiKey=941e34ca80a2416498f8b4c2b895c22d`
         )
         .then(result => {
           SetNews(result.data.articles);
