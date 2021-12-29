@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { sign } from '../../Reducer/login';
 import { getpost, addpost, delpost } from '../../Reducer/post';
-import { PhoneIcon, AddIcon, WarningIcon, StarIcon } from '@chakra-ui/icons';
+import { DeleteIcon, StarIcon } from '@chakra-ui/icons';
 import Post from "./Post"
 import {useNavigate} from 'react-router-dom'
 
@@ -89,14 +89,19 @@ const Posts = () => {
       console.log(error);
     }
   };
-  // const delpost = async id => {
-  //   try {
-  //     const res = await axios.delete(`${BASE_URL}/deletePost/${id}`, {
-  //       headers: { authorization: `Bearer ${state.Login.token}` },
-  //       result()
-  //     });
-  //   } catch (error) {console.log(error);}
-  // };
+    const del = async id => {
+      try {
+        const res = await axios.delete(`${BASE_URL}/deletePost/${id}`, {
+          headers: {
+            Authorization: `Bearer ${state.Login.token}`,
+          },
+        });
+
+        result();
+      } catch (error) {
+        console.log(error);
+      }
+    };
   const addlike = async postId => {
     try {
       const res = await axios.post(
@@ -160,8 +165,13 @@ const Posts = () => {
                     {e.userId.username}
                   </Link>
                 </HStack>
-                <Link fontSize="12px" fontFamily="Verdana">
-                  Post: {e.description}
+                <Link
+                  cursor="pointer"
+                  onClick={() => Nav(`/post/${e._id}`)}
+                  fontSize="18px"
+                  fontFamily="mono"
+                >
+                  {e.description}
                 </Link>
                 {/* <Input
                   onChange={e => {
@@ -172,17 +182,35 @@ const Posts = () => {
                 /> */}
                 <HStack>
                   {' '}
-                  <StarIcon color="#c5a087" onClick={() => addlike(e._id)}>
+                  <StarIcon
+                  w='3'
+                    cursor="pointer"
+                    color="#c5a087"
+                    onClick={() => addlike(e._id)}
+                  >
                     Like{' '}
                   </StarIcon>
-                  <Text fontSize="12px" fontFamily="Roman">
+                  <Text fontSize="12px" fontFamily="Roman" color="green" >
                     {e.like.length}
                   </Text>
-                </HStack>{' '}
-                <Button ml="4" onClick={() => Nav(`/post/${e._id}`)}>
+                  
+              <DeleteIcon
+                w='3'
+                    cursor="pointer"
+                    position="absolute"
+                    left='873'
+                   
+                    marginBottom='33'
+                    onClick={() => {
+                      del(e._id);
+                    }}
+                  >
+                    delete
+                  </DeleteIcon>  </HStack>{' '}
+                {/* <Button ml="4" onClick={() => Nav(`/post/${e._id}`)}>
                   {' '}
                   Read More...
-                </Button>
+                </Button> */}
                 {/* <Button ml="4" onClick={() => addcomment(e._id)}>
                   {' '}
                   Reply
