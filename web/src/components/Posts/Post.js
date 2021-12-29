@@ -64,19 +64,46 @@ export default function Post() {
       console.log(error);
     }
   };
+  const redirect = ()=>{
+    Nav('/posts');
+  }
   return (
     <>
       <ChakraProvider theme={theme}>
         <VStack>
           <Box
+            background="#1a07463a"
             w="600px"
             mt="1%"
             border="solid 2px gray"
             padding="20px"
             borderRadius="4"
           >
-            {comments.length && <h1>{comments[0].postId.description}</h1>}
-            <hr />{' '}
+            {comments.length && (
+              <Text mb="9" color="#352f44" fontFamily="Roman" fontSize="20">
+                {comments[0].postId.description}
+              </Text>
+            )}
+            <hr /> 
+            <>
+              <Box mt="8">
+                {' '}
+               {' '}
+                <Input
+                  onChange={e => {
+                    setNewComment(e.target.value);
+                  }}
+                  placeholder="add comment"
+                  w="250"
+                  textAlign="center"
+                  bg="#0105023a"
+                />
+                <Button ml="4" onClick={e => addcomment(id)}>
+                  {' '}
+                  Reply
+                </Button>
+              </Box>{' '}
+            </>{' '}
             {comments.map((item, index) => {
               return (
                 <div key={item._id}>
@@ -92,26 +119,20 @@ export default function Post() {
                     <Link mr="400" color="rgb(9, 161, 90)" fontSize="12px">
                       {item.userId.username}
                     </Link>
+                    <br />
                   </HStack>
-                  <Text>{item.description}</Text>
+                  <Text
+                    border="solid gray 2px"
+                    borderRadius="3"
+                    m="8"
+                    fontSize="15px"
+                  >
+                    {item.description}
+                  </Text>
                 </div>
               );
             })}{' '}
-            <>
-              <Input
-                onChange={e => {
-                  setNewComment(e.target.value);
-                }}
-                placeholder="add comment"
-                w="250"
-              />
-              <Button ml="4" onClick={e => addcomment(id)}>
-                {' '}
-                Reply
-              </Button>
-            </>
-            {/* <Button onClick={Nav('/posts')}></Button> */}
-          </Box>
+         <Button onClick={redirect}>Back</Button> </Box>
         </VStack>
       </ChakraProvider>
     </>
