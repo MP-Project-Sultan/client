@@ -8,6 +8,7 @@ import Reset2 from './components/reset2';
 import Active from './components/Active';
 import Posts from './components/Posts';
 import Message from './components/message';
+import Post from "./components/Posts/Post"
 
 
 import {
@@ -36,6 +37,7 @@ function App() {
             <Route exact path="/active/:id" element={<Active />} />
             <Route exact path="/reset2/:id" element={<Reset2 />} />
             <Route exact path="/message/" element={<Message />} />
+            <Route exact path="/post/:id" element={<Post />} />
           </Routes>
         </>
       </Box>
