@@ -19,7 +19,7 @@ import {
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
-const Cpanel = () => {
+const PostCP = () => {
   const [newpost, setNewPost] = useState('');
   const [newcomment, setNewComment] = useState('');
 
@@ -43,13 +43,12 @@ const Cpanel = () => {
       });
 
       dispatch(getpost(result.data));
-
     } catch (error) {
       console.log(error);
     }
   };
 
-  const del = async (id) => {
+  const del = async id => {
     try {
       const res = await axios.delete(`${BASE_URL}/deletePost/${id}`, {
         headers: {
@@ -62,8 +61,19 @@ const Cpanel = () => {
       console.log(error);
     }
   };
+  const delComment = async id => {
+    try {
+      const res = await axios.delete(`${BASE_URL}/deleteComment/${id}`, {
+        headers: {
+          Authorization: `Bearer ${state.Login.token}`,
+        },
+      });
 
-  
+      postshow();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const addpost = async () => {
     try {
@@ -140,37 +150,56 @@ const Cpanel = () => {
             <VStack>
               <Text color="white">POSTS</Text>
               <Input
+                w="200px"
                 color="white"
                 onChange={e => {
                   setNewPost(e.target.value);
                 }}
                 placeholder="add Post"
               />
-              <Button onClick={addpost}>add</Button>
+              <Button onClick={addpost}>add Post</Button>
               {newpost && newpost.length && (
                 <>
-
                   {state.postRD.post.map((e, i) => (
-                    // <div className="list">
                     <>
-                      <Text
-                        color="white"
-                        border="solid 1px black"
-                        fontSize="30px"
-                      >
-                        {e.description}
-                      </Text>
+                      <HStack>
+                        {' '}
+                        <Text
+                          color="white"
+                          border="solid 1px black"
+                          fontSize="30px"
+                        >
+                          {e.description}
+                        </Text>
+                        <Button
+                          onClick={() => {
+                            del(e._id);
+                          }}
+                        >
+                          delete Post
+                        </Button>
+                      </HStack>
                       <img src={e.img} />
                       {e.commentId.map(s => (
                         <>
-                          <Text
-                            color="white"
-                            border="solid 1px red"
-                            fontSize="15px"
-                          >
+                          <HStack>
                             {' '}
-                            Comment: {s.description}
-                          </Text>
+                            <Button
+                              onClick={() => {
+                                delComment(s._id);
+                              }}
+                            >
+                              Delete Comment
+                            </Button>{' '}
+                            <Text
+                              color="white"
+                              border="solid 1px red"
+                              fontSize="15px"
+                            >
+                              {' '}
+                              Comment: {s.description}
+                            </Text>
+                          </HStack>
                         </>
                       ))}
                       {/* {e.like.map(s => (
@@ -179,24 +208,21 @@ const Cpanel = () => {
                     </>
                   ))} */}
 
-                      <Button
-                        onClick={() => {
-                          del(e._id);
-                        }}
-                      >
-                        delete
-                      </Button>
-                      <Input
-                        color="white"
-                        onChange={e => {
-                          setNewComment(e.target.value);
-                        }}
-                        placeholder="add comment"
-                      />
-                      <Button onClick={() => addcomment(e._id)}>add</Button>
-                      <br />
-                      <Button onClick={() => addlike(e._id)}>Like </Button>
-                      <Text color="white">{e.like.length}</Text>
+                      <HStack>
+                        {' '}
+                        <Input
+                          w="200px"
+                          color="white"
+                          onChange={e => {
+                            setNewComment(e.target.value);
+                          }}
+                          placeholder="add comment"
+                        />
+                        <Button onClick={() => addcomment(e._id)}>add</Button>
+                        <br />
+                        <Button onClick={() => addlike(e._id)}>Like </Button>
+                        <Text color="white">{e.like.length}</Text>
+                      </HStack>
                     </>
                   ))}
                 </>
@@ -209,4 +235,4 @@ const Cpanel = () => {
   );
 };
 
-export default Cpanel;
+export default PostCP;

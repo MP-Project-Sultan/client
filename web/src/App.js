@@ -13,7 +13,9 @@ import Profile from './components/Profile'
 import Navbar from './components/Navbar';
 import News from './components/News'
 import Admin from './components/Admin'
-import Cpanel from './components/Admin/postCP'
+import PostCP from './components/Admin/postCP'
+import UserCP from './components/Admin/userCP';
+
 
 
 
@@ -48,7 +50,8 @@ function App() {
             <Route exact path="/profile/:id" element={<Profile />} />
             <Route exact path="/news/" element={<News />} />
             <Route exact path="/admin/" element={<Admin />} />
-            <Route exact path="/Cpanel/" element={<Cpanel />} />
+            <Route exact path="/postCp/" element={<PostCP />} />
+            <Route exact path="/userCp/" element={<UserCP />} />
           </Routes>
         </>
       </Box>
