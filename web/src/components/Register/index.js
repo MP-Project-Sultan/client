@@ -51,82 +51,94 @@ const Register = () => {
   };
 
   return (
+    <Box w='100%' h='100%' bg="rgba(114, 117, 119, 0.548)">
     <ChakraProvider theme={theme}>
-      <Box
+      <VStack><Box
+    
         borderRadius="3px"
-        border="solid silver"
+        border="solid black 1px"
         textAlign="center"
         w="400px"
-        mt="60px"
+        h='100%'
+       
         textAlign="center"
-        ml="500px"
+        
         bg="#fffb"
         color="black"
       >
-        <h1>Register</h1>
-        <Input
-          bg="#222"
-          color="white"
-          textAlign="center"
-          type="name"
-          width="40"
-          placeholder="enter Email"
-          onChange={e => {
-            setUsername(e.target.value);
-          }}
-          mt="10px"
-          mb="10px"
-          placeholder="Name"
-          textAlign="Center"
-        />
-        <Input
-          bg="#222"
-          w='200px'
-          color="white"
-          textAlign="center"
-          type="email"
-          width="40"
-          placeholder="enter Email"
-          onChange={e => {
-            setEmail(e.target.value);
-          }}
-          mb="10px"
-          placeholder="Email"
-          textAlign="Center"
-          type="email"
-        />
-        <PasswordChecklist
-          rules={['minLength', 'specialChar', 'number', 'capital', 'lowercase']}
-          minLength={6}
-          value={password}
-          onChange={isValid => {
-            if (isValid) {
-              const button = document.querySelector('#resetPasswordButton');
-              button.disabled = false;
-            } else {
-              const button = document.querySelector('#resetPasswordButton');
-              button.disabled = false;
-            }
-          }}
-        />
-        <Input
-          bg="#222"
-          id="resetPasswordButton"
-          color="white"
-          textAlign="center"
-          width="40"
-          type="password"
-          placeholder="Password"
-          className="resetPassword"
-          onChange={e => setPassword(e.target.value)}
+        <VStack>
+          <Text mb='10' mt='10'>Register</Text>
+          <Input
           
-        />
-        <br />
-        <Button bg="#777" onClick={signup}>
-          Register
-        </Button>
-      </Box>
-    </ChakraProvider>
+            bg="#222"
+            color="white"
+            textAlign="center"
+            type="name"
+            w="200px"
+            placeholder="enter Email"
+            onChange={e => {
+              setUsername(e.target.value);
+            }}
+            mt="10px"
+            mb="10px"
+            placeholder="Name"
+            textAlign="Center"
+          />
+          <Input
+            bg="#222"
+            w="200px"
+            color="white"
+            textAlign="center"
+            type="email"
+            width="40"
+            placeholder="enter Email"
+            onChange={e => {
+              setEmail(e.target.value);
+            }}
+            mb="10px"
+            placeholder="Email"
+            textAlign="Center"
+            type="email"
+          />{' '}
+          <Input
+            bg="#222"
+            id="resetPasswordButton"
+            color="white"
+            textAlign="center"
+            w="200px"
+            type="password"
+            placeholder="Password"
+            className="resetPassword"
+            onChange={e => setPassword(e.target.value)}
+          />
+          <br />
+          <Button bg="#777" onClick={signup}>
+            Register
+          </Button>
+         <Box mb='111'> <PasswordChecklist
+            rules={[
+              'minLength',
+              'specialChar',
+              'number',
+              'capital',
+              'lowercase',
+              
+            ]}
+            minLength={6}
+            value={password}
+            onChange={isValid => {
+              if (isValid) {
+                const button = document.querySelector('#resetPasswordButton');
+                button.disabled = false;
+              } else {
+                const button = document.querySelector('#resetPasswordButton');
+                button.disabled = false;
+              }
+            }}
+          /></Box>
+        </VStack>
+      </Box></VStack>
+    </ChakraProvider></Box>
   );
 };
 

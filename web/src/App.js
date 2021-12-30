@@ -10,6 +10,9 @@ import Posts from './components/Posts';
 import Message from './components/message';
 import Post from "./components/Posts/Post"
 import Profile from './components/Profile'
+import Navbar from './components/Navbar';
+
+
 
 
 import {
@@ -29,6 +32,7 @@ function App() {
     <ChakraProvider theme={theme}>
       <Box textAlign="center" fontSize="xl">
         <>
+        <Navbar/>
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route exact path="/posts" element={<Posts />} />
