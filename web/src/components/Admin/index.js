@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { sign } from '../../Reducer/login';
 
@@ -29,7 +29,7 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [local, setLocal] = useState('');
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const state = useSelector(state => {
     return {
       Login: state.Login,
@@ -61,20 +61,18 @@ const Login = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      
+      navigate('/Cpanel')
     } catch (error) {
-       MySwal.fire({
-         icon: 'error',
-         title: 'Oops...',
-         text: 'worng Email or password',
-         confirmButtonColor: 'black',
-       });
-      
+      MySwal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'worng Email or password',
+        confirmButtonColor: 'black',
+      });
     }
-    
   };
   return (
-    <Box bg="rgba(114, 117, 119, 0.548)" w="100%" h="100%">
+    <Box bg="rgba(2, 15, 24, 0.795)" w="100%" h="100%">
       <ChakraProvider theme={theme}>
         <VStack>
           {' '}
@@ -91,8 +89,8 @@ const Login = () => {
           >
             <VStack mt="4">
               {!state.token ? (
-                <div className="mainDiv">
-                  <h1>Login</h1>
+                <div>
+                  <h1>Admin Conterol Panel</h1>
                   <VStack mt="4">
                     <Input
                       bg="#201f1e"
@@ -124,14 +122,12 @@ const Login = () => {
                     <Button bg="#777" onClick={logIn}>
                       Login
                     </Button>
-                    <Link exact href="/reset">
-                      Forget password
-                    </Link>
+                   
                     <br />
                   </VStack>
                 </div>
               ) : (
-                <h3></h3>
+                <></>
               )}
             </VStack>
           </Box>

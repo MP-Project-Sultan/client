@@ -103,7 +103,7 @@ const Posts = () => {
   };
   return (
     <ChakraProvider theme={theme}>
-      <Box bg="gray">
+      <Box bg="rgba(114, 117, 119, 0.548)">
         <VStack>
           <Box
             bg="rgba(6, 6, 7, 0.226)"
@@ -144,7 +144,7 @@ const Posts = () => {
                   <Link
                     onClick={() => Nav(`/profile/${e.userId._id}`)}
                     mr="400"
-                    color="rgb(16, 16, 139)"
+                    color="gold"
                     fontSize="12px"
                   >
                     {e.userId.username}
@@ -155,7 +155,7 @@ const Posts = () => {
                   onClick={() => Nav(`/post/${e._id}`)}
                   fontSize="18px"
                   fontFamily="mono"
-                  color="gold"
+                  color="white"
                 >
                   {e.description}
                 </Text>
@@ -172,7 +172,7 @@ const Posts = () => {
                   <Text
                     fontSize="12px"
                     fontFamily="Roman"
-                    color="rgb(16, 16, 139)"
+                    color="gold"
                   >
                     {e.like.length}
                   </Text>

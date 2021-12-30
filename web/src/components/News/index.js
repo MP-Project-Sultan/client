@@ -17,7 +17,7 @@ import {
 import axios from 'axios';
 
 const News = () => {
-  const [text, setText] = useState('java');
+  const [text, setText] = useState('javascript');
   const [news, SetNews] = useState([]);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const News = () => {
     try {
       const data = await axios
         .get(
-          `https://newsapi.org/v2/everything?q=${text}&from=2021-11-30&language=en&sortBy=publishedAt&apiKey=941e34ca80a2416498f8b4c2b895c22d`
+          `https://newsapi.org/v2/everything?q=${text}&from=2021-11-30&language=en&pageSize=100&sortBy=publishedAt&apiKey=941e34ca80a2416498f8b4c2b895c22d`
           // `https://newsdata.io/api/1/news?apikey=pub_316749a1f9e311947558934e30ad0011951a&q=${text}`
         )
         .then(result => {
@@ -44,7 +44,7 @@ const News = () => {
 
   return (
     <Box bg="rgba(114, 117, 119, 0.548)">
-      <VStack>
+      
         <Text mt="30" mb="12" color="rgb(100, 107, 119)" fontSize="3rem">
           Programmer News
         </Text>
@@ -55,26 +55,26 @@ const News = () => {
           onChange={e => setText(e.target.value)}
           w="190"
         ></Input>
-        <SimpleGrid mt="20" columns={2} spacing={0}>
+        <HStack> <SimpleGrid mt="20" columns={1} spacing={0}>
           {news.map(e => (
-            <VStack>
-              {' '}
+            
+          
               <Box
                 mt="10"
                 position="relative"
                 color="black"
                 background="#E2E8F0"
-                width="70%"
-                height="500px"
+                width="50%"
+                height="70%"
                 borderRadius="3"
                 border=" 2px solid black"
                 mb="10"
               >
-                <Image w="100%" height="300" src={e.urlToImage} />
-                <Text>{e.title}</Text>
+               <HStack> <Image w="40%"  h="10%" src={e.urlToImage} />
+               <VStack> <Text>{e.title}</Text>
                 <Text mt="5" fontSize="12px">
                   {e.content}
-                </Text>
+                </Text></VStack>
 
                 <br />
                 <Link
@@ -87,12 +87,12 @@ const News = () => {
                 >
                   More
                   {console.log(e.urlToImage)}
-                </Link>
+                </Link></HStack>
               </Box>
-            </VStack>
+            
           ))}{' '}
-        </SimpleGrid>
-      </VStack>
+        </SimpleGrid> </HStack>
+      
     </Box>
   );
 };
