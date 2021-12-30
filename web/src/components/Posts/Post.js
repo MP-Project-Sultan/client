@@ -64,9 +64,9 @@ export default function Post() {
       console.log(error);
     }
   };
-  const redirect = ()=>{
+  const redirect = () => {
     Nav('/posts');
-  }
+  };
   return (
     <>
       <ChakraProvider theme={theme}>
@@ -84,11 +84,10 @@ export default function Post() {
                 {comments[0].postId.description}
               </Text>
             )}
-            <hr /> 
+            <hr />
             <>
               <Box mt="8">
                 {' '}
-               {' '}
                 <Input
                   onChange={e => {
                     setNewComment(e.target.value);
@@ -116,12 +115,19 @@ export default function Post() {
                       borderRadius="full"
                       src="https://th.bing.com/th/id/R.0e0adfcf50b345161a6a5b47bb8b5f07?rik=cPwI89xNfVXFeQ&riu=http%3a%2f%2fwww.hexatar.com%2fgallery%2fpng%2f190418_124617_m2230fe8f39_avatar.png&ehk=RZX%2bKqAnJJ0UsHx9nSjX7%2b6AduRMrKDy90w7JqaxOlE%3d&risl=&pid=ImgRaw&r=0"
                     />
-                    <Link mr="400" color="rgb(9, 161, 90)" fontSize="12px">
+                    <Link
+                      onClick={() => Nav(`/profile/${item.userId._id}`)}
+                      mr="400"
+                      color="rgb(9, 161, 90)"
+                      fontSize="12px"
+                    >
                       {item.userId.username}
                     </Link>
                     <br />
                   </HStack>
                   <Text
+                    h="100"
+                    pt="33"
                     border="solid gray 2px"
                     borderRadius="3"
                     m="8"
@@ -132,7 +138,8 @@ export default function Post() {
                 </div>
               );
             })}{' '}
-         <Button onClick={redirect}>Back</Button> </Box>
+            <Button onClick={redirect}>Back</Button>{' '}
+          </Box>
         </VStack>
       </ChakraProvider>
     </>
