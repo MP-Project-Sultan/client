@@ -4,9 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { sign } from '../../Reducer/login';
 import { getpost, addpost, delpost } from '../../Reducer/post';
 import { DeleteIcon, StarIcon } from '@chakra-ui/icons';
-import Post from "./Post"
-import {useNavigate} from 'react-router-dom'
-
+import Post from './Post';
+import { useNavigate } from 'react-router-dom';
 
 import {
   ChakraProvider,
@@ -23,10 +22,10 @@ import {
 } from '@chakra-ui/react';
 
 const Posts = () => {
-  const Nav = useNavigate()
+  const Nav = useNavigate();
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const [post, setPost] = useState([]);
-   const [comments, setComments] = useState([]);
+  const [comments, setComments] = useState([]);
   const [like, setLike] = useState();
   const [newPost, setNewPost] = useState('');
   const dispatch = useDispatch();
@@ -69,39 +68,20 @@ const Posts = () => {
       console.log(error);
     }
   };
-  const addcomment = async postId => {
+
+  const del = async id => {
     try {
-      const res = await axios.post(
-        `${BASE_URL}/addComment`,
-        {
-          description: newcomment,
-          postId: postId,
+      const res = await axios.delete(`${BASE_URL}/deletePost/${id}`, {
+        headers: {
+          Authorization: `Bearer ${state.Login.token}`,
         },
-        {
-          headers: {
-            Authorization: `Bearer ${state.Login.token}`,
-          },
-        }
-      );
+      });
 
       result();
     } catch (error) {
       console.log(error);
     }
   };
-    const del = async id => {
-      try {
-        const res = await axios.delete(`${BASE_URL}/deletePost/${id}`, {
-          headers: {
-            Authorization: `Bearer ${state.Login.token}`,
-          },
-        });
-
-        result();
-      } catch (error) {
-        console.log(error);
-      }
-    };
   const addlike = async postId => {
     try {
       const res = await axios.post(
@@ -123,10 +103,11 @@ const Posts = () => {
   };
   return (
     <ChakraProvider theme={theme}>
-      <Box>
+      <Box bg="gray">
         <VStack>
           <Box
-            w="600px"
+            bg="rgba(6, 6, 7, 0.226)"
+            w="800px"
             mt="1%"
             border="solid 2px gray"
             padding="20px"
@@ -141,7 +122,6 @@ const Posts = () => {
                 }}
                 placeholder="Add Post"
                 textAlign="center"
-                background="rgba(88, 141, 233, 0.486)"
               ></Input>
               <Button onClick={addpost}>Add Post</Button>
             </VStack>
@@ -161,69 +141,54 @@ const Posts = () => {
                     borderRadius="full"
                     src="https://th.bing.com/th/id/R.0e0adfcf50b345161a6a5b47bb8b5f07?rik=cPwI89xNfVXFeQ&riu=http%3a%2f%2fwww.hexatar.com%2fgallery%2fpng%2f190418_124617_m2230fe8f39_avatar.png&ehk=RZX%2bKqAnJJ0UsHx9nSjX7%2b6AduRMrKDy90w7JqaxOlE%3d&risl=&pid=ImgRaw&r=0"
                   />
-                  <Link mr="400" color="rgb(9, 161, 90)" fontSize="12px">
+                  <Link
+                    onClick={() => Nav(`/profile/${e.userId._id}`)}
+                    mr="400"
+                    color="rgb(16, 16, 139)"
+                    fontSize="12px"
+                  >
                     {e.userId.username}
                   </Link>
                 </HStack>
-                <Link
+                <Text
                   cursor="pointer"
                   onClick={() => Nav(`/post/${e._id}`)}
                   fontSize="18px"
                   fontFamily="mono"
+                  color="gold"
                 >
                   {e.description}
-                </Link>
-                {/* <Input
-                  onChange={e => {
-                    setNewComment(e.target.value);
-                  }}
-                  placeholder="add comment"
-                  w="250"
-                /> */}
+                </Text>
                 <HStack>
                   {' '}
                   <StarIcon
-                  w='3'
+                    w="3"
                     cursor="pointer"
                     color="#c5a087"
                     onClick={() => addlike(e._id)}
                   >
                     Like{' '}
                   </StarIcon>
-                  <Text fontSize="12px" fontFamily="Roman" color="green" >
+                  <Text
+                    fontSize="12px"
+                    fontFamily="Roman"
+                    color="rgb(16, 16, 139)"
+                  >
                     {e.like.length}
                   </Text>
-                  
-              <DeleteIcon
-                w='3'
+                  <DeleteIcon
+                    w="3"
                     cursor="pointer"
                     position="absolute"
-                    left='873'
-                   
-                    marginBottom='33'
+                    left="971"
+                    marginBottom="33"
                     onClick={() => {
                       del(e._id);
                     }}
                   >
                     delete
-                  </DeleteIcon>  </HStack>{' '}
-                {/* <Button ml="4" onClick={() => Nav(`/post/${e._id}`)}>
-                  {' '}
-                  Read More...
-                </Button> */}
-                {/* <Button ml="4" onClick={() => addcomment(e._id)}>
-                  {' '}
-                  Reply
-                </Button> */}
-                {/* <Post postId={e._id} /> */}
-                {/* {e.commentId.map((s, i) => (
-                  <Box mt="4">
-                    <Text fontSize="12px" fontFamily="Verdana" color="gold">
-                      {s.description}
-                    </Text>{' '}
-                    <Text> {console.log(s)}</Text>
-                  </Box>
-                ))} */}
+                  </DeleteIcon>{' '}
+                </HStack>{' '}
               </Box>
             ))}
           </Box>
