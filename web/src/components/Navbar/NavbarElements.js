@@ -27,10 +27,10 @@ export const NavLink = styled(Link)`
   height: 100%;
   cursor: pointer;
   &.active {
-    color: black;
+    color: rgba(208, 156, 33, 0.8);
   }
   &:hover {
-    color: black;
+    color: #bca008;
   }
 `;
 

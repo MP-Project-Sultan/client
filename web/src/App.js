@@ -11,7 +11,9 @@ import Message from './components/message';
 import Post from "./components/Posts/Post"
 import Profile from './components/Profile'
 import Navbar from './components/Navbar';
-
+import News from './components/News'
+import Admin from './components/Admin'
+import Cpanel from './components/Admin/postCP'
 
 
 
@@ -32,7 +34,7 @@ function App() {
     <ChakraProvider theme={theme}>
       <Box textAlign="center" fontSize="xl">
         <>
-        <Navbar/>
+          <Navbar />
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route exact path="/posts" element={<Posts />} />
@@ -44,6 +46,9 @@ function App() {
             <Route exact path="/message/" element={<Message />} />
             <Route exact path="/post/:id" element={<Post />} />
             <Route exact path="/profile/:id" element={<Profile />} />
+            <Route exact path="/news/" element={<News />} />
+            <Route exact path="/admin/" element={<Admin />} />
+            <Route exact path="/Cpanel/" element={<Cpanel />} />
           </Routes>
         </>
       </Box>
