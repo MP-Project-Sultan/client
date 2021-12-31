@@ -51,19 +51,20 @@ const Reset = () => {
   };
 
   return (
-    <ChakraProvider>
-      <Box
+     <Box h='100%' bg="rgba(114, 117, 119, 0.548)"><ChakraProvider>
+     <VStack> <Box
         borderRadius="3px"
         border="solid silver"
         textAlign="center"
         w="300px"
         mt="100px"
         textAlign="center"
-        ml="500px"
+        mb='180px'
         bg="#fffb"
         color="black"
+        p='4'
       >
-        <h1>Reset Password</h1>
+        <Text>Reset Password</Text>
         <Input
           m="10px"
           w='200px'
@@ -80,9 +81,10 @@ const Reset = () => {
         <Button bg="#777" onClick={checkemail} mt="20px">
           Send reset code
         </Button>
-      </Box>
+      
+      </Box>  <br/></VStack>
     </ChakraProvider>
-  );
+ </Box> );
 };
 
 export default Reset;
