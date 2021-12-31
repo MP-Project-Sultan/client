@@ -3,6 +3,8 @@ import { getpost, addpost, delpost } from '../../Reducer/post';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { DeleteIcon, StarIcon, AddIcon } from '@chakra-ui/icons';
+
 import {
   ChakraProvider,
   Box,
@@ -143,86 +145,104 @@ const PostCP = () => {
             bg="rgba(6, 6, 7, 0.226)"
             w="800px"
             mt="1%"
+            m="2%"
             border="solid 2px gray"
             padding="20px"
             borderRadius="4"
           >
             <VStack>
               <Text color="white">POSTS</Text>
-              <Input
-                w="200px"
-                color="white"
-                onChange={e => {
-                  setNewPost(e.target.value);
-                }}
-                placeholder="add Post"
-              />
-              <Button onClick={addpost}>add Post</Button>
+              <HStack>
+                <Input
+                  w="200px"
+                  color="white"
+                  onChange={e => {
+                    setNewPost(e.target.value);
+                  }}
+                  placeholder="add Post"
+                />
+                <AddIcon cursor="pointer" color="white" onClick={addpost}>
+                  add Post
+                </AddIcon>
+              </HStack>
               {newpost && newpost.length && (
                 <>
                   {state.postRD.post.map((e, i) => (
                     <>
-                      <HStack>
+                      <Box border="solid 2px silver">
                         {' '}
-                        <Text
-                          color="white"
-                          border="solid 1px black"
-                          fontSize="30px"
-                        >
-                          {e.description}
-                        </Text>
-                        <Button
-                          onClick={() => {
-                            del(e._id);
-                          }}
-                        >
-                          delete Post
-                        </Button>
-                      </HStack>
-                      <img src={e.img} />
-                      {e.commentId.map(s => (
-                        <>
+                        <VStack>
+                          {' '}
+                        <HStack>  <Text color="white" fontSize="30px">
+                            {e.description}
+                          </Text>
+                          <DeleteIcon
+                            cursor="pointer"
+                            color="white"
+                            onClick={() => {
+                              del(e._id);
+                            }}
+                          >
+                            delete Post
+                          </DeleteIcon></HStack>
+                        </VStack>
+                        <img src={e.img} />
+                        {e.commentId.map(s => (
+                          <>
+                            <VStack>
+                              {' '}
+                              <HStack>
+                                {' '}
+                                <DeleteIcon
+                                  cursor="pointer"
+                                  color="white"
+                                  font-size="15px"
+                                  onClick={() => {
+                                    delComment(s._id);
+                                  }}
+                                >
+                                  Delete Comment
+                                </DeleteIcon>{' '}
+                                <Text color="white" fontSize="15px">
+                                  {' '}
+                                  Comment: {s.description}
+                                </Text>
+                              </HStack>
+                            </VStack>
+                          </>
+                        ))}
+                        <VStack>
+                          {' '}
                           <HStack>
                             {' '}
-                            <Button
-                              onClick={() => {
-                                delComment(s._id);
-                              }}
-                            >
-                              Delete Comment
-                            </Button>{' '}
-                            <Text
+                            <Input
+                              m="4"
+                              w="200px"
                               color="white"
-                              border="solid 1px red"
-                              fontSize="15px"
+                              onChange={e => {
+                                setNewComment(e.target.value);
+                              }}
+                              placeholder="add comment"
+                            />
+                            <AddIcon
+                              cursor="pointer"
+                              color="white"
+                              onClick={() => addcomment(e._id)}
                             >
-                              {' '}
-                              Comment: {s.description}
-                            </Text>
+                              add
+                            </AddIcon>
+                            <br />
+                            <StarIcon
+                              color="gold"
+                              cursor="pointer"
+                              onClick={() => addlike(e._id)}
+                            >
+                              Like{' '}
+                            </StarIcon>
+                            <Text m='2px' color="white">{e.like.length}</Text>
                           </HStack>
-                        </>
-                      ))}
-                      {/* {e.like.map(s => (
-                    <>
-                      <p className="pargraph">  {s.length}</p>
-                    </>
-                  ))} */}
-
-                      <HStack>
-                        {' '}
-                        <Input
-                          w="200px"
-                          color="white"
-                          onChange={e => {
-                            setNewComment(e.target.value);
-                          }}
-                          placeholder="add comment"
-                        />
-                        <Button onClick={() => addcomment(e._id)}>add</Button>
-                        <br />
-                        <Button onClick={() => addlike(e._id)}>Like </Button>
-                        <Text color="white">{e.like.length}</Text>
-                      </HStack>
+                        </VStack>
+                      </Box>
                     </>
                   ))}
                 </>
