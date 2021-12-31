@@ -53,15 +53,24 @@ const Login = () => {
         token: result.data.token,
       };
       console.log(data);
-      dispatch(sign(data));
-      Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'Login success',
-        showConfirmButton: false,
-        timer: 1500,
-      });
-      navigate('/Cpanel')
+      if (data.user.role == `61c0855305291c57ea3039dd`) {
+        dispatch(sign(data));
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Login success',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate('/postCP');
+      } else {
+        MySwal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'worng Email or password ,',
+          confirmButtonColor: 'black',
+        });
+      }
     } catch (error) {
       MySwal.fire({
         icon: 'error',
@@ -97,11 +106,11 @@ const Login = () => {
                       w="197px"
                       color="white"
                       textAlign="center"
-                      type="email"
+                      type="username"
                       width="40"
-                      placeholder="enter Email"
+                      placeholder="enter username"
                       onChange={e => {
-                        setEmail(e.target.value);
+                        setUsername(e.target.value);
                       }}
                     />
                     <br />
@@ -122,7 +131,7 @@ const Login = () => {
                     <Button bg="#777" onClick={logIn}>
                       Login
                     </Button>
-                   
+
                     <br />
                   </VStack>
                 </div>

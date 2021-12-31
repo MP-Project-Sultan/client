@@ -53,58 +53,74 @@ const Reset2 = () => {
     }
   };
   return (
-    <ChakraProvider theme={theme}>
-      <Box
-        borderRadius="3px"
-        border="solid silver"
-        textAlign="center"
-        w="400px"
-        mt="100px"
-        textAlign="center"
-        ml="450px"
-        bg="#fffb"
-        color="black"
-      >
-        <VStack mt="4">
-          <h1>Reset Your Password</h1>
-          <PasswordChecklist
-            rules={[
-              'minLength',
-              'specialChar',
-              'number',
-              'capital',
-              'lowercase',
-            ]}
-            minLength={6}
-            value={password}
-            onChange={isValid => {
-              if (isValid) {
-                const button = document.querySelector('#resetPasswordButton');
-                button.disabled = false;
-              } else {
-                const button = document.querySelector('#resetPasswordButton');
-                button.disabled = true;
-              }
-            }}
-          />
-          <Input
-            bg="#222"
-            color="white"
+    <Box bg="rgba(114, 117, 119, 0.548)">
+      {' '}
+      <ChakraProvider theme={theme}>
+        <VStack>
+          {' '}
+          <Box
+            borderRadius="3px"
+            border="solid silver"
             textAlign="center"
-            width="40"
-            type="password"
-            placeholder="Password"
-            className="resetPassword"
-            onChange={e => setPassword(e.target.value)}
-            required
-          />
-          <ReactCodeInput fields={4} onComplete={val => setCode(val)} />
-          <Button bg="#777" id="resetPasswordButton" onClick={resetPassword}>
-            Reset
-          </Button>
+            w="360px"
+            textAlign="center"
+            bg="#fffb"
+            color="black"
+            mt="30"
+           p='10'
+           marginBottom='19'
+          >
+            <VStack>
+              <h1>Reset Password</h1>
+            <Box fontSize='14'>  <PasswordChecklist
+                rules={[
+                  'minLength',
+                  'specialChar',
+                  'number',
+                  'capital',
+                  'lowercase',
+                ]}
+                minLength={6}
+                value={password}
+                onChange={isValid => {
+                  if (isValid) {
+                    const button = document.querySelector(
+                      '#resetPasswordButton'
+                    );
+                    button.disabled = false;
+                  } else {
+                    const button = document.querySelector(
+                      '#resetPasswordButton'
+                    );
+                    button.disabled = true;
+                  }
+                }}
+              /></Box>
+              <Input
+                bg="#222"
+                color="white"
+                textAlign="center"
+                width="40"
+                type="password"
+                placeholder="Password"
+                className="resetPassword"
+                onChange={e => setPassword(e.target.value)}
+                required
+              />
+              <ReactCodeInput fields={4} onComplete={val => setCode(val)} />
+              <Button
+              
+                bg="#777"
+                id="resetPasswordButton"
+                onClick={resetPassword}
+              >
+                Reset
+              </Button>
+            </VStack>{' '}
+          </Box>
         </VStack>
-      </Box>
-    </ChakraProvider>
+      </ChakraProvider>
+    </Box>
   );
 };
 export default Reset2;
