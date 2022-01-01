@@ -67,6 +67,25 @@ export default function Post() {
   const redirect = () => {
     Nav('/posts');
   };
+   const addVot = async commentId => {
+     try {
+       const res = await axios.post(
+         `${BASE_URL}/addVot`,
+         {
+           commentId: commentId,
+         },
+         {
+           headers: {
+             Authorization: `Bearer ${state.Login.token}`,
+           },
+         }
+       );
+
+       result();
+     } catch (error) {
+       console.log(error);
+     }
+   };
   return (
     <Box bg="rgba(114, 117, 119, 0.548)">
       <>
@@ -125,7 +144,18 @@ export default function Post() {
                         {item.userId.username}
                       </Link>
                       <br />
-                    </HStack>
+                     
+                    </HStack> <HStack><StarIcon
+                        w="3"
+                        cursor="pointer"
+                        color="#c5a087"
+                        onClick={() => addVot(item._id)}
+                      >
+                        Like{' '}
+                      </StarIcon>
+                      <Text fontSize="12px" fontFamily="Roman" color="gold">
+                        {item.vot.length}
+                      </Text></HStack>
                     <Text
                       h="100"
                       pt="33"
