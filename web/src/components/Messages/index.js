@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import io from "socket.io-client";
 
 let socket;
-let CONNECTION_PORT = "http://localhost:4000";
+let CONNECTION_PORT = "http://localhost:5000";
 
-function App() {
+function Message() {
   const [room, setRoom] = useState("");
   const [userName, setUserName] = useState("");
   const [message, setMessage] = useState("");
@@ -77,4 +77,4 @@ function App() {
   );
 }
 
-export default App;
+export default Message;

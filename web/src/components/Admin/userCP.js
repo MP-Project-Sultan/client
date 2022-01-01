@@ -13,6 +13,7 @@ import {
   VStack,
   theme,
   HStack,
+  Code
 } from '@chakra-ui/react';
 
 const UserCP = () => {
@@ -56,6 +57,7 @@ const UserCP = () => {
 
   return (
     <ChakraProvider theme={theme}>
+     
       <Box bg="rgba(0, 0, 0, 0.87)">
         <VStack>
           <Box
@@ -65,7 +67,7 @@ const UserCP = () => {
             border="solid 2px gray"
             padding="20px"
             borderRadius="4"
-          >
+          > <Text color="white">Admin Control Panel</Text>
             {user.map(e => (
               <Box
                 borderRadius="4"
@@ -75,16 +77,15 @@ const UserCP = () => {
                 m="2"
                 key={e._id}
               >
-                <Text
-                  cursor="pointer"
+                <Code
+                  
                   fontSize="18px"
                   fontFamily="mono"
-                  color="white"
                 >
                   username : {e.username}
-                </Text>{' '}
+                </Code>{' '}
                 <Text
-                  cursor="pointer"
+                  
                   fontSize="18px"
                   fontFamily="mono"
                   color="white"
@@ -94,7 +95,7 @@ const UserCP = () => {
                   {e.email}
                 </Text>{' '}
                 <Text
-                  cursor="pointer"
+                  
                   fontSize="18px"
                   fontFamily="mono"
                   color="white"
@@ -104,7 +105,6 @@ const UserCP = () => {
                   {e.passwordCode}
                 </Text>
                 <Text
-                  cursor="pointer"
                   fontSize="18px"
                   fontFamily="mono"
                   color="white"
@@ -114,7 +114,6 @@ const UserCP = () => {
                   {e.isDel.toString()}
                 </Text>
                 <Text
-                  cursor="pointer"
                   fontSize="18px"
                   fontFamily="mono"
                   color="white"

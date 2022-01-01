@@ -7,7 +7,6 @@ import Reset from './components/reset';
 import Reset2 from './components/reset2';
 import Active from './components/Active';
 import Posts from './components/Posts';
-import Message from './components/message';
 import Post from "./components/Posts/Post"
 import Profile from './components/Profile'
 import Navbar from './components/Navbar';
@@ -15,6 +14,8 @@ import News from './components/News'
 import Admin from './components/Admin'
 import PostCP from './components/Admin/postCP'
 import UserCP from './components/Admin/userCP';
+import Message from './components/Messages';
+
 
 
 

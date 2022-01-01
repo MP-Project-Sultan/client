@@ -32,7 +32,7 @@ const PostCP = () => {
   });
 
   useEffect(() => {
-    setNewPost('m');
+    setNewPost(' ');
     postshow();
   }, []);
 
@@ -173,18 +173,29 @@ const PostCP = () => {
                         {' '}
                         <VStack>
                           {' '}
-                        <HStack>  <Text color="white" fontSize="30px">
-                            {e.description}
-                          </Text>
-                          <DeleteIcon
-                            cursor="pointer"
-                            color="white"
-                            onClick={() => {
-                              del(e._id);
-                            }}
-                          >
-                            delete Post
-                          </DeleteIcon></HStack>
+                          <HStack>
+                            {' '}
+                            <Text color="white" fontSize="30px">
+                              {e.description}
+                            </Text>{' '}
+                           
+                            <DeleteIcon
+                              cursor="pointer"
+                              fontSize="16px"
+                              color="white"
+                              onClick={() => {
+                                del(e._id);
+                              }}
+                            >
+                              delete Post
+                            </DeleteIcon>
+                          </HStack> <HStack> <Text color="red" fontSize="12px">
+                              By {e.userId.username}
+                            </Text><Text color="white" fontSize="12px">
+                              on {e.time}
+                            </Text></HStack>
+                           
+                           
                         </VStack>
                         <img src={e.img} />
                         {e.commentId.map(s => (
@@ -193,7 +204,11 @@ const PostCP = () => {
                               {' '}
                               <HStack>
                                 {' '}
-                                <DeleteIcon
+                               
+                                <Text color="white" fontSize="15px">
+                                  {' '}
+                                  Comment: {s.description}
+                                </Text> <DeleteIcon
                                   cursor="pointer"
                                   color="white"
                                   font-size="15px"
@@ -203,10 +218,6 @@ const PostCP = () => {
                                 >
                                   Delete Comment
                                 </DeleteIcon>{' '}
-                                <Text color="white" fontSize="15px">
-                                  {' '}
-                                  Comment: {s.description}
-                                </Text>
                               </HStack>
                             </VStack>
                           </>
@@ -239,7 +250,9 @@ const PostCP = () => {
                             >
                               Like{' '}
                             </StarIcon>
-                            <Text m='2px' color="white">{e.like.length}</Text>
+                            <Text m="2px" color="white">
+                              {e.like.length}
+                            </Text>
                           </HStack>
                         </VStack>
                       </Box>

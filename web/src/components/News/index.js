@@ -17,7 +17,7 @@ import {
 import axios from 'axios';
 
 const News = () => {
-  const [text, setText] = useState('javascript');
+  const [text, setText] = useState(' ');
   const [news, SetNews] = useState([]);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const News = () => {
     try {
       const data = await axios
         .get(
-          `https://newsapi.org/v2/everything?q=${text}&from=2021-11-30&language=en&pageSize=100&sortBy=publishedAt&apiKey=941e34ca80a2416498f8b4c2b895c22d`
+          `https://newsapi.org/v2/everything?q=${text}&from=2022-01-01&language=en&pageSize=100&sortBy=publishedAt&apiKey=941e34ca80a2416498f8b4c2b895c22d`
           // `https://newsdata.io/api/1/news?apikey=pub_316749a1f9e311947558934e30ad0011951a&q=${text}`
         )
         .then(result => {
@@ -45,7 +45,7 @@ const News = () => {
   return (
     <Box bg="rgba(114, 117, 119, 0.548)">
       
-        <Text mt="30" mb="12" color="rgb(100, 107, 119)" fontSize="3rem">
+        <Text  mb="12" color="rgb(100, 107, 119)" fontSize="3rem">
           Programmer News
         </Text>
         <Input

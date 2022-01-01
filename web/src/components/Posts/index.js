@@ -149,6 +149,9 @@ const Posts = () => {
                   >
                     {e.userId.username}
                   </Link>
+                  <Text color="white" fontSize="12px">
+                    on {e.time}
+                  </Text>
                 </HStack>
                 <Text
                   cursor="pointer"
@@ -169,11 +172,7 @@ const Posts = () => {
                   >
                     Like{' '}
                   </StarIcon>
-                  <Text
-                    fontSize="12px"
-                    fontFamily="Roman"
-                    color="gold"
-                  >
+                  <Text fontSize="12px" fontFamily="Roman" color="gold">
                     {e.like.length}
                   </Text>
                   <DeleteIcon

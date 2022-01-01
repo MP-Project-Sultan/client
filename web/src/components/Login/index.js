@@ -91,7 +91,7 @@ const Login = () => {
           >
             <VStack mt="4">
               {!state.token ? (
-                <div className="mainDiv">
+                <>
                   <h1>Login</h1>
                   <VStack mt="4">
                     <Input
@@ -129,7 +129,7 @@ const Login = () => {
                     </Link>
                     <br />
                   </VStack>
-                </div>
+                </>
               ) : (
                 <h3></h3>
               )}
