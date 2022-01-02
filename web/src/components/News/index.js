@@ -43,7 +43,7 @@ const News = () => {
   };
 
   return (
-    <Box  p="5" bg="rgba(252, 252, 252, 0.815)">
+    <Box p="5" bg="rgba(252, 252, 252, 0.815)">
       <Text mb="12" color="rgb(100, 107, 119)" fontSize="3rem">
         Programmer News
       </Text>
@@ -56,7 +56,7 @@ const News = () => {
       ></Input>
       <HStack>
         {' '}
-        <SimpleGrid m="30" columns={1} spacing={3}>
+        <SimpleGrid m="30" columns={1} spacing={5}>
           {news.map(e => (
             <Box
               position="relative"
@@ -67,10 +67,11 @@ const News = () => {
               borderRadius="3"
               shadow="md"
               bg="rgba(252, 252, 252, 0.815)"
+              
             >
-              <HStack>
+              <HStack >
                 {' '}
-                <Image w="30%" height="50%" src={e.urlToImage} />
+                <Image w="200px" height="200px" src={e.urlToImage} />
                 <VStack>
                   {' '}
                   <Text>{e.title}</Text>
@@ -80,12 +81,15 @@ const News = () => {
                 </VStack>
                 <br />
                 <Link
-                  position="absolute"
+                  target="blank"
+                  
                   color="rgb(57, 123, 245)"
-                  bottom="0"
                   href={e.url}
                   fontSize="15px"
-                  marginLeft="170"
+                  pt='88'
+                  pr='3'
+
+                  
                 >
                   More
                   {console.log(e.urlToImage)}

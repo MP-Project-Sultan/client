@@ -45,7 +45,6 @@ const News = () => {
 
   return (
     <Box bg="rgba(252, 252, 252, 0.815)">
-
       <VStack>
         <Text mt="30" mb="12" color="rgb(100, 107, 119)" fontSize="3rem">
           Programmer News
@@ -82,6 +81,7 @@ const News = () => {
                 <Link
                   position="absolute"
                   color="rgb(57, 123, 245)"
+                  target="blank"
                   bottom="0"
                   href={e.url}
                   fontSize="15px"

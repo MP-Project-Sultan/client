@@ -116,22 +116,22 @@ const Posts = () => {
           >
             <VStack>
               {' '}
-                <Input
+              <Input
                 w="200px"
                 onChange={e => {
                   setNewTitle(e.target.value);
                 }}
                 placeholder="Title"
                 textAlign="center"
-              ></Input><Input
+              ></Input>
+              <Input
                 w="200px"
                 onChange={e => {
                   setNewPost(e.target.value);
                 }}
-                placeholder="Post"
+                placeholder="Description"
                 textAlign="center"
               ></Input>{' '}
-            
               <Button onClick={addpost}>Add Post</Button>
             </VStack>
             {post.map(e => (
@@ -164,7 +164,6 @@ const Posts = () => {
                     on {e.time.slice(0, 10)} {e.time.slice(11, 16)}
                   </Text>
                 </HStack>
-                
                 <Text
                   cursor="pointer"
                   onClick={() => Nav(`/post/${e._id}`)}
@@ -184,7 +183,12 @@ const Posts = () => {
                   >
                     Like{' '}
                   </StarIcon>
-                  <Text fontSize="12px" fontFamily="Roman" color="gold">
+                  <Text
+                    as="strong"
+                    fontSize="12px"
+                    fontFamily="Roman"
+                    color="gold"
+                  >
                     {e.like.length}
                   </Text>
                   <DeleteIcon

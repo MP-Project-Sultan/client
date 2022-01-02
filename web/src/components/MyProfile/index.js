@@ -18,6 +18,13 @@ import {
 
 const MyProfile = () => {
   const [user, setUser] = useState('');
+  const [username , setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+      const BASE_URL = process.env.REACT_APP_BASE_URL;
+
+
+
   const state = useSelector(state => {
     return {
       Login: state.Login,
@@ -38,32 +45,71 @@ const MyProfile = () => {
       });
 
   };
+  const updateUser = async () => {
+    await axios.put(
+      `${BASE_URL}/updateUser/${state.Login.user._id}`,
+      {
+        username: username,
+        email,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${state.Login.token}`,
+        },
+      }
+    );
+    
+    result();
+  };
+
   
   return (
     <ChakraProvider theme={theme}>
-      <Box bg="rgba(114, 117, 119, 0.548)" h="100%" w="100%">
-        <div>
+      <VStack>
+        {' '}
+        <Box bg="rgba(252, 252, 252, 0.815)" h="60%" w="60%">
           {user.length &&
             user.map(e => (
-              <VStack>
-                <Box mt="100" mb="250" border="solid gray 2px" w="60" h="100">
+              <Box mt="100" mb="250" border="solid gray 2px" w="100" h="300">
+                {' '}
+                <VStack>
                   {' '}
-                  <>
-                    <Image
-                      display="inline"
-                      w="5"
-                      borderRadius="full"
-                      src="https://th.bing.com/th/id/R.0e0adfcf50b345161a6a5b47bb8b5f07?rik=cPwI89xNfVXFeQ&riu=http%3a%2f%2fwww.hexatar.com%2fgallery%2fpng%2f190418_124617_m2230fe8f39_avatar.png&ehk=RZX%2bKqAnJJ0UsHx9nSjX7%2b6AduRMrKDy90w7JqaxOlE%3d&risl=&pid=ImgRaw&r=0"
-                    />
-                    <></>
-                    <Text>{e.username}</Text>
-                    <Text>{e.email}</Text>
-                  </>
-                </Box>
-              </VStack>
+                  <Image
+                    w="5"
+                    mt="4"
+                    borderRadius="full"
+                    src="https://th.bing.com/th/id/R.0e0adfcf50b345161a6a5b47bb8b5f07?rik=cPwI89xNfVXFeQ&riu=http%3a%2f%2fwww.hexatar.com%2fgallery%2fpng%2f190418_124617_m2230fe8f39_avatar.png&ehk=RZX%2bKqAnJJ0UsHx9nSjX7%2b6AduRMrKDy90w7JqaxOlE%3d&risl=&pid=ImgRaw&r=0"
+                  />
+                  <Text>{e.username}</Text>
+                  <Text>{e.email}</Text>
+                  <Input
+                    w="100"
+                    textAlign="center"
+                    mt="5"
+                    onChange={e => {
+                      setUsername(e.target.value);
+                    }}
+                    placeholder="username"
+                  />
+                  <br />
+                  <Input
+                    mt="6"
+                    w="100"
+                    textAlign="center"
+                    onChange={e => {
+                      setEmail(e.target.value);
+                    }}
+                    placeholder="Email"
+                  />
+                  <br />
+                  <Button mt="4" onClick={() => updateUser()}>
+                    update
+                  </Button>{' '}
+                </VStack>{' '}
+              </Box>
             ))}
-        </div>
-      </Box>
+        </Box>
+      </VStack>
     </ChakraProvider>
   );
 };

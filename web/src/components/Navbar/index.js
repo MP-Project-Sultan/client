@@ -57,7 +57,10 @@ const Navbar = () => {
               Questions
             </NavLink>
             <NavLink to="/news" activeStyle>
-              All News
+               News
+            </NavLink>
+            <NavLink to="/MyProfile" activeStyle>
+              My Profile
             </NavLink>
             {!logedin ? (
               <>

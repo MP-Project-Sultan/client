@@ -16,6 +16,7 @@ import PostCP from './components/Admin/postCP'
 import UserCP from './components/Admin/userCP';
 import Message from './components/Messages';
 import MyProfile from './components/MyProfile';
+import Footer from './components/Fot'
 
 
 
@@ -39,6 +40,7 @@ function App() {
       <Box textAlign="center" fontSize="xl">
         <>
           <Navbar />
+
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route exact path="/posts" element={<Posts />} />
@@ -56,6 +58,7 @@ function App() {
             <Route exact path="/userCp/" element={<UserCP />} />
             <Route exact path="/MyProfile/" element={<MyProfile />} />
           </Routes>
+          <Footer />
         </>
       </Box>
     </ChakraProvider>
