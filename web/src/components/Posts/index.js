@@ -29,7 +29,7 @@ const Posts = () => {
   const [like, setLike] = useState();
   const [newPost, setNewPost] = useState('');
   const dispatch = useDispatch();
-  const [newcomment, setNewComment] = useState('');
+  const [newTitle, setNewTitle] = useState('');
   const state = useSelector(state => {
     return {
       Login: state.Login,
@@ -55,6 +55,7 @@ const Posts = () => {
         `${BASE_URL}/addPost`,
         {
           description: newPost,
+          title: newTitle
         },
         {
           headers: {
@@ -115,14 +116,22 @@ const Posts = () => {
           >
             <VStack>
               {' '}
-              <Input
+                <Input
+                w="200px"
+                onChange={e => {
+                  setNewTitle(e.target.value);
+                }}
+                placeholder="Title"
+                textAlign="center"
+              ></Input><Input
                 w="200px"
                 onChange={e => {
                   setNewPost(e.target.value);
                 }}
-                placeholder="Add Post"
+                placeholder="Post"
                 textAlign="center"
-              ></Input>
+              ></Input>{' '}
+            
               <Button onClick={addpost}>Add Post</Button>
             </VStack>
             {post.map(e => (
@@ -155,6 +164,7 @@ const Posts = () => {
                     on {e.time.slice(0, 10)} {e.time.slice(11, 16)}
                   </Text>
                 </HStack>
+                
                 <Text
                   cursor="pointer"
                   onClick={() => Nav(`/post/${e._id}`)}
@@ -162,7 +172,7 @@ const Posts = () => {
                   fontFamily="mono"
                   color="black"
                 >
-                  {e.description}
+                  {e.title}
                 </Text>
                 <HStack>
                   {' '}

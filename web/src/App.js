@@ -15,6 +15,7 @@ import Admin from './components/Admin'
 import PostCP from './components/Admin/postCP'
 import UserCP from './components/Admin/userCP';
 import Message from './components/Messages';
+import MyProfile from './components/MyProfile';
 
 
 
@@ -53,6 +54,7 @@ function App() {
             <Route exact path="/admin/" element={<Admin />} />
             <Route exact path="/postCp/" element={<PostCP />} />
             <Route exact path="/userCp/" element={<UserCP />} />
+            <Route exact path="/MyProfile/" element={<MyProfile />} />
           </Routes>
         </>
       </Box>

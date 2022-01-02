@@ -110,7 +110,7 @@ export default function Post() {
         <ChakraProvider theme={theme}>
           <VStack>
             <Box
-              background="rgba(0, 0, 0, 0.918)"
+              background="rgba(252, 252, 252, 0.815)"
               w="600px"
               mt="1%"
               border="solid 2px gray"
@@ -121,7 +121,7 @@ export default function Post() {
                 <>
                   {' '}
                   {console.log(comments[0].postId._id)}
-                  <Text mb="9" color="white" fontFamily="Roman" fontSize="20">
+                  <Text mb="9" color="black" fontFamily="Roman" fontSize="20">
                     {comments[0].postId.description}
                   </Text>
                 </>
@@ -137,7 +137,6 @@ export default function Post() {
                     placeholder="add comment"
                     w="250"
                     textAlign="center"
-                    bg="#0105023a"
                   />
                   <Button ml="4" onClick={e => addcomment(id)}>
                     {' '}
@@ -167,7 +166,7 @@ export default function Post() {
                         by {item.userId.username}
                       </Link>{' '}
                       <Text
-                        color="white"
+                        color="black"
                         onClick={() => Nav(`/profile/${item.userId._id}`)}
                         mr="400"
                         fontSize="12px"
@@ -198,7 +197,7 @@ export default function Post() {
                       border="solid gray 2px"
                       borderRadius="3"
                       m="8"
-                      color="white"
+                      color="black"
                       fontSize="15px"
                     >
                       {item.description}

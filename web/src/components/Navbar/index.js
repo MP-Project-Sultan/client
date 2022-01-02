@@ -25,7 +25,7 @@ const Navbar = () => {
   });
 
   useEffect(() => {
-    console.log(state);
+   
     if (state.Login.token) {
       setLogedin(true);
     } else {
