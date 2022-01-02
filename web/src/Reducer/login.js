@@ -1,5 +1,5 @@
 const initialState = {
-  user: null,
+  user: [],
   token: '',
 };
 
@@ -13,10 +13,10 @@ const Login = (state = initialState, action) => {
       return { user, token };
     case 'LOGOUT':
       localStorage.clear();
-      return payload;
+      return { user: '', token: '' };
     default:
       const tokenStore = localStorage.getItem('token');
-      const userStore = localStorage.getItem('user');
+      const userStore = JSON.parse(localStorage.getItem('user'));
       return { user: userStore, token: tokenStore };
   }
 };

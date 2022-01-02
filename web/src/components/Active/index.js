@@ -54,7 +54,7 @@ const Active = () => {
       mt="100px"
       textAlign="center"
       ml="500px"
-      bg="#fffb"
+      bg="rgba(252, 252, 252, 0.815)"
       color="black"
     >
       <h1>verify your account</h1>

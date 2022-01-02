@@ -43,39 +43,41 @@ const News = () => {
   };
 
   return (
-    <Box bg="rgba(114, 117, 119, 0.548)">
-      
-        <Text  mb="12" color="rgb(100, 107, 119)" fontSize="3rem">
-          Programmer News
-        </Text>
-        <Input
-          placeholder="Search News"
-          textAlign="center"
-          value={text}
-          onChange={e => setText(e.target.value)}
-          w="190"
-        ></Input>
-        <HStack> <SimpleGrid mt="20" columns={1} spacing={0}>
+    <Box  p="5" bg="rgba(252, 252, 252, 0.815)">
+      <Text mb="12" color="rgb(100, 107, 119)" fontSize="3rem">
+        Programmer News
+      </Text>
+      <Input
+        placeholder="Search News"
+        textAlign="center"
+        value={text}
+        onChange={e => setText(e.target.value)}
+        w="190"
+      ></Input>
+      <HStack>
+        {' '}
+        <SimpleGrid m="30" columns={1} spacing={3}>
           {news.map(e => (
-            
-          
-              <Box
-                mt="10"
-                position="relative"
-                color="black"
-                background="#E2E8F0"
-                width="50%"
-                height="70%"
-                borderRadius="3"
-                border=" 2px solid black"
-                mb="10"
-              >
-               <HStack> <Image w="40%"  h="10%" src={e.urlToImage} />
-               <VStack> <Text>{e.title}</Text>
-                <Text mt="5" fontSize="12px">
-                  {e.content}
-                </Text></VStack>
-
+            <Box
+              position="relative"
+              color="black"
+              background="#E2E8F0"
+              width="100%"
+              height="100%"
+              borderRadius="3"
+              shadow="md"
+              bg="rgba(252, 252, 252, 0.815)"
+            >
+              <HStack>
+                {' '}
+                <Image w="30%" height="50%" src={e.urlToImage} />
+                <VStack>
+                  {' '}
+                  <Text>{e.title}</Text>
+                  <Text mt="5" fontSize="12px">
+                    {e.content}
+                  </Text>
+                </VStack>
                 <br />
                 <Link
                   position="absolute"
@@ -87,12 +89,12 @@ const News = () => {
                 >
                   More
                   {console.log(e.urlToImage)}
-                </Link></HStack>
-              </Box>
-            
+                </Link>
+              </HStack>
+            </Box>
           ))}{' '}
-        </SimpleGrid> </HStack>
-      
+        </SimpleGrid>{' '}
+      </HStack>
     </Box>
   );
 };

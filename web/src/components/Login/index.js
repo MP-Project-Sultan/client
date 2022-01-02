@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import {useNavigate} from 'react-router-dom'
 // import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { sign } from '../../Reducer/login';
@@ -19,23 +20,27 @@ import {
 } from '@chakra-ui/react';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import ReactCodeInput from 'react-verification-code-input';
 const MySwal = withReactContent(Swal);
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const Login = () => {
   const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [local, setLocal] = useState('');
-  // const navigate = useNavigate();
   const state = useSelector(state => {
     return {
       Login: state.Login,
       postRD: state.PostRD,
     };
   });
+  const Nav = useNavigate();
+  const re = ()=>{
+    Nav('/reset')
+  }
+  const re1 = () => {
+    Nav('/Register');
+  };
   const dispatch = useDispatch();
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -46,13 +51,13 @@ const Login = () => {
       const result = await axios.post(`${BASE_URL}/login`, {
         email,
         password,
-        username,
       });
       const data = {
         user: result.data.result,
         token: result.data.token,
       };
-      console.log(data);
+      console.log('jjjjjjjjjjjjjjjjjjj',data);
+      Nav('/')
       dispatch(sign(data));
       Swal.fire({
         position: 'center',
@@ -74,7 +79,7 @@ const Login = () => {
     
   };
   return (
-    <Box bg="rgba(114, 117, 119, 0.548)" w="100%" h="100%">
+    <Box bg="rgba(252, 252, 252, 0.815)" w="90%" h="100%">
       <ChakraProvider theme={theme}>
         <VStack>
           {' '}
@@ -100,7 +105,6 @@ const Login = () => {
                       color="white"
                       textAlign="center"
                       type="email"
-                      width="40"
                       placeholder="enter Email"
                       onChange={e => {
                         setEmail(e.target.value);
@@ -113,7 +117,7 @@ const Login = () => {
                       color="white"
                       textAlign="center"
                       type="password"
-                      width="40"
+                      w="197px"
                       placeholder="enter Password"
                       onChange={e => {
                         setPassword(e.target.value);
@@ -124,9 +128,9 @@ const Login = () => {
                     <Button bg="#777" onClick={logIn}>
                       Login
                     </Button>
-                    <Link exact href="/reset">
-                      Forget password
-                    </Link>
+                    <Link onClick={re1}>Don't Have Account</Link>
+
+                    <Link onClick={re}>Forget password</Link>
                     <br />
                   </VStack>
                 </>

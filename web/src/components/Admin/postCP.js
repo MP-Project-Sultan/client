@@ -178,7 +178,7 @@ const PostCP = () => {
                             <Text color="white" fontSize="30px">
                               {e.description}
                             </Text>{' '}
-                           
+                            
                             <DeleteIcon
                               cursor="pointer"
                               fontSize="16px"
@@ -189,13 +189,18 @@ const PostCP = () => {
                             >
                               delete Post
                             </DeleteIcon>
-                          </HStack> <HStack> <Text color="red" fontSize="12px">
+                          </HStack><Text color="white" fontSize="15px">
+                           IsDeleted:   {e.isDel.toString()}
+                            </Text>{' '}
+                          <HStack>
+                            {' '}
+                            <Text color="red" fontSize="12px">
                               By {e.userId.username}
-                            </Text><Text color="white" fontSize="12px">
+                            </Text>
+                            <Text color="white" fontSize="12px">
                               on {e.time}
-                            </Text></HStack>
-                           
-                           
+                            </Text>
+                          </HStack>
                         </VStack>
                         <img src={e.img} />
                         {e.commentId.map(s => (
@@ -204,11 +209,11 @@ const PostCP = () => {
                               {' '}
                               <HStack>
                                 {' '}
-                               
                                 <Text color="white" fontSize="15px">
                                   {' '}
                                   Comment: {s.description}
-                                </Text> <DeleteIcon
+                                </Text>{' '}
+                                <DeleteIcon
                                   cursor="pointer"
                                   color="white"
                                   font-size="15px"

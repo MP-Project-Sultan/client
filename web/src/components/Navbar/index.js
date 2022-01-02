@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Nav,
   NavLogo,
@@ -8,14 +8,31 @@ import {
   NavBtn,
   NavBtnLink,
 } from './NavbarElements';
-import {
-  ChakraProvider,
-  Box,
+import { logout } from '../../Reducer/login';
 
-  Image,
-} from '@chakra-ui/react';
+import { ChakraProvider, Box, Image } from '@chakra-ui/react';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Navbar = () => {
+  const dispatch = useDispatch();
+  const [logedin, setLogedin] = useState(false);
+
+  const state = useSelector(state => {
+    return {
+      Login: state.Login,
+      postRD: state.PostRD,
+    };
+  });
+
+  useEffect(() => {
+    console.log(state);
+    if (state.Login.token) {
+      setLogedin(true);
+    } else {
+      setLogedin(false);
+    }
+  }, [state]);
+
   return (
     <>
       <Nav>
@@ -31,7 +48,7 @@ const Navbar = () => {
           />
         </NavLogo>
         <Bars />
-        <Box ml="650px" position="absolute" fontSize='15'>
+        <Box ml="650px" position="absolute" fontSize="15">
           <NavMenu>
             <NavLink to="/" activeStyle>
               Home
@@ -42,12 +59,27 @@ const Navbar = () => {
             <NavLink to="/news" activeStyle>
               All News
             </NavLink>
-            <NavLink to="/register" activeStyle>
-              Register
-            </NavLink>
-            <NavBtn>
-              <NavBtnLink to="/Login">Login</NavBtnLink>
-            </NavBtn>
+            {!logedin ? (
+              <>
+                <NavLink to="/register" activeStyle>
+                  Register
+                </NavLink>
+                <NavBtn>
+                  <NavBtnLink to="/Login">Login</NavBtnLink>
+                </NavBtn>
+              </>
+            ) : (
+              <>
+                <NavBtn
+                  onClick={() => {
+                    dispatch(logout());
+                    setLogedin(false);
+                  }}
+                >
+                  <NavBtnLink to="/login">Logout</NavBtnLink>
+                </NavBtn>
+              </>
+            )}
           </NavMenu>
         </Box>
       </Nav>

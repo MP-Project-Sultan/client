@@ -1,39 +1,49 @@
-import React, { useState, useEffect } from "react";
-import io from "socket.io-client";
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import io from 'socket.io-client';
 
 let socket;
-let CONNECTION_PORT = "http://localhost:5000";
+let CONNECTION_PORT = 'http://localhost:5000';
 
 function Message() {
-  const [room, setRoom] = useState("");
-  const [userName, setUserName] = useState("");
-  const [message, setMessage] = useState("");
+  const [room, setRoom] = useState(0);
+  const [message, setMessage] = useState('');
   const [messagesList, setMessagesList] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
-
+  const state = useSelector(state => {
+    return {
+      Login: state.Login,
+      postRD: state.PostRD,
+    };
+  });
   useEffect(() => {
     socket = io(CONNECTION_PORT);
   }, [CONNECTION_PORT]);
 
   useEffect(() => {
-    socket.on("recieve_message", (data) => {
+    socket.on('recieve_message', data => {
       setMessagesList([...messagesList, data]);
     });
   }, [messagesList]);
 
   const send = () => {
-    const messageContent = { userName, content: message, room };
-
-    socket.emit("send_message", messageContent);
+    const messageContent = {
+      userName: state.Login.user.username,
+      content: message,
+      room,
+    };
+    console.log(messageContent, 'messageContent');
+    socket.emit('send_message', messageContent);
     setMessagesList([...messagesList, messageContent]);
-    setMessage(" ");
+    setMessage('');
   };
 
-  const connectRoom = () => {
-    if (userName && room) {
-      socket.emit("join_room", { userName, room });
+  const connectRoom = room => {
+    console.log(state.Login);
+    setRoom(room);
+    if (state.Login.user.username && room) {
+      socket.emit('join_room', { userName: state.Login.user.username, room });
       setLoggedIn(true);
-      setRoom("");
     }
   };
 
@@ -41,25 +51,15 @@ function Message() {
     <>
       {!loggedIn ? (
         <>
-          <input
-            type="text"
-            name="username"
-            id="username"
-            placeholder="enter your name..."
-            onChange={(e) => setUserName(e.target.value)}
-          />
-          <input
-            type="text"
-            name="roomNumber"
-            id="roomNumber"
-            placeholder="enter your room number..."
-            onChange={(e) => setRoom(e.target.value)}
-          />
-          <button onClick={connectRoom}>Enter The Room</button>
+          <br />
+          {console.log(state.Login.user.data)}
+          <button onClick={() => connectRoom(1)}>room 1</button>
+          <button onClick={() => connectRoom(2)}>room 2</button>
+          <button onClick={() => connectRoom(3)}>room 3</button>
         </>
       ) : (
         <>
-          {messagesList.map((msg) => (
+          {messagesList.map(msg => (
             <p>
               {msg.userName} {msg.content}
             </p>
@@ -68,9 +68,16 @@ function Message() {
           <input
             type="text"
             placeholder="write your message here..."
-            onChange={(e) => setMessage(e.target.value)}
+            // value={message}
+            onChange={e => setMessage(e.target.value)}
           />
-          <button onClick={send}>Send</button>
+          <button
+            onClick={() => {
+              send();
+            }}
+          >
+            Send
+          </button>
         </>
       )}
     </>

@@ -15,6 +15,7 @@ import {
   Image,
 } from '@chakra-ui/react';
 import axios from 'axios';
+import Navbar from '../Navbar';
 
 const News = () => {
   const [text, setText] = useState('java');
@@ -43,7 +44,8 @@ const News = () => {
   };
 
   return (
-    <Box bg="rgba(114, 117, 119, 0.548)">
+    <Box bg="rgba(252, 252, 252, 0.815)">
+
       <VStack>
         <Text mt="30" mb="12" color="rgb(100, 107, 119)" fontSize="3rem">
           Programmer News

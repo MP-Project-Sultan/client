@@ -103,13 +103,13 @@ const Posts = () => {
   };
   return (
     <ChakraProvider theme={theme}>
-      <Box bg="rgba(114, 117, 119, 0.548)">
+      <Box bg="rgba(252, 252, 252, 0.815)">
         <VStack>
           <Box
-            bg="rgba(6, 6, 7, 0.226)"
+            bg="rgba(252, 252, 252, 0.815)"
             w="800px"
             mt="1%"
-            border="solid 2px gray"
+            border="solid 1px black"
             padding="20px"
             borderRadius="4"
           >
@@ -127,11 +127,12 @@ const Posts = () => {
             </VStack>
             {post.map(e => (
               <Box
+                bg="white"
                 borderRadius="4"
-                boxShadow="dark-lg"
+                boxShadow="md"
                 p="2"
-                border="solid gray"
-                m="2"
+                // border="solid black 1px"
+                mt="6"
                 key={e._id}
               >
                 <HStack>
@@ -146,11 +147,12 @@ const Posts = () => {
                     mr="400"
                     color="gold"
                     fontSize="12px"
+                    as="strong"
                   >
                     {e.userId.username}
                   </Link>
-                  <Text color="white" fontSize="12px">
-                    on {e.time}
+                  <Text color="black" fontSize="12px">
+                    on {e.time.slice(0, 10)} {e.time.slice(11, 16)}
                   </Text>
                 </HStack>
                 <Text
@@ -158,7 +160,7 @@ const Posts = () => {
                   onClick={() => Nav(`/post/${e._id}`)}
                   fontSize="18px"
                   fontFamily="mono"
-                  color="white"
+                  color="black"
                 >
                   {e.description}
                 </Text>

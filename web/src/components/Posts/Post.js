@@ -22,6 +22,8 @@ export default function Post() {
   const Nav = useNavigate();
 
   const [newcomment, setNewComment] = useState('');
+    const [post, setPost] = useState([]);
+
   const BASE_URL = process.env.REACT_APP_BASE_URL;
 
   const state = useSelector(state => {
@@ -31,10 +33,14 @@ export default function Post() {
     };
   });
   const { id } = useParams();
-  console.log(id);
   useEffect(() => {
     result();
+    
   }, []);
+
+   useEffect(() => {
+     result1();
+   }, []);
   const result = async () => {
     await axios
       .get(`http://localhost:5000/getComments/${id}`, {
@@ -43,6 +49,17 @@ export default function Post() {
       .then(result => {
         setComments(result.data);
       });
+  };
+  const result1 = async () => {
+    await axios
+      .get(`http://localhost:5000/getPostById/${comments[0].postId._id}`, {
+        headers: { authorization: `Bearer ${state.Login.token}` },
+      })
+      .then(result => {
+        setPost(result.data);
+        console.log(result.data);
+      });
+      
   };
   const addcomment = async postId => {
     try {
@@ -67,7 +84,8 @@ export default function Post() {
   const redirect = () => {
     Nav('/posts');
   };
-   const addVot = async commentId => {
+  
+    const addVot = async commentId => {
      try {
        const res = await axios.post(
          `${BASE_URL}/addVot`,
@@ -87,12 +105,12 @@ export default function Post() {
      }
    };
   return (
-    <Box bg="rgba(114, 117, 119, 0.548)">
+    <Box bg="rgba(252, 252, 252, 0.815)">
       <>
         <ChakraProvider theme={theme}>
           <VStack>
             <Box
-              background="gray"
+              background="rgba(0, 0, 0, 0.918)"
               w="600px"
               mt="1%"
               border="solid 2px gray"
@@ -100,9 +118,13 @@ export default function Post() {
               borderRadius="4"
             >
               {comments.length && (
-                <Text mb="9" color="#352f44" fontFamily="Roman" fontSize="20">
-                  {comments[0].postId.description}
-                </Text>
+                <>
+                  {' '}
+                  {console.log(comments[0].postId._id)}
+                  <Text mb="9" color="white" fontFamily="Roman" fontSize="20">
+                    {comments[0].postId.description}
+                  </Text>
+                </>
               )}
               <hr />
               <>
@@ -134,34 +156,49 @@ export default function Post() {
                         w="5"
                         borderRadius="full"
                         src="https://th.bing.com/th/id/R.0e0adfcf50b345161a6a5b47bb8b5f07?rik=cPwI89xNfVXFeQ&riu=http%3a%2f%2fwww.hexatar.com%2fgallery%2fpng%2f190418_124617_m2230fe8f39_avatar.png&ehk=RZX%2bKqAnJJ0UsHx9nSjX7%2b6AduRMrKDy90w7JqaxOlE%3d&risl=&pid=ImgRaw&r=0"
-                      />
+                      />{' '}
                       <Link
                         onClick={() => Nav(`/profile/${item.userId._id}`)}
                         mr="400"
-                        color="rgb(9, 161, 90)"
+                        color="gold"
+                        fontSize="12px"
+                        as="strong"
+                      >
+                        by {item.userId.username}
+                      </Link>{' '}
+                      <Text
+                        color="white"
+                        onClick={() => Nav(`/profile/${item.userId._id}`)}
+                        mr="400"
                         fontSize="12px"
                       >
-                        {item.userId.username}
-                      </Link>
+                        on on {item.time.slice(0, 10)} {item.time.slice(11, 16)}
+                      </Text>
                       <br />
-                     
-                    </HStack> <HStack><StarIcon
-                        w="3"
-                        cursor="pointer"
-                        color="#c5a087"
-                        onClick={() => addVot(item._id)}
-                      >
-                        Like{' '}
-                      </StarIcon>
-                      <Text fontSize="12px" fontFamily="Roman" color="gold">
-                        {item.vot.length}
-                      </Text></HStack>
+                      <ht />
+                    </HStack>
+                    <Box mt="5" position="right">
+                      <HStack>
+                        <StarIcon
+                          w="3"
+                          cursor="pointer"
+                          color="#c5a087"
+                          onClick={() => addVot(item._id)}
+                        >
+                          Like{' '}
+                        </StarIcon>
+                        <Text fontSize="12px" fontFamily="Roman" color="gold">
+                          {item.vot.length}
+                        </Text>
+                      </HStack>{' '}
+                    </Box>
                     <Text
                       h="100"
                       pt="33"
                       border="solid gray 2px"
                       borderRadius="3"
                       m="8"
+                      color="white"
                       fontSize="15px"
                     >
                       {item.description}
