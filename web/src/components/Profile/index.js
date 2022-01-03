@@ -41,32 +41,33 @@ const User = () => {
     console.log(id);
   };
   return (
-           <ChakraProvider theme={theme}>
- <Box  bg="rgba(114, 117, 119, 0.548)" h='100%' w='100%'>
-      <div>
-        {user.length &&
-          user.map(e => (
-            <VStack>
-              <Box mt='100' mb='250' border="solid gray 2px" w="60" h="100">
-                {' '}
-                <>
-                  <Image
-                    display="inline"
-                    w="5"
-                    borderRadius="full"
-                    align="center"
-                    w="30"
-                    h="30"
-                    src={e.img}
-                  />{' '}
-                  <Text>{e.email}</Text>
-                  <Text>{e.username}</Text>
-                </>
-              </Box>
-            </VStack>
-          ))}
-      </div>
-    </Box></ChakraProvider>
+    <ChakraProvider theme={theme}>
+      <Box bg="rgba(114, 117, 119, 0.548)" h="100%" w="100%">
+        <div>
+          {user.length &&
+            user.map(e => (
+              <VStack>
+                <Box mt="100" mb="250" border="solid gray 2px" w="60" h="100">
+                  {' '}
+                  <>
+                    <Image
+                      display="inline"
+                      w="5"
+                      borderRadius="full"
+                      align="center"
+                      w="30"
+                      h="30"
+                      src={e.img}
+                    />{' '}
+                    <Text>{e.email}</Text>
+                    <Text>{e.username}</Text>
+                  </>
+                </Box>
+              </VStack>
+            ))}
+        </div>
+      </Box>
+    </ChakraProvider>
   );
 };
 

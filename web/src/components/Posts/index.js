@@ -155,7 +155,7 @@ const Posts = () => {
               <Box
                 bg="white"
                 borderRadius="4"
-                boxShadow="md"
+                boxShadow='"md"'
                 p="2"
                 // border="solid black 1px"
                 mt="6"

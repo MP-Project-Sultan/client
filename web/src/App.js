@@ -7,20 +7,17 @@ import Reset from './components/reset';
 import Reset2 from './components/reset2';
 import Active from './components/Active';
 import Posts from './components/Posts';
-import Post from "./components/Posts/Post"
-import Profile from './components/Profile'
+import Post from './components/Posts/Post';
+import Profile from './components/Profile';
 import Navbar from './components/Navbar';
-import News from './components/News'
-import Admin from './components/Admin'
-import PostCP from './components/Admin/postCP'
+import News from './components/News';
+import Admin from './components/Admin';
+import PostCP from './components/Admin/postCP';
 import UserCP from './components/Admin/userCP';
 import Message from './components/Messages';
 import MyProfile from './components/MyProfile';
-import Footer from './components/Fot'
-
-
-
-
+import Footer from './components/Fot';
+import Mess from './components/Messages/mess';
 
 import {
   ChakraProvider,
@@ -57,6 +54,7 @@ function App() {
             <Route exact path="/postCp/" element={<PostCP />} />
             <Route exact path="/userCp/" element={<UserCP />} />
             <Route exact path="/MyProfile/" element={<MyProfile />} />
+            <Route exact path="/mess/:id" element={<Mess />} />
           </Routes>
           <Footer />
         </>

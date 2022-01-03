@@ -53,8 +53,8 @@ const News = () => {
           placeholder="Search News"
           textAlign="center"
           value={text}
-          cursor='default'
-          color='white'
+          cursor="default"
+          color="white"
           bg="rgb(48,47,47)"
           onChange={e => setText(e.target.value)}
           w="190"
@@ -65,6 +65,7 @@ const News = () => {
               {' '}
               <Box
                 mt="10"
+                boxShadow='dark-lg'
                 position="relative"
                 color="black"
                 background="rgba(201, 201, 201, 0.471)"
