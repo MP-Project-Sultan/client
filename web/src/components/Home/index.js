@@ -18,7 +18,7 @@ import axios from 'axios';
 import Navbar from '../Navbar';
 
 const News = () => {
-  const [text, setText] = useState('java');
+  const [text, setText] = useState('JAVA');
   const [news, SetNews] = useState([]);
 
   useEffect(() => {
@@ -44,15 +44,18 @@ const News = () => {
   };
 
   return (
-    <Box bg="rgba(252, 252, 252, 0.815)">
+    <Box bg="rgba(252, 252, 252, 0.815)" p="5">
       <VStack>
-        <Text mt="30" mb="12" color="rgb(100, 107, 119)" fontSize="3rem">
+        <Text mt="30" mb="12" color="rgb(48,47,47)" fontSize="3rem">
           Programmer News
         </Text>
         <Input
           placeholder="Search News"
           textAlign="center"
           value={text}
+          cursor='default'
+          color='white'
+          bg="rgb(48,47,47)"
           onChange={e => setText(e.target.value)}
           w="190"
         ></Input>
@@ -64,16 +67,16 @@ const News = () => {
                 mt="10"
                 position="relative"
                 color="black"
-                background="#E2E8F0"
+                background="rgba(201, 201, 201, 0.471)"
                 width="70%"
                 height="500px"
                 borderRadius="3"
-                border=" 2px solid black"
                 mb="10"
+                overflow="hidden"
               >
                 <Image w="100%" height="300" src={e.urlToImage} />
-                <Text>{e.title}</Text>
-                <Text mt="5" fontSize="12px">
+                <Text p="3">{e.title}</Text>
+                <Text mt="5" fontSize="12px" p="3">
                   {e.content}
                 </Text>
 

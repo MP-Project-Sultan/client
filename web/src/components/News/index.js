@@ -17,7 +17,7 @@ import {
 import axios from 'axios';
 
 const News = () => {
-  const [text, setText] = useState(' ');
+  const [text, setText] = useState('a');
   const [news, SetNews] = useState([]);
 
   useEffect(() => {
@@ -49,6 +49,7 @@ const News = () => {
       </Text>
       <Input
         placeholder="Search News"
+        
         textAlign="center"
         value={text}
         onChange={e => setText(e.target.value)}

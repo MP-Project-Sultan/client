@@ -1,126 +1,45 @@
 import React from 'react';
 import './style.css';
-import {
-  ChakraProvider,
-  Box,
-  Text,
-  VStack,
-  Code,
-  Grid,
-  theme,
-  Button,
-  HStack,
-  Input,
-  SimpleGrid,
-  Image,
-} from '@chakra-ui/react';import { Link } from 'react-router-dom';
 
-function Footer() {
+const Footer = () => {
   return (
-    <div className="footer-container">
-      <section className="footer-subscription">
-        <p className="footer-subscription-heading">
-          Join Our Community to stay in touch with all new things
-        </p>
-        <p className="footer-subscription-text">
-          You can unsubscribe at any time.
-        </p>
-        <div className="input-areas">
-          <form>
-            <input
-              className="footer-input"
-              name="email"
-              type="email"
-              placeholder="Your Email"
-            />
-            <Button className="info__button" buttonStyle="btn--outline">
-              Subscribe
-            </Button>
-          </form>
-        </div>
-      </section>
-      <div class="footer-links">
-        <div className="footer-link-wrapper">
-          <div class="footer-link-items">
-            <h2>About Us</h2>
-            <Link to="/">Testimonials</Link>
-            <Link to="/">Careers</Link>
-            <Link to="/">Investors</Link>
-            <Link to="/">Terms of Service</Link>
+    <div>
+      <div class="footer-basic">
+        <footer>
+          <div class="social">
+            <a href="#">
+              <i class="icon ion-social-instagram"></i>
+            </a>
+            <a href="#">
+              <i class="icon ion-social-snapchat"></i>
+            </a>
+            <a href="#">
+              <i class="icon ion-social-twitter"></i>
+            </a>
+            <a href="#">
+              <i class="icon ion-social-facebook"></i>
+            </a>
           </div>
-          <div class="footer-link-items">
-            <h2>Contact Us</h2>
-            <Link to="/">Contact</Link>
-            <Link to="/">Support</Link>
-            <Link to="/">Destinations</Link>
-            <Link to="/">Sponsorships</Link>
-          </div>
-        </div>
-        <div className="footer-link-wrapper">
-         
-          <div class="footer-link-items">
-            <h2>Social Media</h2>
-            <Link to="/">Instagram</Link>
-            <Link to="/">Facebook</Link>
-            <Link to="/">Youtube</Link>
-            <Link to="/">Twitter</Link>
-          </div>
-        </div>
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <a href="#" dir="rtl">
+                About
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">Home</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">Admin Login</a>
+            </li>
+          </ul>
+          <p class="copyright">All Rights Reserved © 2022</p>
+        </footer>
       </div>
-      <section class="social-media">
-        <div class="social-media-wrap">
-          <div class="footer-logo">
-            <Link to="/" className="social-logo">
-              <i class="fab fa-typo3" />
-            </Link>
-          </div>
-          <small class="website-rights">Sultan Alharbi © 2022</small>
-          <div class="social-icons">
-            <Link
-              class="social-icon-link facebook"
-              to="/"
-              target="_blank"
-              aria-label="Facebook"
-            >
-              <i class="fab fa-facebook-f" />
-            </Link>
-            <Link
-              class="social-icon-link instagram"
-              to="/"
-              target="_blank"
-              aria-label="Instagram"
-            >
-              <i class="fab fa-instagram" />
-            </Link>
-            <Link
-              class="social-icon-link youtube"
-              to="/"
-              target="_blank"
-              aria-label="Youtube"
-            >
-              <i class="fab fa-youtube" />
-            </Link>
-            <Link
-              class="social-icon-link twitter"
-              to="/"
-              target="_blank"
-              aria-label="Twitter"
-            >
-              <i class="fab fa-twitter" />
-            </Link>
-            <Link
-              class="social-icon-link twitter"
-              to="/"
-              target="_blank"
-              aria-label="LinkedIn"
-            >
-              <i class="fab fa-linkedin" />
-            </Link>
-          </div>
-        </div>
-      </section>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
     </div>
   );
-}
+};
 
 export default Footer;

@@ -26,12 +26,22 @@ export default function Post() {
 
   const BASE_URL = process.env.REACT_APP_BASE_URL;
 
+  const [logedin, setLogedin] = useState(false);
+
   const state = useSelector(state => {
     return {
       Login: state.Login,
       postRD: state.PostRD,
     };
   });
+
+  useEffect(() => {
+    if (state.Login.token) {
+      setLogedin(true);
+    } else {
+      setLogedin(false);
+    }
+  }, [state]);
   const { id } = useParams();
   useEffect(() => {
     result();
@@ -105,8 +115,7 @@ export default function Post() {
      }
    };
   return (
-    <Box bg="rgba(252, 252, 252, 0.815)">
-      <>
+    <Box bg="rgba(242, 242, 242, 1)">
         <ChakraProvider theme={theme}>
           <VStack>
             <Box
@@ -130,6 +139,7 @@ export default function Post() {
               <>
                 <Box mt="8">
                   {' '}
+                  {!logedin ? (<></>):(<>
                   <Input
                     onChange={e => {
                       setNewComment(e.target.value);
@@ -141,18 +151,19 @@ export default function Post() {
                   <Button ml="4" onClick={e => addcomment(id)}>
                     {' '}
                     Reply
-                  </Button>
+                  </Button></>)}
                 </Box>{' '}
               </>{' '}
               {comments.map((item, index) => {
                 return (
                   <div key={item._id}>
                     {' '}
-                    <HStack>
+                    <HStack pt='4'>
                       {' '}
                       <Image
                         display="inline"
-                        w="5"
+                        w="8"
+                        h='8'
                         borderRadius="full"
                         src="https://th.bing.com/th/id/R.0e0adfcf50b345161a6a5b47bb8b5f07?rik=cPwI89xNfVXFeQ&riu=http%3a%2f%2fwww.hexatar.com%2fgallery%2fpng%2f190418_124617_m2230fe8f39_avatar.png&ehk=RZX%2bKqAnJJ0UsHx9nSjX7%2b6AduRMrKDy90w7JqaxOlE%3d&risl=&pid=ImgRaw&r=0"
                       />{' '}
@@ -171,7 +182,7 @@ export default function Post() {
                         mr="400"
                         fontSize="12px"
                       >
-                        on on {item.time.slice(0, 10)} {item.time.slice(11, 16)}
+                        on {item.time.slice(0, 10)} {item.time.slice(11, 16)}
                       </Text>
                       <br />
                       <ht />
@@ -194,22 +205,23 @@ export default function Post() {
                     <Text
                       h="100"
                       pt="33"
-                      border="solid gray 2px"
+                      border="solid gray 1px"
                       borderRadius="3"
+                      bg='white'
                       m="8"
                       color="black"
                       fontSize="15px"
                     >
                       {item.description}
                     </Text>
+                    <hr />
                   </div>
                 );
               })}{' '}
-              <Button onClick={redirect}>Back</Button>{' '}
+              <Button mt='4' onClick={redirect}>Back</Button>{' '}
             </Box>
           </VStack>
         </ChakraProvider>
-      </>
     </Box>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -18,12 +18,11 @@ import {
 
 const MyProfile = () => {
   const [user, setUser] = useState('');
-  const [username , setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-      const BASE_URL = process.env.REACT_APP_BASE_URL;
-
-
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [flag, setFlag] = useState(false);
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
 
   const state = useSelector(state => {
     return {
@@ -43,7 +42,6 @@ const MyProfile = () => {
         setUser(result.data);
         console.log(result.data);
       });
-
   };
   const updateUser = async () => {
     await axios.put(
@@ -58,22 +56,26 @@ const MyProfile = () => {
         },
       }
     );
-    
+    setFlag(false);
     result();
   };
 
-  
   return (
     <ChakraProvider theme={theme}>
       <VStack>
-        {' '}
         <Box bg="rgba(252, 252, 252, 0.815)" h="60%" w="60%">
           {user.length &&
             user.map(e => (
-              <Box mt="100" mb="250" border="solid gray 2px" w="100" h="300">
-                {' '}
+              <Box
+                mt="100"
+                mb="250"
+                pt='20'
+
+                border="solid gray 2px"
+                w="100"
+                h="300"
+              >
                 <VStack>
-                  {' '}
                   <Image
                     w="5"
                     mt="4"
@@ -82,27 +84,42 @@ const MyProfile = () => {
                   />
                   <Text>{e.username}</Text>
                   <Text>{e.email}</Text>
-                  <Input
-                    w="100"
-                    textAlign="center"
-                    mt="5"
-                    onChange={e => {
-                      setUsername(e.target.value);
-                    }}
-                    placeholder="username"
-                  />
+                  {flag && (
+                    <>
+                      <Input
+                        required
+                        w="100"
+                        textAlign="center"
+                        mt="5"
+                        onChange={e => {
+                          setUsername(e.target.value);
+                        }}
+                        placeholder="username"
+                      />
+                      <br />
+
+                      <Input
+                        required
+                        mt="6"
+                        w="100"
+                        textAlign="center"
+                        onChange={e => {
+                          setEmail(e.target.value);
+                        }}
+                        placeholder="Email"
+                      />
+                    </>
+                  )}
                   <br />
-                  <Input
-                    mt="6"
-                    w="100"
-                    textAlign="center"
-                    onChange={e => {
-                      setEmail(e.target.value);
+                  <Button
+                    mt="4"
+                    onClick={() => {
+                      setFlag(true);
+                      if (flag) {
+                        updateUser();
+                      }
                     }}
-                    placeholder="Email"
-                  />
-                  <br />
-                  <Button mt="4" onClick={() => updateUser()}>
+                  >
                     update
                   </Button>{' '}
                 </VStack>{' '}

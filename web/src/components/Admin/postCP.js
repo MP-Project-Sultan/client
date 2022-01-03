@@ -138,7 +138,13 @@ const PostCP = () => {
   return (
     <ChakraProvider theme={theme}>
       <Box bg="rgba(0, 0, 0, 0.87)">
-        {' '}
+        <Link color="red" href="/userCp">
+          Users cpanel
+        </Link>
+        <br />
+        <Link color="red" href="/postCp">
+          Post cpanel
+        </Link>{' '}
         <VStack>
           {' '}
           <Box
@@ -152,6 +158,7 @@ const PostCP = () => {
           >
             <VStack>
               <Text color="white">POSTS</Text>
+
               <HStack>
                 <Input
                   w="200px"
@@ -178,7 +185,6 @@ const PostCP = () => {
                             <Text color="white" fontSize="30px">
                               {e.description}
                             </Text>{' '}
-                            
                             <DeleteIcon
                               cursor="pointer"
                               fontSize="16px"
@@ -189,9 +195,10 @@ const PostCP = () => {
                             >
                               delete Post
                             </DeleteIcon>
-                          </HStack><Text color="white" fontSize="15px">
-                           IsDeleted:   {e.isDel.toString()}
-                            </Text>{' '}
+                          </HStack>
+                          <Text color="white" fontSize="15px">
+                            IsDeleted: {e.isDel.toString()}
+                          </Text>{' '}
                           <HStack>
                             {' '}
                             <Text color="red" fontSize="12px">

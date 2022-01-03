@@ -1,7 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import io from 'socket.io-client';
-
+import {
+  ChakraProvider,
+  Box,
+  Text,
+  VStack,
+  theme,
+  Icon,
+  Input,
+  Button,
+  Link,
+  Image,
+  HStack,
+} from '@chakra-ui/react';
 let socket;
 let CONNECTION_PORT = 'http://localhost:5000';
 
@@ -48,39 +60,49 @@ function Message() {
   };
 
   return (
-    <>
-      {!loggedIn ? (
-        <>
-          <br />
-          {console.log(state.Login.user.data)}
-          <button onClick={() => connectRoom(1)}>room 1</button>
-          <button onClick={() => connectRoom(2)}>room 2</button>
-          <button onClick={() => connectRoom(3)}>room 3</button>
-        </>
-      ) : (
-        <>
-          {messagesList.map(msg => (
-            <p>
-              {msg.userName} {msg.content}
-            </p>
-          ))}
+    <Box m="6" mb="371">
+      <>
+        {!loggedIn ? (
+          <>
+            <br />
+            <Button m="3" onClick={() => connectRoom(1)}>
+              Room of Community
+            </Button>
+            <Button m="3" onClick={() => connectRoom(2)}>
+              room 2
+            </Button>
+            <Button m="3" onClick={() => connectRoom(3)}>
+              room 3
+            </Button>
+          </>
+        ) : (
+          <>
+            {messagesList.map(msg => (
+              <VStack><Text>
+              From :  {msg.userName} 
+              </Text><Text>
+               Message : {msg.content}
+              </Text></VStack>
+            ))}
 
-          <input
-            type="text"
-            placeholder="write your message here..."
-            // value={message}
-            onChange={e => setMessage(e.target.value)}
-          />
-          <button
-            onClick={() => {
-              send();
-            }}
-          >
-            Send
-          </button>
-        </>
-      )}
-    </>
+            <Input
+            w='200'
+            m='4'
+              type="text"
+              placeholder="write your message here..."
+              onChange={e => setMessage(e.target.value)}
+            />
+            <Button
+              onClick={() => {
+                send();
+              }}
+            >
+              Send
+            </Button>
+          </>
+        )}
+      </>
+    </Box>
   );
 }
 

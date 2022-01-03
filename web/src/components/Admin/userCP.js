@@ -13,6 +13,7 @@ import {
   VStack,
   theme,
   HStack,
+  Link,
   Code
 } from '@chakra-ui/react';
 
@@ -57,8 +58,14 @@ const UserCP = () => {
 
   return (
     <ChakraProvider theme={theme}>
-     
       <Box bg="rgba(0, 0, 0, 0.87)">
+        <Link color="white" href="/userCp">
+          Users cpanel
+        </Link>
+        <br />
+        <Link color="white" href="/postCp">
+          Post cpanel
+        </Link>{' '}
         <VStack>
           <Box
             bg="rgba(6, 6, 7, 0.226)"
@@ -67,7 +74,9 @@ const UserCP = () => {
             border="solid 2px gray"
             padding="20px"
             borderRadius="4"
-          > <Text color="white">Admin Control Panel</Text>
+          >
+            {' '}
+            <Text color="white">Admin Control Panel</Text>
             {user.map(e => (
               <Box
                 borderRadius="4"
@@ -77,47 +86,25 @@ const UserCP = () => {
                 m="2"
                 key={e._id}
               >
-                <Code
-                  
-                  fontSize="18px"
-                  fontFamily="mono"
-                >
+                <Code fontSize="18px" fontFamily="mono">
                   username : {e.username}
                 </Code>{' '}
-                <Text
-                  
-                  fontSize="18px"
-                  fontFamily="mono"
-                  color="white"
-                >
+                <Text fontSize="18px" fontFamily="mono" color="white">
                   {' '}
                   Email:
                   {e.email}
                 </Text>{' '}
-                <Text
-                  
-                  fontSize="18px"
-                  fontFamily="mono"
-                  color="white"
-                >
+                <Text fontSize="18px" fontFamily="mono" color="white">
                   {' '}
                   password code:
                   {e.passwordCode}
                 </Text>
-                <Text
-                  fontSize="18px"
-                  fontFamily="mono"
-                  color="white"
-                >
+                <Text fontSize="18px" fontFamily="mono" color="white">
                   {' '}
                   Is Deleted:
                   {e.isDel.toString()}
                 </Text>
-                <Text
-                  fontSize="18px"
-                  fontFamily="mono"
-                  color="white"
-                >
+                <Text fontSize="18px" fontFamily="mono" color="white">
                   {' '}
                   Is Active:
                   {e.isActive.toString()}

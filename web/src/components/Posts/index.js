@@ -30,12 +30,22 @@ const Posts = () => {
   const [newPost, setNewPost] = useState('');
   const dispatch = useDispatch();
   const [newTitle, setNewTitle] = useState('');
-  const state = useSelector(state => {
-    return {
-      Login: state.Login,
-      postRD: state.PostRD,
-    };
-  });
+   const [logedin, setLogedin] = useState(false);
+
+   const state = useSelector(state => {
+     return {
+       Login: state.Login,
+       postRD: state.PostRD,
+     };
+   });
+
+   useEffect(() => {
+     if (state.Login.token) {
+       setLogedin(true);
+     } else {
+       setLogedin(false);
+     }
+   }, [state]);
   useEffect(() => {
     result();
   }, []);
@@ -116,23 +126,30 @@ const Posts = () => {
           >
             <VStack>
               {' '}
-              <Input
-                w="200px"
-                onChange={e => {
-                  setNewTitle(e.target.value);
-                }}
-                placeholder="Title"
-                textAlign="center"
-              ></Input>
-              <Input
-                w="200px"
-                onChange={e => {
-                  setNewPost(e.target.value);
-                }}
-                placeholder="Description"
-                textAlign="center"
-              ></Input>{' '}
-              <Button onClick={addpost}>Add Post</Button>
+              {!logedin ? (
+                <></>
+              ) : (
+                <>
+                  <Input
+                    w="200px"
+                    onChange={e => {
+                      setNewTitle(e.target.value);
+                    }}
+                    placeholder="Title"
+                    textAlign="center"
+                  ></Input>
+                  <Input
+                    w="200px"
+                    color="black"
+                    onChange={e => {
+                      setNewPost(e.target.value);
+                    }}
+                    placeholder="Description"
+                    textAlign="center"
+                  ></Input>{' '}
+                  <Button onClick={addpost}>Add Post</Button>
+                </>
+              )}
             </VStack>
             {post.map(e => (
               <Box
@@ -175,14 +192,14 @@ const Posts = () => {
                 </Text>
                 <HStack>
                   {' '}
-                  <StarIcon
+                <StarIcon
                     w="3"
                     cursor="pointer"
                     color="#c5a087"
                     onClick={() => addlike(e._id)}
                   >
                     Like{' '}
-                  </StarIcon>
+                  </StarIcon> )
                   <Text
                     as="strong"
                     fontSize="12px"
@@ -191,7 +208,9 @@ const Posts = () => {
                   >
                     {e.like.length}
                   </Text>
-                  <DeleteIcon
+                <> {!logedin ? (
+                <></>
+              ) : ( <DeleteIcon
                     w="3"
                     cursor="pointer"
                     position="absolute"
@@ -202,7 +221,7 @@ const Posts = () => {
                     }}
                   >
                     delete
-                  </DeleteIcon>{' '}
+                  </DeleteIcon> )}</>
                 </HStack>{' '}
               </Box>
             ))}
