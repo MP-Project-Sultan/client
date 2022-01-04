@@ -53,11 +53,14 @@ const Navbar = () => {
             <NavLink to="/" activeStyle>
               Home
             </NavLink>
+            <NavLink to="/message" activeStyle>
+              ChatRooms
+            </NavLink>
             <NavLink to="/posts" activeStyle>
               Questions
             </NavLink>
             <NavLink to="/news" activeStyle>
-               News
+              News
             </NavLink>
             <NavLink to="/MyProfile" activeStyle>
               My Profile

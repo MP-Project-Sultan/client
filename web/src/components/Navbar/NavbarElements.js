@@ -5,10 +5,10 @@ import styled from 'styled-components';
 export const Nav = styled.nav`
   background: rgb(48, 47, 47);
   height: 85px;
+  width: 100vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.2rem calc((100vw - 1000px) / 2);
   z-index: 12;
 `;
 export const NavLogo = styled(Link)`
@@ -51,7 +51,6 @@ export const Bars = styled(FaBars)`
 export const NavMenu = styled.div`
   display: flex;
   align-items: center;
-  margin-right: -24px;
 
   @media screen and (max-width: 768px) {
     display: none;
@@ -61,7 +60,6 @@ export const NavMenu = styled.div`
 export const NavBtn = styled.nav`
   display: flex;
   align-items: center;
-  margin-right: 24px;
 
   @media screen and (max-width: 768px) {
     display: none;

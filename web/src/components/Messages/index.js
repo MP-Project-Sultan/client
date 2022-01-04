@@ -60,48 +60,109 @@ function Message() {
   };
 
   return (
-    <Box m="6" mb="371">
-      <>
-        {!loggedIn ? (
-          <>
-            <br />
-            <Button m="3" onClick={() => connectRoom(1)}>
-              Room of Community
-            </Button>
-            <Button m="3" onClick={() => connectRoom(2)}>
-              room 2
-            </Button>
-            <Button m="3" onClick={() => connectRoom(3)}>
-              room 3
-            </Button>
-          </>
-        ) : (
-          <>
-            {messagesList.map(msg => (
-              <VStack><Text>
-              From :  {msg.userName} 
-              </Text><Text>
-               Message : {msg.content}
-              </Text></VStack>
-            ))}
+    <Box>
+      <ChakraProvider theme={theme}>
+        <VStack>
+          {' '}
+          <Box color="white" h="200px" m="6" pb="300" w="280px">
+            <VStack>
+              <>
+                {!loggedIn ? (
+                  <>
+                    <br />
+                    <VStack w="80%">
+                      {' '}
+                      <Box
+                        w="270%"
+                        mt="20px"
+                        bg="rgb(48,47,47)"
+                        h="70vh"
+                        display="flex"
+                        flexDirection="column"
+                        justifyContent="space-evenly"
+                        alignItems="center"
+                      >
+                        <Button
+                          w="200px"
+                          mt="5"
+                          m="3"
+                          color="rgba(26, 24, 24, 0.671)"
+                          onClick={() => connectRoom(1)}
+                        >
+                          Javascript Room
+                        </Button>
+                        <Button
+                          color="rgba(26, 24, 24, 0.671)"
+                          mt="5"
+                          m="3"
+                          w="200px"
+                          onClick={() => connectRoom(2)}
+                        >
+                          Python Room
+                        </Button>
+                        <Button
+                          color="rgba(26, 24, 24, 0.671)"
+                          mt="5"
+                          m="3"
+                          w="200px"
+                          onClick={() => connectRoom(3)}
+                        >
+                          Swift Room
+                        </Button>
+                      </Box>
+                    </VStack>
+                  </>
+                ) : (
+                  <>
+                    <Box
+                      display="flex"
+                      position="sticky"
+                      justifyContent="space-between"
+                      flexDirection="column"
+                      alignItems="center"
+                      border="black solid 1px"
+                      p="2"
+                    >
+                      <Text color="Gray">Java Script</Text>
+                      <Box top="" mb="40">
+                        {messagesList.map(msg => (
+                          <VStack>
+                            <Text color="black">
+                              {' '}
+                              {msg.userName}: {msg.content}
+                            </Text>
+                            {/* <Text color="black"> {msg.content}</Text> */}
+                          </VStack>
+                        ))}
+                      </Box>
 
-            <Input
-            w='200'
-            m='4'
-              type="text"
-              placeholder="write your message here..."
-              onChange={e => setMessage(e.target.value)}
-            />
-            <Button
-              onClick={() => {
-                send();
-              }}
-            >
-              Send
-            </Button>
-          </>
-        )}
-      </>
+                      <HStack>
+                        <Input
+                          w="200"
+                          color="black"
+                          m="4"
+                          type="text"
+                          placeholder="write your message here..."
+                          onChange={e => setMessage(e.target.value)}
+                        />
+                        <Button
+                          color="black"
+                          bg="gold"
+                          onClick={() => {
+                            send();
+                          }}
+                        >
+                          Send
+                        </Button>
+                      </HStack>
+                    </Box>
+                  </>
+                )}
+              </>
+            </VStack>
+          </Box>
+        </VStack>
+      </ChakraProvider>
     </Box>
   );
 }
