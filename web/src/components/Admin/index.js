@@ -7,19 +7,13 @@ import { sign } from '../../Reducer/login';
 import {
   ChakraProvider,
   Box,
-  Text,
-  Link,
   VStack,
-  Code,
-  Grid,
   theme,
   Button,
-  HStack,
   Input,
 } from '@chakra-ui/react';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import ReactCodeInput from 'react-verification-code-input';
 const MySwal = withReactContent(Swal);
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -52,7 +46,6 @@ const Login = () => {
         user: result.data.result,
         token: result.data.token,
       };
-      console.log(data);
       if (data.user.role == `61c0855305291c57ea3039dd`) {
         dispatch(sign(data));
         Swal.fire({

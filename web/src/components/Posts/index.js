@@ -1,19 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useSelector, useDispatch } from 'react-redux';
-import { sign } from '../../Reducer/login';
-import { getpost, addpost, delpost } from '../../Reducer/post';
+import { useSelector } from 'react-redux';
 import { DeleteIcon, StarIcon } from '@chakra-ui/icons';
-import Post from './Post';
 import { useNavigate } from 'react-router-dom';
-
 import {
   ChakraProvider,
   Box,
   Text,
   VStack,
   theme,
-  Icon,
   Input,
   Button,
   Link,
@@ -25,38 +20,34 @@ const Posts = () => {
   const Nav = useNavigate();
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const [post, setPost] = useState([]);
-  const [comments, setComments] = useState([]);
-  const [like, setLike] = useState();
   const [newPost, setNewPost] = useState('');
-  const dispatch = useDispatch();
   const [newTitle, setNewTitle] = useState('');
-   const [logedin, setLogedin] = useState(false);
-const [show, setshow] = useState(false)
-   const state = useSelector(state => {
-     return {
-       Login: state.Login,
-       postRD: state.PostRD,
-     };
-   });
+  const [logedin, setLogedin] = useState(false);
+  const [show, setshow] = useState(false);
+  const state = useSelector(state => {
+    return {
+      Login: state.Login,
+      postRD: state.PostRD,
+    };
+  });
 
-   useEffect(() => {
-     if (state.Login.token) {
-       setLogedin(true);
-     } else {
-       setLogedin(false);
-     }
-   }, [state]);
+  useEffect(() => {
+    if (state.Login.token) {
+      setLogedin(true);
+    } else {
+      setLogedin(false);
+    }
+  }, [state]);
   useEffect(() => {
     result();
   }, []);
   const result = async () => {
     const data = await axios
-      .get(`http://localhost:5000/getPosts`, {
+      .get(`${BASE_URL}/getPosts`, {
         headers: { authorization: `Bearer ${state.Login.token}` },
       })
       .then(result => {
         setPost(result.data);
-        // console.log(result.data);
       });
   };
   const addpost = async () => {
@@ -65,7 +56,7 @@ const [show, setshow] = useState(false)
         `${BASE_URL}/addPost`,
         {
           description: newPost,
-          title: newTitle
+          title: newTitle,
         },
         {
           headers: {
@@ -79,7 +70,6 @@ const [show, setshow] = useState(false)
       console.log(error);
     }
   };
-
   const del = async id => {
     try {
       const res = await axios.delete(`${BASE_URL}/deletePost/${id}`, {
@@ -164,7 +154,9 @@ const [show, setshow] = useState(false)
                   ) : (
                     <></>
                   )}
-                  <Button onClick={() => setshow(true)}>Add Post</Button>
+                  <Button bg="rgb(48,47,47)" color="white" onClick={() => setshow(true)}>
+                    Add Post
+                  </Button>
                 </>
               )}
             </VStack>
@@ -174,7 +166,6 @@ const [show, setshow] = useState(false)
                 borderRadius="4"
                 boxShadow="md"
                 p="2"
-                // border="solid black 1px"
                 mt="6"
                 key={e._id}
               >

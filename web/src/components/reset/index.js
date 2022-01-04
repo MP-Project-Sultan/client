@@ -4,50 +4,38 @@ import {
   ChakraProvider,
   Box,
   Text,
-  Link,
   VStack,
-  Code,
-  Grid,
-  theme,
   Button,
-  HStack,
   Input,
 } from '@chakra-ui/react';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import ReactCodeInput from 'react-verification-code-input';
-
-
 
 const MySwal = withReactContent(Swal);
-  const BASE_URL = process.env.REACT_APP_BASE_URL;
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const Reset = () => {
-
-
   const [email, setEmail] = useState('');
   const checkemail = async () => {
     try {
       const result = await axios.post(`${BASE_URL}/check`, {
         email: email,
       });
-    Swal.fire({
-      position: 'center',
-      icon: 'success',
-      title: 'please check your Email to reset your password',
-      showConfirmButton: false,
-      timer: 2000,
-    });
-      
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'please check your Email to reset your password',
+        showConfirmButton: false,
+        timer: 2000,
+      });
     } catch (error) {
-       MySwal.fire({
-         icon: 'error',
-         title: 'Oops...',
-         text: 'Something went wrong!, please try again.',
-         confirmButtonColor: 'black',
-       });
+      MySwal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!, please try again.',
+        confirmButtonColor: 'black',
+      });
     }
-    
   };
 
   return (
@@ -81,7 +69,7 @@ const Reset = () => {
                 setEmail(e.target.value);
               }}
             ></Input>
-            <Button bg="#777" onClick={checkemail} mt="20px">
+            <Button color="white" bg="rgb(48,47,47)" onClick={checkemail} mt="20px">
               Send reset code
             </Button>
           </Box>{' '}

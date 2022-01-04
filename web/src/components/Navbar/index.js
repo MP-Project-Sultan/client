@@ -10,7 +10,7 @@ import {
 } from './NavbarElements';
 import { logout } from '../../Reducer/login';
 
-import { ChakraProvider, Box, Image } from '@chakra-ui/react';
+import { Box, Image } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Navbar = () => {
@@ -25,7 +25,6 @@ const Navbar = () => {
   });
 
   useEffect(() => {
-   
     if (state.Login.token) {
       setLogedin(true);
     } else {

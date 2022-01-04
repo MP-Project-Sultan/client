@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useSelector, useDispatch } from 'react-redux';
-import { sign } from '../../Reducer/login';
-import { getpost, addpost, delpost } from '../../Reducer/post';
-import { DeleteIcon, StarIcon } from '@chakra-ui/icons';
-import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { DeleteIcon } from '@chakra-ui/icons';
 
 import {
   ChakraProvider,
@@ -14,15 +11,12 @@ import {
   theme,
   HStack,
   Link,
-  Code
+  Code,
 } from '@chakra-ui/react';
 
 const UserCP = () => {
-  const Nav = useNavigate();
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const [user, setUser] = useState([]);
-
-  const dispatch = useDispatch();
   const state = useSelector(state => {
     return {
       Login: state.Login,
@@ -34,7 +28,7 @@ const UserCP = () => {
   }, []);
   const result = async () => {
     const data = await axios
-      .get(`http://localhost:5000/getUsers`, {
+      .get(`${BASE_URL}/getUsers`, {
         headers: { authorization: `Bearer ${state.Login.token}` },
       })
       .then(result => {

@@ -1,17 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState } from 'react';
 import axios from 'axios';
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 import withReactContent from 'sweetalert2-react-content';
-import ReactCodeInput from 'react-verification-code-input';
 import PasswordChecklist from 'react-password-checklist';
 import {
   ChakraProvider,
   Box,
   Text,
-  Link,
   VStack,
-  Code,
-  Grid,
   theme,
   Button,
   Input,
@@ -39,7 +35,7 @@ const Register = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      navigate('/login')
+      navigate('/login');
     } catch (error) {
       MySwal.fire({
         icon: 'error',
@@ -60,7 +56,7 @@ const Register = () => {
             textAlign="center"
             w="400px"
             h="100%"
-            mt="16"
+            mt="30px"
             textAlign="center"
             bg="#fffb"
             color="black"
@@ -116,7 +112,7 @@ const Register = () => {
               <Button bg="#777" onClick={signup}>
                 Register
               </Button>
-              <Box fontSize="12" mb="111">
+              <Box fontSize="15" mb="111">
                 {' '}
                 <PasswordChecklist
                   rules={[

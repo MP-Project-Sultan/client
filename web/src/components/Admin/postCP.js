@@ -1,20 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { getpost, addpost, delpost } from '../../Reducer/post';
+import { getpost} from '../../Reducer/post';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { DeleteIcon, StarIcon, AddIcon } from '@chakra-ui/icons';
-
 import {
   ChakraProvider,
   Box,
   Text,
   Link,
   VStack,
-  Code,
-  Grid,
   theme,
-  Button,
   HStack,
   Input,
 } from '@chakra-ui/react';

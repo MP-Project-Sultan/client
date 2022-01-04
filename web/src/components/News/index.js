@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import {
-  ChakraProvider,
   Box,
   Text,
   Link,
   VStack,
-  Code,
-  Grid,
-  theme,
-  Button,
   HStack,
   Input,
   SimpleGrid,
@@ -33,13 +28,8 @@ const News = () => {
         .then(result => {
           SetNews(result.data.articles);
           // SetNews(result.data.results);
-
-          // console.log(result.data.hits[0].author);
         });
-      // console.log(news);
-    } catch (error) {
-      // console.log(error);
-    }
+    } catch (error) {}
   };
 
   return (
@@ -49,7 +39,6 @@ const News = () => {
       </Text>
       <Input
         placeholder="Search News"
-        
         textAlign="center"
         value={text}
         onChange={e => setText(e.target.value)}
@@ -68,9 +57,8 @@ const News = () => {
               borderRadius="3"
               shadow="md"
               bg="rgba(252, 252, 252, 0.815)"
-              
             >
-              <HStack >
+              <HStack>
                 {' '}
                 <Image w="200px" height="200px" src={e.urlToImage} />
                 <VStack>
@@ -83,17 +71,13 @@ const News = () => {
                 <br />
                 <Link
                   target="blank"
-                  
                   color="rgb(57, 123, 245)"
                   href={e.url}
                   fontSize="15px"
-                  pt='88'
-                  pr='3'
-
-                  
+                  pt="88"
+                  pr="3"
                 >
                   More
-                  {console.log(e.urlToImage)}
                 </Link>
               </HStack>
             </Box>

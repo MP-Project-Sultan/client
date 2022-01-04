@@ -1,21 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import {
-  ChakraProvider,
   Box,
   Text,
   Link,
   VStack,
-  Code,
-  Grid,
-  theme,
-  Button,
-  HStack,
   Input,
   SimpleGrid,
   Image,
 } from '@chakra-ui/react';
 import axios from 'axios';
-import Navbar from '../Navbar';
 
 const News = () => {
   const [text, setText] = useState('JAVA');
@@ -34,13 +27,8 @@ const News = () => {
         .then(result => {
           SetNews(result.data.articles);
           // SetNews(result.data.results);
-
-          // console.log(result.data.hits[0].author);
         });
-      // console.log(news);
-    } catch (error) {
-      // console.log(error);
-    }
+    } catch (error) {}
   };
 
   return (
@@ -92,7 +80,6 @@ const News = () => {
                   marginLeft="170"
                 >
                   More
-                  {console.log(e.urlToImage)}
                 </Link>
               </Box>
             </VStack>

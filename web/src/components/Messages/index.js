@@ -7,15 +7,13 @@ import {
   Text,
   VStack,
   theme,
-  Icon,
   Input,
   Button,
-  Link,
-  Image,
   HStack,
 } from '@chakra-ui/react';
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 let socket;
-let CONNECTION_PORT = 'http://localhost:5000';
+let CONNECTION_PORT = `${BASE_URL}`;
 
 function Message() {
   const [room, setRoom] = useState(0);
@@ -60,7 +58,7 @@ function Message() {
   };
 
   return (
-    <Box h='100vh'>
+    <Box bg="rgba(242, 242, 242, 1)" h="100vh">
       <ChakraProvider theme={theme}>
         <VStack>
           {' '}
@@ -74,8 +72,8 @@ function Message() {
                       {' '}
                       <Box
                         w="270%"
+                        boxShadow="dark-lg"
                         mt="20px"
-                        bg="rgb(48,47,47)"
                         h="70vh"
                         display="flex"
                         flexDirection="column"
@@ -84,25 +82,28 @@ function Message() {
                       >
                         <Button
                           w="200px"
+                          color="white"
                           mt="5"
                           m="3"
-                          color="rgba(26, 24, 24, 0.671)"
+                          bg="#777"
                           onClick={() => connectRoom(1)}
                         >
                           Javascript Room
                         </Button>
                         <Button
-                          color="rgba(26, 24, 24, 0.671)"
+                          color="white"
                           mt="5"
                           m="3"
                           w="200px"
+                          bg="#777"
                           onClick={() => connectRoom(2)}
                         >
                           Python Room
                         </Button>
                         <Button
-                          color="rgba(26, 24, 24, 0.671)"
+                          color="white"
                           mt="5"
+                          bg="#777"
                           m="3"
                           w="200px"
                           onClick={() => connectRoom(3)}
@@ -131,7 +132,6 @@ function Message() {
                               {' '}
                               {msg.userName}: {msg.content}
                             </Text>
-                            {/* <Text color="black"> {msg.content}</Text> */}
                           </VStack>
                         ))}
                       </Box>

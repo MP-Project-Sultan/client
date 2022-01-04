@@ -1,29 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 // import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { sign } from '../../Reducer/login';
-
 import {
   ChakraProvider,
   Box,
-  Text,
   Link,
   VStack,
-  Code,
-  Grid,
   theme,
   Button,
-  HStack,
   Input,
 } from '@chakra-ui/react';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 const MySwal = withReactContent(Swal);
-
 const BASE_URL = process.env.REACT_APP_BASE_URL;
-
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -35,9 +28,9 @@ const Login = () => {
     };
   });
   const Nav = useNavigate();
-  const re = ()=>{
-    Nav('/reset')
-  }
+  const re = () => {
+    Nav('/reset');
+  };
   const re1 = () => {
     Nav('/Register');
   };
@@ -56,8 +49,7 @@ const Login = () => {
         user: result.data.result,
         token: result.data.token,
       };
-      console.log('jjjjjjjjjjjjjjjjjjj',data);
-      Nav('/')
+      Nav('/');
       dispatch(sign(data));
       Swal.fire({
         position: 'center',
@@ -66,17 +58,14 @@ const Login = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      
     } catch (error) {
-       MySwal.fire({
-         icon: 'error',
-         title: 'Oops...',
-         text: 'worng Email or password',
-         confirmButtonColor: 'black',
-       });
-      
+      MySwal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'worng Email or password',
+        confirmButtonColor: 'black',
+      });
     }
-    
   };
   return (
     <VStack>
@@ -136,7 +125,7 @@ const Login = () => {
                     </VStack>
                   </>
                 ) : (
-                  <h3></h3>
+                  <></>
                 )}
               </VStack>
             </Box>
