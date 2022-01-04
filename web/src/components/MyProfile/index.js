@@ -11,6 +11,7 @@ import {
   Button,
   Image,
 } from '@chakra-ui/react';
+import { EditIcon } from '@chakra-ui/icons';
 
 const MyProfile = () => {
   const [user, setUser] = useState('');
@@ -96,8 +97,9 @@ const MyProfile = () => {
                       </>
                     )}
                     <br />
-                    <Button
+                    <EditIcon
                       m="4"
+                      cursor="pointer"
                       onClick={() => {
                         setFlag(true);
                         if (flag) {
@@ -106,7 +108,7 @@ const MyProfile = () => {
                       }}
                     >
                       update
-                    </Button>{' '}
+                    </EditIcon>{' '}
                     <br />
                   </VStack>{' '}
                 </Box>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { DeleteIcon, StarIcon } from '@chakra-ui/icons';
+import { ChatIcon, DeleteIcon, StarIcon } from '@chakra-ui/icons';
 import { useNavigate } from 'react-router-dom';
 import {
   ChakraProvider,
@@ -43,13 +43,7 @@ const Posts = () => {
       setLogedin(false);
     }
   }, [state]);
-  // useEffect(() => {
-  //   if (state.Login.user._id == ) {
-  //     setLogedin(true);
-  //   } else {
-  //     setLogedin(false);
-  //   }
-  // }, [state]);
+
   useEffect(() => {
     result();
   }, []);
@@ -166,7 +160,11 @@ const Posts = () => {
                   ) : (
                     <></>
                   )}
-                  <Button bg="rgb(48,47,47)" color="white" onClick={() => setshow(true)}>
+                  <Button
+                    bg="rgb(48,47,47)"
+                    color="white"
+                    onClick={() => setshow(true)}
+                  >
                     Add Post
                   </Button>
                 </>
@@ -210,6 +208,24 @@ const Posts = () => {
                 >
                   {e.title}
                 </Text>
+                <Text
+                  cursor="pointer"
+                  onClick={() => Nav(`/post/${e._id}`)}
+                  fontSize="18px"
+                  fontFamily="mono"
+                  color="black"
+                >
+                  {e.title}
+                </Text>
+               <HStack> <ChatIcon
+                  cursor="pointer"
+                  onClick={() => Nav(`/post/${e._id}`)}
+                  fontSize="18px"
+                  fontFamily="mono"
+                  color="black"
+                >
+                  
+                </ChatIcon><Text>{e.commentId.length}</Text></HStack>
                 <HStack>
                   {' '}
                   <StarIcon
@@ -231,7 +247,7 @@ const Posts = () => {
                   </Text>
                   <>
                     {' '}
-                    {!logedin || e.userId._id != state.Login.user._id  ? (
+                    {!logedin || e.userId._id != state.Login.user._id ? (
                       <></>
                     ) : (
                       <DeleteIcon
@@ -242,7 +258,6 @@ const Posts = () => {
                         marginBottom="33"
                         onClick={() => {
                           del(e._id);
-                          
                         }}
                       >
                         delete
