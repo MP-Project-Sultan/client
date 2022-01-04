@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { DeleteIcon, StarIcon } from '@chakra-ui/icons';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -24,12 +24,17 @@ const Posts = () => {
   const [newTitle, setNewTitle] = useState('');
   const [logedin, setLogedin] = useState(false);
   const [show, setshow] = useState(false);
+    const [rmable, setRmable] = useState(false);
+     const dispatch = useDispatch()
+
   const state = useSelector(state => {
     return {
       Login: state.Login,
       postRD: state.PostRD,
     };
   });
+      console.log(state);
+
 
   useEffect(() => {
     if (state.Login.token) {
@@ -38,6 +43,13 @@ const Posts = () => {
       setLogedin(false);
     }
   }, [state]);
+  // useEffect(() => {
+  //   if (state.Login.user._id == ) {
+  //     setLogedin(true);
+  //   } else {
+  //     setLogedin(false);
+  //   }
+  // }, [state]);
   useEffect(() => {
     result();
   }, []);
@@ -219,7 +231,7 @@ const Posts = () => {
                   </Text>
                   <>
                     {' '}
-                    {!logedin ? (
+                    {!logedin || e.userId._id != state.Login.user._id  ? (
                       <></>
                     ) : (
                       <DeleteIcon
@@ -230,6 +242,7 @@ const Posts = () => {
                         marginBottom="33"
                         onClick={() => {
                           del(e._id);
+                          
                         }}
                       >
                         delete

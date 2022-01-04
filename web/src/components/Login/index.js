@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-// import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { sign } from '../../Reducer/login';
 import {
@@ -42,7 +41,7 @@ const Login = () => {
   const logIn = async () => {
     try {
       const result = await axios.post(`${BASE_URL}/login`, {
-        email,
+       email,
         password,
       });
       const data = {
@@ -94,7 +93,6 @@ const Login = () => {
                         w="197px"
                         color="white"
                         textAlign="center"
-                        type="email"
                         placeholder="enter Email"
                         onChange={e => {
                           setEmail(e.target.value);

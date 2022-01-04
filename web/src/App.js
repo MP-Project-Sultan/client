@@ -18,18 +18,14 @@ import Message from './components/Messages';
 import MyProfile from './components/MyProfile';
 import Footer from './components/Fot';
 import Mess from './components/Messages/mess';
+import NotFound from './components/NotFound';
 
 import {
   ChakraProvider,
   Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
+  
   theme,
 } from '@chakra-ui/react';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
 
 function App() {
   return (
@@ -37,7 +33,6 @@ function App() {
       <Box textAlign="center" fontSize="xl">
         <>
           <Navbar />
-
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route exact path="/posts" element={<Posts />} />
@@ -55,6 +50,7 @@ function App() {
             <Route exact path="/userCp/" element={<UserCP />} />
             <Route exact path="/MyProfile/" element={<MyProfile />} />
             <Route exact path="/mess/:id" element={<Mess />} />
+            <Route exact path="/*" element={<NotFound />} />
           </Routes>
           <Footer />
         </>
