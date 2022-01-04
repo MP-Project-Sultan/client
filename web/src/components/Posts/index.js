@@ -31,7 +31,7 @@ const Posts = () => {
   const dispatch = useDispatch();
   const [newTitle, setNewTitle] = useState('');
    const [logedin, setLogedin] = useState(false);
-
+const [show, setshow] = useState(false)
    const state = useSelector(state => {
      return {
        Login: state.Login,
@@ -114,7 +114,7 @@ const Posts = () => {
   };
   return (
     <ChakraProvider theme={theme}>
-      <Box bg="rgba(252, 252, 252, 0.815)">
+      <Box pt="5" pb="6" bg="rgba(242, 242, 242, 1)">
         <VStack>
           <Box
             bg="rgba(252, 252, 252, 0.815)"
@@ -130,24 +130,41 @@ const Posts = () => {
                 <></>
               ) : (
                 <>
-                  <Input
-                    w="200px"
-                    onChange={e => {
-                      setNewTitle(e.target.value);
-                    }}
-                    placeholder="Title"
-                    textAlign="center"
-                  ></Input>
-                  <Input
-                    w="200px"
-                    color="black"
-                    onChange={e => {
-                      setNewPost(e.target.value);
-                    }}
-                    placeholder="Description"
-                    textAlign="center"
-                  ></Input>{' '}
-                  <Button onClick={addpost}>Add Post</Button>
+                  {show ? (
+                    <>
+                      {' '}
+                      <Input
+                        w="200px"
+                        onChange={e => {
+                          setNewTitle(e.target.value);
+                        }}
+                        placeholder="Title"
+                        textAlign="center"
+                      ></Input>
+                      <Input
+                        w="200px"
+                        color="black"
+                        onChange={e => {
+                          setNewPost(e.target.value);
+                        }}
+                        placeholder="Description"
+                        textAlign="center"
+                      ></Input>{' '}
+                      <Button
+                        bg="rgb(48,47,47)"
+                        color="white"
+                        onClick={() => {
+                          addpost();
+                          setshow(false);
+                        }}
+                      >
+                        Submit
+                      </Button>
+                    </>
+                  ) : (
+                    <></>
+                  )}
+                  <Button onClick={() => setshow(true)}>Add Post</Button>
                 </>
               )}
             </VStack>
@@ -155,7 +172,7 @@ const Posts = () => {
               <Box
                 bg="white"
                 borderRadius="4"
-                boxShadow='"md"'
+                boxShadow="md"
                 p="2"
                 // border="solid black 1px"
                 mt="6"
@@ -192,14 +209,15 @@ const Posts = () => {
                 </Text>
                 <HStack>
                   {' '}
-                <StarIcon
+                  <StarIcon
                     w="3"
                     cursor="pointer"
                     color="#c5a087"
                     onClick={() => addlike(e._id)}
                   >
                     Like{' '}
-                  </StarIcon> )
+                  </StarIcon>{' '}
+                  )
                   <Text
                     as="strong"
                     fontSize="12px"
@@ -208,20 +226,25 @@ const Posts = () => {
                   >
                     {e.like.length}
                   </Text>
-                <> {!logedin ? (
-                <></>
-              ) : ( <DeleteIcon
-                    w="3"
-                    cursor="pointer"
-                    position="absolute"
-                    left="971"
-                    marginBottom="33"
-                    onClick={() => {
-                      del(e._id);
-                    }}
-                  >
-                    delete
-                  </DeleteIcon> )}</>
+                  <>
+                    {' '}
+                    {!logedin ? (
+                      <></>
+                    ) : (
+                      <DeleteIcon
+                        w="3"
+                        cursor="pointer"
+                        position="absolute"
+                        left="971"
+                        marginBottom="33"
+                        onClick={() => {
+                          del(e._id);
+                        }}
+                      >
+                        delete
+                      </DeleteIcon>
+                    )}
+                  </>
                 </HStack>{' '}
               </Box>
             ))}

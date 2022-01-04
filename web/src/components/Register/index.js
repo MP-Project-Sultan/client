@@ -51,20 +51,20 @@ const Register = () => {
   };
 
   return (
-    <Box w="100%" h="100%" bg="rgba(114, 117, 119, 0.548)">
+    <Box w="100%" h="100%" bg="rgba(242, 242, 242, 1)">
       <ChakraProvider theme={theme}>
         <VStack>
           <Box
             borderRadius="3px"
-            border="solid black 1px"
+            boxShadow="dark-lg"
             textAlign="center"
             w="400px"
             h="100%"
-            mt="11"
+            mt="16"
             textAlign="center"
             bg="#fffb"
             color="black"
-            mb='24'
+            mb="20"
           >
             <VStack>
               <Text mb="3" mt="3">
@@ -116,7 +116,7 @@ const Register = () => {
               <Button bg="#777" onClick={signup}>
                 Register
               </Button>
-              <Box fontSize='12' mb="111">
+              <Box fontSize="12" mb="111">
                 {' '}
                 <PasswordChecklist
                   rules={[

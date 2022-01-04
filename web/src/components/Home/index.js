@@ -44,7 +44,7 @@ const News = () => {
   };
 
   return (
-    <Box bg="rgba(252, 252, 252, 0.815)" p="5">
+    <Box bg="rgba(242, 242, 242, 1)" p="5">
       <VStack>
         <Text mt="30" mb="12" color="rgb(48,47,47)" fontSize="3rem">
           Programmer News
@@ -65,7 +65,7 @@ const News = () => {
               {' '}
               <Box
                 mt="10"
-                boxShadow='dark-lg'
+                boxShadow="dark-lg"
                 position="relative"
                 color="black"
                 background="rgba(201, 201, 201, 0.471)"

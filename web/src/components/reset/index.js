@@ -51,40 +51,45 @@ const Reset = () => {
   };
 
   return (
-     <Box h='100%' bg="rgba(114, 117, 119, 0.548)"><ChakraProvider>
-     <VStack> <Box
-        borderRadius="3px"
-        border="solid silver"
-        textAlign="center"
-        w="300px"
-        mt="100px"
-        textAlign="center"
-        mb='180px'
-        bg="#fffb"
-        color="black"
-        p='4'
-      >
-        <Text>Reset Password</Text>
-        <Input
-          m="10px"
-          w='200px'
-          bg="#222"
-          color="white"
-          textAlign="center"
-          type="email"
-          width="40"
-          placeholder="Your Email"
-          onChange={e => {
-            setEmail(e.target.value);
-          }}
-        ></Input>
-        <Button bg="#777" onClick={checkemail} mt="20px">
-          Send reset code
-        </Button>
-      
-      </Box>  <br/></VStack>
-    </ChakraProvider>
- </Box> );
+    <Box h="100%" bg="rgba(242, 242, 242, 1)">
+      <ChakraProvider>
+        <VStack>
+          {' '}
+          <Box
+            borderRadius="3px"
+            boxShadow="dark-lg"
+            textAlign="center"
+            w="300px"
+            mt="100px"
+            textAlign="center"
+            mb="180px"
+            bg="#fffb"
+            color="black"
+            p="4"
+          >
+            <Text>Reset Password</Text>
+            <Input
+              m="10px"
+              w="200px"
+              bg="#222"
+              color="white"
+              textAlign="center"
+              type="email"
+              width="40"
+              placeholder="Your Email"
+              onChange={e => {
+                setEmail(e.target.value);
+              }}
+            ></Input>
+            <Button bg="#777" onClick={checkemail} mt="20px">
+              Send reset code
+            </Button>
+          </Box>{' '}
+          <br />
+        </VStack>
+      </ChakraProvider>
+    </Box>
+  );
 };
 
 export default Reset;

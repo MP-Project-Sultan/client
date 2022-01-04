@@ -53,18 +53,14 @@ const Navbar = () => {
             <NavLink to="/" activeStyle>
               Home
             </NavLink>
-            <NavLink to="/message" activeStyle>
-              ChatRooms
-            </NavLink>
+
             <NavLink to="/posts" activeStyle>
               Questions
             </NavLink>
             <NavLink to="/news" activeStyle>
               News
             </NavLink>
-            <NavLink to="/MyProfile" activeStyle>
-              My Profile
-            </NavLink>
+
             {!logedin ? (
               <>
                 <NavLink to="/register" activeStyle>
@@ -76,6 +72,12 @@ const Navbar = () => {
               </>
             ) : (
               <>
+                <NavLink to="/MyProfile" activeStyle>
+                  My Profile
+                </NavLink>
+                <NavLink to="/message" activeStyle>
+                  ChatRooms
+                </NavLink>
                 <NavBtn
                   onClick={() => {
                     dispatch(logout());

@@ -60,7 +60,7 @@ function Message() {
   };
 
   return (
-    <Box>
+    <Box h='100vh'>
       <ChakraProvider theme={theme}>
         <VStack>
           {' '}

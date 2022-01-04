@@ -16,6 +16,7 @@ export const NavLogo = styled(Link)`
   color: #fff;
   font-size: 2rem;
   text-decoration: none;
+  margin-left:150px
 `;
 
 export const NavLink = styled(Link)`
@@ -76,7 +77,7 @@ export const NavBtnLink = styled(Link)`
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   text-decoration: none;
-  margin-left: 24px;
+  margin-right: 24px;
   &:hover {
     transition: all 0.2s ease-in-out;
     background: #fff;

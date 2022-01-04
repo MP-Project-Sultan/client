@@ -1,6 +1,8 @@
+
+
 .footer-basic {
-  margin-top: 200px;
-  padding: 40px 0;
+bottom: end;
+  padding: 17px 0;
   background-color: rgb(48, 47, 47);
   color: #ffffff;
 }
@@ -31,7 +33,7 @@
 
 .footer-basic .social {
   text-align: center;
-  padding-bottom: 25px;
+  padding-bottom: 10px;
 }
 
 .footer-basic .social > a {
@@ -53,7 +55,7 @@
 }
 
 .footer-basic .copyright {
-  margin-top: 15px;
+  margin-top: 6px;
   text-align: center;
   font-size: 13px;
   color: #aaa;

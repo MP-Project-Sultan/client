@@ -48,14 +48,14 @@ const Active = () => {
   return (
     <Box
       borderRadius="3px"
-      border="solid silver"
       textAlign="center"
       w="300px"
       mt="100px"
       textAlign="center"
       ml="500px"
-      bg="rgba(252, 252, 252, 0.815)"
+      bg="rgba(242, 242, 242, 1)"
       color="black"
+      mb='100'
     >
       <h1>verify your account</h1>
       <Box paddingLeft="25px" m="10px">

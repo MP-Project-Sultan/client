@@ -61,72 +61,68 @@ const MyProfile = () => {
   };
 
   return (
-    <ChakraProvider theme={theme}>
-      <VStack>
-        <Box bg="rgba(252, 252, 252, 0.815)" h="60%" w="60%">
-          {user.length &&
-            user.map(e => (
-              <Box
-                mt="100"
-                mb="250"
-                pt='20'
+    <Box bg="rgba(242, 242, 242, 1)" >
+      <ChakraProvider theme={theme}>
+        <VStack>
+          <Box bg="rgba(242, 242, 242, 1)" h="80%" w="50%" >
+            {user.length &&
+              user.map(e => (
+                <Box mt="30" mb="250" pt="20" w="50">
+                  <VStack boxShadow="dark-lg" borderRadius='5'>
+                    <Image
+                      w="80px"
+                      mt='5'
+                      borderRadius="full"
+                      src="https://th.bing.com/th/id/R.0e0adfcf50b345161a6a5b47bb8b5f07?rik=cPwI89xNfVXFeQ&riu=http%3a%2f%2fwww.hexatar.com%2fgallery%2fpng%2f190418_124617_m2230fe8f39_avatar.png&ehk=RZX%2bKqAnJJ0UsHx9nSjX7%2b6AduRMrKDy90w7JqaxOlE%3d&risl=&pid=ImgRaw&r=0"
+                    />
+                    <Text>{e.username}</Text>
+                    <Text>{e.email}</Text>
+                    {flag && (
+                      <>
+                        <Input
+                          required
+                          w="100"
+                          textAlign="center"
+                          mt="5"
+                          onChange={e => {
+                            setUsername(e.target.value);
+                          }}
+                          placeholder="username"
+                        />
+                        <br />
 
-                border="solid gray 2px"
-                w="100"
-              >
-                <VStack>
-                  <Image
-                    w="80px"
-                    
-                    borderRadius="full"
-                    src="https://th.bing.com/th/id/R.0e0adfcf50b345161a6a5b47bb8b5f07?rik=cPwI89xNfVXFeQ&riu=http%3a%2f%2fwww.hexatar.com%2fgallery%2fpng%2f190418_124617_m2230fe8f39_avatar.png&ehk=RZX%2bKqAnJJ0UsHx9nSjX7%2b6AduRMrKDy90w7JqaxOlE%3d&risl=&pid=ImgRaw&r=0"
-                  />
-                  <Text>{e.username}</Text>
-                  <Text>{e.email}</Text>
-                  {flag && (
-                    <>
-                      <Input
-                        required
-                        w="100"
-                        textAlign="center"
-                        mt="5"
-                        onChange={e => {
-                          setUsername(e.target.value);
-                        }}
-                        placeholder="username"
-                      />
-                      <br />
-
-                      <Input
-                        required
-                        mt="6"
-                        w="100"
-                        textAlign="center"
-                        onChange={e => {
-                          setEmail(e.target.value);
-                        }}
-                        placeholder="Email"
-                      />
-                    </>
-                  )}
-                  <br />
-                  <Button
-                    mt="4"
-                    onClick={() => {
-                      setFlag(true);
-                      if (flag) {
-                        updateUser();
-                      }
-                    }}
-                  >
-                    update
-                  </Button>{' '}
-                </VStack>{' '}
-              </Box>
-            ))}
-        </Box>
-      </VStack>
-    </ChakraProvider>
+                        <Input
+                          required
+                          mt="6"
+                          w="100"
+                          textAlign="center"
+                          onChange={e => {
+                            setEmail(e.target.value);
+                          }}
+                          placeholder="Email"
+                        />
+                      </>
+                    )}
+                    <br />
+                    <Button
+                     
+                      m='4'
+                      onClick={() => {
+                        setFlag(true);
+                        if (flag) {
+                          updateUser();
+                        }
+                      }}
+                    >
+                      update
+                    </Button>{' '}<br/>
+                  </VStack>{' '}
+                </Box>
+              ))}
+          </Box>
+        </VStack>
+      </ChakraProvider>
+    </Box>
   );
 };
 

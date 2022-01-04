@@ -79,69 +79,71 @@ const Login = () => {
     
   };
   return (
-    <Box bg="rgba(252, 252, 252, 0.815)" w="90%" h="100%">
-      <ChakraProvider theme={theme}>
-        <VStack>
-          {' '}
-          <Box
-            borderRadius="3px"
-            border="solid black 1px"
-            textAlign="center"
-            w="300px"
-            mt="100px"
-            textAlign="center"
-            mb="40"
-            bg="#fffb"
-            color="black"
-          >
-            <VStack mt="4">
-              {!state.token ? (
-                <>
-                  <h1>Login</h1>
-                  <VStack mt="4">
-                    <Input
-                      bg="#201f1e"
-                      w="197px"
-                      color="white"
-                      textAlign="center"
-                      type="email"
-                      placeholder="enter Email"
-                      onChange={e => {
-                        setEmail(e.target.value);
-                      }}
-                    />
-                    <br />
+    <VStack>
+      <Box bg="rgba(242, 242, 242, 1)" w="100%" h="100%">
+        <ChakraProvider theme={theme}>
+          <VStack>
+            {' '}
+            <Box
+              borderRadius="3px"
+              boxShadow="dark-lg"
+              textAlign="center"
+              w="300px"
+              mt="100px"
+              textAlign="center"
+              mb="40"
+              bg="#fffb"
+              color="black"
+            >
+              <VStack mt="4">
+                {!state.token ? (
+                  <>
+                    <h1>Login</h1>
+                    <VStack mt="4">
+                      <Input
+                        bg="#201f1e"
+                        w="197px"
+                        color="white"
+                        textAlign="center"
+                        type="email"
+                        placeholder="enter Email"
+                        onChange={e => {
+                          setEmail(e.target.value);
+                        }}
+                      />
+                      <br />
 
-                    <Input
-                      bg="#201f1e"
-                      color="white"
-                      textAlign="center"
-                      type="password"
-                      w="197px"
-                      placeholder="enter Password"
-                      onChange={e => {
-                        setPassword(e.target.value);
-                      }}
-                    />
+                      <Input
+                        bg="#201f1e"
+                        color="white"
+                        textAlign="center"
+                        type="password"
+                        w="197px"
+                        placeholder="enter Password"
+                        onChange={e => {
+                          setPassword(e.target.value);
+                        }}
+                      />
 
-                    <br />
-                    <Button bg="#777" onClick={logIn}>
-                      Login
-                    </Button>
-                    <Link onClick={re1}>Don't Have Account</Link>
+                      <br />
+                      <Button bg="#777" onClick={logIn}>
+                        Login
+                      </Button>
+                      <Link onClick={re1}>Don't Have Account</Link>
 
-                    <Link onClick={re}>Forget password</Link>
-                    <br />
-                  </VStack>
-                </>
-              ) : (
-                <h3></h3>
-              )}
-            </VStack>
-          </Box>
-        </VStack>
-      </ChakraProvider>
-    </Box>
+                      <Link onClick={re}>Forget password</Link>
+                      <br />
+                    </VStack>
+                  </>
+                ) : (
+                  <h3></h3>
+                )}
+              </VStack>
+            </Box>
+          </VStack>
+        </ChakraProvider>
+      </Box>
+    </VStack>
   );
 };
 

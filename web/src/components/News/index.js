@@ -43,7 +43,7 @@ const News = () => {
   };
 
   return (
-    <Box p="5" bg="rgba(252, 252, 252, 0.815)">
+    <Box p="5" bg="rgba(242, 242, 242, 1)">
       <Text mb="12" color="rgb(100, 107, 119)" fontSize="3rem">
         Programmer News
       </Text>

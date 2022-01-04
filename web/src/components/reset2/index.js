@@ -53,49 +53,52 @@ const Reset2 = () => {
     }
   };
   return (
-    <Box bg="rgba(114, 117, 119, 0.548)">
+    <Box bg="rgba(242, 242, 242, 1)">
       {' '}
       <ChakraProvider theme={theme}>
         <VStack>
           {' '}
           <Box
             borderRadius="3px"
-            border="solid silver"
+            boxShadow="dark-lg"
             textAlign="center"
             w="360px"
             textAlign="center"
             bg="#fffb"
             color="black"
             mt="30"
-           p='10'
-           marginBottom='19'
+            p="10"
+            marginBottom="19"
           >
             <VStack>
               <h1>Reset Password</h1>
-            <Box fontSize='14'>  <PasswordChecklist
-                rules={[
-                  'minLength',
-                  'specialChar',
-                  'number',
-                  'capital',
-                  'lowercase',
-                ]}
-                minLength={6}
-                value={password}
-                onChange={isValid => {
-                  if (isValid) {
-                    const button = document.querySelector(
-                      '#resetPasswordButton'
-                    );
-                    button.disabled = false;
-                  } else {
-                    const button = document.querySelector(
-                      '#resetPasswordButton'
-                    );
-                    button.disabled = true;
-                  }
-                }}
-              /></Box>
+              <Box fontSize="14">
+                {' '}
+                <PasswordChecklist
+                  rules={[
+                    'minLength',
+                    'specialChar',
+                    'number',
+                    'capital',
+                    'lowercase',
+                  ]}
+                  minLength={6}
+                  value={password}
+                  onChange={isValid => {
+                    if (isValid) {
+                      const button = document.querySelector(
+                        '#resetPasswordButton'
+                      );
+                      button.disabled = false;
+                    } else {
+                      const button = document.querySelector(
+                        '#resetPasswordButton'
+                      );
+                      button.disabled = true;
+                    }
+                  }}
+                />
+              </Box>
               <Input
                 bg="#222"
                 color="white"
@@ -109,7 +112,6 @@ const Reset2 = () => {
               />
               <ReactCodeInput fields={4} onComplete={val => setCode(val)} />
               <Button
-              
                 bg="#777"
                 id="resetPasswordButton"
                 onClick={resetPassword}

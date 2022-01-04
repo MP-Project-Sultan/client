@@ -30,7 +30,7 @@ const Footer = () => {
               <a href="#">Home</a>
             </li>
             <li class="list-inline-item">
-              <a href="#">Admin Login</a>
+              <a href="/admin">Admin Login</a>
             </li>
           </ul>
           <p class="copyright">All Rights Reserved © 2022</p>
