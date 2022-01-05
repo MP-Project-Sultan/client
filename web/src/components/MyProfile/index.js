@@ -16,7 +16,8 @@ import { EditIcon } from '@chakra-ui/icons';
 const MyProfile = () => {
   const [user, setUser] = useState('');
   const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState('')
+  const [img, setImg] = useState('')
   const [flag, setFlag] = useState(false);
   const BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -42,8 +43,8 @@ const MyProfile = () => {
     await axios.put(
       `${BASE_URL}/updateUser/${state.Login.user._id}`,
       {
-        username: username,
-        email,
+        username:username,
+        email
       },
       {
         headers: {
@@ -80,6 +81,15 @@ const MyProfile = () => {
                           mt="5"
                           onChange={e => {
                             setUsername(e.target.value);
+                          }}
+                          placeholder="username"
+                        />
+                        <Input
+                          w="100"
+                          textAlign="center"
+                          mt="5"
+                          onChange={e => {
+                            setImg(e.target.value);
                           }}
                           placeholder="username"
                         />

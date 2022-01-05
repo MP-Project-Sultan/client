@@ -8,14 +8,9 @@ import axios from 'axios';
 import {
   ChakraProvider,
   Box,
-  Text,
-  Link,
   VStack,
-  Code,
-  Grid,
   theme,
   Button,
-  HStack,
   Input,
 } from '@chakra-ui/react';
 
@@ -34,13 +29,13 @@ const Reset2 = () => {
           code,
           password,
         });
-         Swal.fire({
-           position: 'center',
-           icon: 'success',
-           title: 'Password Changed successfully',
-           showConfirmButton: false,
-           timer: 1500,
-         });
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Password Changed successfully',
+          showConfirmButton: false,
+          timer: 1500,
+        });
         navigate('/login');
       } catch (error) {
         MySwal.fire({

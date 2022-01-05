@@ -27,7 +27,7 @@ const Reset = () => {
         title: 'please check your Email to reset your password',
         showConfirmButton: false,
         timer: 2000,
-      });
+      });console.log(result);
     } catch (error) {
       MySwal.fire({
         icon: 'error',

@@ -17,7 +17,7 @@ import withReactContent from 'sweetalert2-react-content';
 const MySwal = withReactContent(Swal);
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
-
+const ROLE = process.env.REACT_APP_ROLE
 const Login = () => {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
@@ -38,7 +38,7 @@ const Login = () => {
   const logIn = async () => {
     try {
       const result = await axios.post(`${BASE_URL}/login`, {
-        email,
+        email:username,
         password,
         username,
       });
@@ -46,7 +46,8 @@ const Login = () => {
         user: result.data.result,
         token: result.data.token,
       };
-      if (data.user.role == `61c0855305291c57ea3039dd`) {
+      console.log(result.data);
+      if (data.user.role == ROLE || data.user.role == undefined) {
         dispatch(sign(data));
         Swal.fire({
           position: 'center',

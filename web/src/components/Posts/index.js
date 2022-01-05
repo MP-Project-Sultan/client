@@ -217,16 +217,16 @@ const Posts = () => {
                 >
                   {e.title}
                 </Text>
-               <HStack> <ChatIcon
+             
+                <HStack>  <ChatIcon
                   cursor="pointer"
                   onClick={() => Nav(`/post/${e._id}`)}
-                  fontSize="18px"
+                  fontSize="13px"
                   fontFamily="mono"
                   color="black"
                 >
                   
-                </ChatIcon><Text>{e.commentId.length}</Text></HStack>
-                <HStack>
+                </ChatIcon><Text as='strong' fontSize='12'>{e.commentId.length}</Text>
                   {' '}
                   <StarIcon
                     w="3"

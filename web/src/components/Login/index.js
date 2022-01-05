@@ -42,6 +42,7 @@ const Login = () => {
     try {
       const result = await axios.post(`${BASE_URL}/login`, {
        email,
+       username:email,
         password,
       });
       const data = {
