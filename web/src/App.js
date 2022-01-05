@@ -20,6 +20,8 @@ import Footer from './components/Fot';
 import Mess from './components/Messages/mess';
 import NotFound from './components/NotFound';
 
+
+
 import {
   ChakraProvider,
   Box,
@@ -28,6 +30,7 @@ import {
 } from '@chakra-ui/react';
 
 function App() {
+  
   return (
     <ChakraProvider theme={theme}>
       <Box textAlign="center" fontSize="xl">

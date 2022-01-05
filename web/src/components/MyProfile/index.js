@@ -16,8 +16,8 @@ import { EditIcon } from '@chakra-ui/icons';
 const MyProfile = () => {
   const [user, setUser] = useState('');
   const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('')
-  const [img, setImg] = useState('')
+  const [email, setEmail] = useState('');
+  const [img, setImg] = useState('');
   const [flag, setFlag] = useState(false);
   const BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -43,8 +43,9 @@ const MyProfile = () => {
     await axios.put(
       `${BASE_URL}/updateUser/${state.Login.user._id}`,
       {
-        username:username,
-        email
+        username: username,
+        email,
+        img: img,
       },
       {
         headers: {
@@ -65,12 +66,7 @@ const MyProfile = () => {
               user.map(e => (
                 <Box mt="30" mb="250" pt="20" w="50">
                   <VStack boxShadow="dark-lg" borderRadius="5">
-                    <Image
-                      w="80px"
-                      mt="5"
-                      borderRadius="full"
-                      src="https://th.bing.com/th/id/R.0e0adfcf50b345161a6a5b47bb8b5f07?rik=cPwI89xNfVXFeQ&riu=http%3a%2f%2fwww.hexatar.com%2fgallery%2fpng%2f190418_124617_m2230fe8f39_avatar.png&ehk=RZX%2bKqAnJJ0UsHx9nSjX7%2b6AduRMrKDy90w7JqaxOlE%3d&risl=&pid=ImgRaw&r=0"
-                    />
+                    <Image w="80px" mt="5" borderRadius="full" src={e.img} />
                     <Text>{e.username}</Text>
                     <Text>{e.email}</Text>
                     {flag && (
@@ -78,31 +74,30 @@ const MyProfile = () => {
                         <Input
                           w="100"
                           textAlign="center"
-                          mt="5"
+                          defaultValue={e.username}
                           onChange={e => {
                             setUsername(e.target.value);
                           }}
                           placeholder="username"
                         />
-                        <Input
-                          w="100"
-                          textAlign="center"
-                          mt="5"
-                          onChange={e => {
-                            setImg(e.target.value);
-                          }}
-                          placeholder="username"
-                        />
                         <br />
-
                         <Input
-                          mt="6"
                           w="100"
                           textAlign="center"
+                          defaultValue={e.email}
                           onChange={e => {
                             setEmail(e.target.value);
                           }}
                           placeholder="Email"
+                        />
+                        <Input
+                          w="100"
+                          defaultValue={e.img}
+                          textAlign="center"
+                          onChange={e => {
+                            setImg(e.target.value);
+                          }}
+                          placeholder="Image"
                         />
                       </>
                     )}

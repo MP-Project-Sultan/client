@@ -47,7 +47,7 @@ const News = () => {
           onChange={e => setText(e.target.value)}
           w="190"
         ></Input>
-        <SimpleGrid mt="20" columns={2} spacing={0}>
+        <SimpleGrid mt="20" columns={[1,2]} spacing={0}>
           {news.map(e => (
             <VStack>
               {' '}

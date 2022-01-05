@@ -12,7 +12,7 @@ import {
 import axios from 'axios';
 
 const News = () => {
-  const [text, setText] = useState('a');
+  const [text, setText] = useState('google');
   const [news, SetNews] = useState([]);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const News = () => {
   return (
     <Box p="5" bg="rgba(242, 242, 242, 1)">
       <Text mb="12" color="rgb(100, 107, 119)" fontSize="3rem">
-        Programmer News
+        All News
       </Text>
       <Input
         placeholder="Search News"
@@ -63,7 +63,7 @@ const News = () => {
                 <Image w="200px" height="200px" src={e.urlToImage} />
                 <VStack>
                   {' '}
-                  <Text>{e.title}</Text>
+                  <Text mb='20'>{e.title}</Text>
                   <Text mt="5" fontSize="12px">
                     {e.content}
                   </Text>
