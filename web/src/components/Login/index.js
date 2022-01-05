@@ -16,10 +16,12 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 const MySwal = withReactContent(Swal);
 const BASE_URL = process.env.REACT_APP_BASE_URL;
+console.log(BASE_URL);
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [local, setLocal] = useState('');
+  console.log(local);
   const state = useSelector(state => {
     return {
       Login: state.Login,
@@ -41,8 +43,8 @@ const Login = () => {
   const logIn = async () => {
     try {
       const result = await axios.post(`${BASE_URL}/login`, {
-       email,
-       username:email,
+        email,
+        username: email,
         password,
       });
       const data = {
@@ -79,7 +81,6 @@ const Login = () => {
               textAlign="center"
               w="300px"
               mt="100px"
-              textAlign="center"
               mb="40"
               bg="#fffb"
               color="black"

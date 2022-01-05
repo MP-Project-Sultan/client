@@ -8,7 +8,6 @@ import {
   VStack,
   theme,
   Input,
-  Button,
   Image,
 } from '@chakra-ui/react';
 import { EditIcon } from '@chakra-ui/icons';
@@ -29,6 +28,7 @@ const MyProfile = () => {
   });
   useEffect(() => {
     result();
+    // eslint-disable-next-line
   }, []);
   const result = async () => {
     await axios
@@ -64,7 +64,7 @@ const MyProfile = () => {
           <Box bg="rgba(242, 242, 242, 1)" h="80%" w="50%">
             {user.length &&
               user.map(e => (
-                <Box mt="30" mb="250" pt="20" w="50">
+                <Box key={e._id} mt="30" mb="250" pt="20" w="50">
                   <VStack boxShadow="dark-lg" borderRadius="5">
                     <Image w="80px" mt="5" borderRadius="full" src={e.img} />
                     <Text>{e.username}</Text>

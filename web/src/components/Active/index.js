@@ -26,7 +26,7 @@ const Active = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-
+        console.log(result);
         navigate('/login');
       } catch (error) {
         MySwal.fire({
@@ -41,7 +41,6 @@ const Active = () => {
   return (
     <Box
       borderRadius="3px"
-      textAlign="center"
       w="300px"
       mt="100px"
       textAlign="center"

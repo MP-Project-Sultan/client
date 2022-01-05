@@ -58,7 +58,6 @@ const Reset2 = () => {
             boxShadow="dark-lg"
             textAlign="center"
             w="360px"
-            textAlign="center"
             bg="#fffb"
             color="black"
             mt="30"

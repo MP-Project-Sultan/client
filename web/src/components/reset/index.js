@@ -27,7 +27,8 @@ const Reset = () => {
         title: 'please check your Email to reset your password',
         showConfirmButton: false,
         timer: 2000,
-      });console.log(result);
+      });
+      console.log(result);
     } catch (error) {
       MySwal.fire({
         icon: 'error',
@@ -49,7 +50,6 @@ const Reset = () => {
             textAlign="center"
             w="300px"
             mt="100px"
-            textAlign="center"
             mb="180px"
             bg="#fffb"
             color="black"
@@ -69,7 +69,12 @@ const Reset = () => {
                 setEmail(e.target.value);
               }}
             ></Input>
-            <Button color="white" bg="rgb(48,47,47)" onClick={checkemail} mt="20px">
+            <Button
+              color="white"
+              bg="rgb(48,47,47)"
+              onClick={checkemail}
+              mt="20px"
+            >
               Send reset code
             </Button>
           </Box>{' '}

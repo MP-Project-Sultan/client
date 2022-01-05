@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getpost} from '../../Reducer/post';
+import { getpost } from '../../Reducer/post';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { DeleteIcon, StarIcon, AddIcon } from '@chakra-ui/icons';
@@ -29,6 +29,7 @@ const PostCP = () => {
   useEffect(() => {
     setNewPost(' ');
     postshow();
+    // eslint-disable-next-line
   }, []);
 
   const postshow = async () => {
@@ -52,7 +53,7 @@ const PostCP = () => {
           Authorization: `Bearer ${state.Login.token}`,
         },
       });
-
+      console.log(res);
       postshow();
     } catch (error) {
       console.log(error);
@@ -65,7 +66,7 @@ const PostCP = () => {
           Authorization: `Bearer ${state.Login.token}`,
         },
       });
-
+      console.log(res);
       postshow();
     } catch (error) {
       console.log(error);
@@ -85,7 +86,7 @@ const PostCP = () => {
           },
         }
       );
-
+      console.log(res);
       postshow();
     } catch (error) {
       console.log(error);
@@ -105,6 +106,7 @@ const PostCP = () => {
           },
         }
       );
+      console.log(res);
 
       postshow();
     } catch (error) {
@@ -124,6 +126,7 @@ const PostCP = () => {
           },
         }
       );
+      console.log(res);
 
       postshow();
     } catch (error) {
@@ -169,9 +172,9 @@ const PostCP = () => {
               </HStack>
               {newpost && newpost.length && (
                 <>
-                  {state.postRD.post.map((e, i) => (
+                  {state.postRD.post.map(e => (
                     <>
-                      <Box border="solid 2px silver">
+                      <Box key={e._id} border="solid 2px silver">
                         {' '}
                         <VStack>
                           {' '}
@@ -204,10 +207,10 @@ const PostCP = () => {
                             </Text>
                           </HStack>
                         </VStack>
-                        <img src={e.img} />
+                        <img alt="img" src={e.img} />
                         {e.commentId.map(s => (
                           <>
-                            <VStack>
+                            <VStack key={s._id}>
                               {' '}
                               <HStack>
                                 {' '}

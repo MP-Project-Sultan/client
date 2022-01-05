@@ -16,12 +16,12 @@ export const NavLogo = styled(Link)`
   color: #fff;
   font-size: 2rem;
   text-decoration: none;
-  margin-left:150px
+  margin-left: 150px;
 `;
 
 export const NavLink = styled(Link)`
   color: #fff;
-  display: flex;
+  display: top;
   align-items: center;
   text-decoration: none;
   padding: 0 1rem;
@@ -52,6 +52,7 @@ export const Bars = styled(FaBars)`
 export const NavMenu = styled.div`
   display: flex;
   align-items: center;
+  margin-left: 60px;
 
   @media screen and (max-width: 768px) {
     display: none;

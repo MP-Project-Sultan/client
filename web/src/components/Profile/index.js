@@ -10,7 +10,6 @@ import {
   theme,
   Image,
   HStack,
-  
 } from '@chakra-ui/react';
 import { StarIcon } from '@chakra-ui/icons';
 
@@ -29,6 +28,7 @@ const User = () => {
   useEffect(() => {
     result();
     result1();
+    // eslint-disable-next-line
   }, []);
   const result = async () => {
     await axios
@@ -39,7 +39,7 @@ const User = () => {
         setUser(result.data);
       });
   };
-  
+
   const result1 = async () => {
     const data = await axios
       .get(`${BASE_URL}/getPostsUser/${id}`, {
@@ -47,7 +47,7 @@ const User = () => {
       })
       .then(result => {
         setPost(result.data);
-        console.log(result.data);
+        console.log(data);
       });
   };
   return (
@@ -58,7 +58,7 @@ const User = () => {
             <div>
               {user.length &&
                 user.map(e => (
-                  <Box mt="100" boxShadow="dark-lg" mb="250" pb='4'>
+                  <Box mt="100" boxShadow="dark-lg" mb="250" pb="4">
                     {' '}
                     <>
                       <VStack m="10">
@@ -70,8 +70,13 @@ const User = () => {
                         />
                         <Text>{e.email}</Text>
                         <Text pb="4">{e.username}</Text>
-                       <hr/> <Text> Previous Posts</Text>{' '}
-                        <Box pb='3' p='5px' borderRadius='5px' border="solid silver 1px">
+                        <hr /> <Text> Previous Posts</Text>{' '}
+                        <Box
+                          pb="3"
+                          p="5px"
+                          borderRadius="5px"
+                          border="solid silver 1px"
+                        >
                           {' '}
                           {post.map(e => (
                             <>

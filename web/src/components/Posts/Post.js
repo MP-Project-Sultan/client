@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
-import {  StarIcon } from '@chakra-ui/icons';
+import { StarIcon } from '@chakra-ui/icons';
 import axios from 'axios';
 import {
   ChakraProvider,
@@ -22,6 +22,7 @@ export default function Post() {
 
   const [newcomment, setNewComment] = useState('');
   const [post, setPost] = useState([]);
+  console.log(post);
 
   const BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -44,10 +45,12 @@ export default function Post() {
   const { id } = useParams();
   useEffect(() => {
     result();
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     result1();
+    // eslint-disable-next-line
   }, []);
   const result = async () => {
     await axios
@@ -84,6 +87,7 @@ export default function Post() {
       );
 
       result();
+      console.log(res);
     } catch (error) {
       console.log(error);
     }
@@ -107,12 +111,13 @@ export default function Post() {
       );
 
       result();
+      console.log(res);
     } catch (error) {
       console.log(error);
     }
   };
   return (
-    <Box pb="3"  bg="rgba(242, 242, 242, 1)" h="100%">
+    <Box pb="3" bg="rgba(242, 242, 242, 1)" h="100%">
       <ChakraProvider theme={theme}>
         <VStack>
           <Box
@@ -161,70 +166,77 @@ export default function Post() {
                 )}
               </Box>{' '}
             </>{' '}
-            {comments.map((item, index) => {
-              return (
-                <div key={item._id}>
-                  {' '}
-                  <HStack pt="4">
+            {comments
+              .map((item, index) => {
+                return (
+                  <div key={item._id}>
                     {' '}
-                    <Image
-                      display="inline"
-                      w="8"
-                      h="8"
-                      borderRadius="full"
-                      src={item.userId.img}
-                    />{' '}
-                    <Link
-                      onClick={() => Nav(`/profile/${item.userId._id}`)}
-                      mr="400"
-                      color="gold"
-                      fontSize="12px"
-                      as="strong"
-                    >
-                      by {item.userId.username}
-                    </Link>{' '}
-                    <Text
-                      color="black"
-                      onClick={() => Nav(`/profile/${item.userId._id}`)}
-                      mr="400"
-                      fontSize="12px"
-                    >
-                      on {item.time.slice(0, 10)} {item.time.slice(11, 16)}
-                    </Text>
-                    <br />
-                    <ht />
-                  </HStack>
-                  <Box mt="5" position="right">
-                    <HStack>
-                      <StarIcon
-                        w="3"
-                        cursor="pointer"
-                        color="#c5a087"
-                        onClick={() => addVot(item._id)}
+                    <HStack pt="4">
+                      {' '}
+                      <Image
+                        display="inline"
+                        w="8"
+                        h="8"
+                        borderRadius="full"
+                        src={item.userId.img}
+                      />{' '}
+                      <Link
+                        onClick={() => Nav(`/profile/${item.userId._id}`)}
+                        mr="400"
+                        color="gold"
+                        fontSize="12px"
+                        as="strong"
                       >
-                        Like{' '}
-                      </StarIcon>
-                      <Text as='strong' fontSize="12px" fontFamily="Roman" color="gold">
-                        {item.vot.length}
+                        by {item.userId.username}
+                      </Link>{' '}
+                      <Text
+                        color="black"
+                        onClick={() => Nav(`/profile/${item.userId._id}`)}
+                        mr="400"
+                        fontSize="12px"
+                      >
+                        on {item.time.slice(0, 10)} {item.time.slice(11, 16)}
                       </Text>
-                    </HStack>{' '}
-                  </Box>
-                  <Text
-                    h="100"
-                    pt="33"
-                    boxShadow="dark-lg"
-                    borderRadius="3"
-                    bg="white"
-                    m="8"
-                    color="black"
-                    fontSize="15px"
-                  >
-                    {item.description}
-                  </Text>
-                  <hr />
-                </div>
-              );
-            }).reverse()}{' '}
+                      <br />
+                      <ht />
+                    </HStack>
+                    <Box mt="5" position="right">
+                      <HStack>
+                        <StarIcon
+                          w="3"
+                          cursor="pointer"
+                          color="#c5a087"
+                          onClick={() => addVot(item._id)}
+                        >
+                          Like{' '}
+                        </StarIcon>
+                        <Text
+                          as="strong"
+                          fontSize="12px"
+                          fontFamily="Roman"
+                          color="gold"
+                        >
+                          {item.vot.length}
+                        </Text>
+                      </HStack>{' '}
+                    </Box>
+                    <Text
+                      h="100"
+                      pt="33"
+                      boxShadow="dark-lg"
+                      borderRadius="3"
+                      bg="white"
+                      m="8"
+                      color="black"
+                      fontSize="15px"
+                    >
+                      {item.description}
+                    </Text>
+                    <hr />
+                  </div>
+                );
+              })
+              .reverse()}{' '}
             <Button bg="rgb(48,47,47)" color="white" mt="4" onClick={redirect}>
               Back
             </Button>{' '}

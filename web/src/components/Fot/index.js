@@ -7,27 +7,27 @@ const Footer = () => {
       <div class="footer-basic">
         <footer>
           <div class="social">
-            <a href="#">
+            <a href="https://instagram.com">
               <i class="icon ion-social-instagram"></i>
             </a>
-            <a href="#">
+            <a href="https://snapchat.com">
               <i class="icon ion-social-snapchat"></i>
             </a>
-            <a href="#">
+            <a href="http://twitter.com">
               <i class="icon ion-social-twitter"></i>
             </a>
-            <a href="#">
+            <a href="http://facebook.com">
               <i class="icon ion-social-facebook"></i>
             </a>
           </div>
           <ul class="list-inline">
             <li class="list-inline-item">
-              <a href="#" dir="rtl">
+              <a href="http://facebook.com" dir="rtl">
                 About
               </a>
             </li>
             <li class="list-inline-item">
-              <a href="#">Home</a>
+              <a href="/">Home</a>
             </li>
             <li class="list-inline-item">
               <a href="/admin">Control Panel</a>

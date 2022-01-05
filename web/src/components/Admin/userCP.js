@@ -25,6 +25,7 @@ const UserCP = () => {
   });
   useEffect(() => {
     result();
+    // eslint-disable-next-line
   }, []);
   const result = async () => {
     const data = await axios
@@ -33,9 +34,9 @@ const UserCP = () => {
       })
       .then(result => {
         setUser(result.data);
+        console.log(data);
       });
   };
-
   const del = async id => {
     try {
       const res = await axios.delete(`${BASE_URL}/deleteUser/${id}`, {
@@ -45,6 +46,7 @@ const UserCP = () => {
       });
 
       result();
+      console.log(res);
     } catch (error) {
       console.log(error);
     }

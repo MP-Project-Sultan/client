@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { AddIcon, ChatIcon, DeleteIcon, StarIcon } from '@chakra-ui/icons';
 import { useNavigate } from 'react-router-dom';
-import { createBreakpoints } from '@chakra-ui/theme-tools';
 import {
   ChakraProvider,
   Box,
@@ -25,7 +24,6 @@ const Posts = () => {
   const [newTitle, setNewTitle] = useState('');
   const [logedin, setLogedin] = useState(false);
   const [show, setshow] = useState(false);
-     const dispatch = useDispatch()
 
   const state = useSelector(state => {
     return {
@@ -33,8 +31,7 @@ const Posts = () => {
       postRD: state.PostRD,
     };
   });
-      console.log(state);
-
+  console.log(state);
 
   useEffect(() => {
     if (state.Login.token) {
@@ -46,6 +43,7 @@ const Posts = () => {
 
   useEffect(() => {
     result();
+    // eslint-disable-next-line
   }, []);
   const result = async () => {
     const data = await axios
@@ -54,6 +52,7 @@ const Posts = () => {
       })
       .then(result => {
         setPost(result.data);
+        console.log(data);
       });
   };
   const addpost = async () => {
@@ -72,6 +71,7 @@ const Posts = () => {
       );
 
       result();
+      console.log(res);
     } catch (error) {
       console.log(error);
     }
@@ -85,6 +85,7 @@ const Posts = () => {
       });
 
       result();
+      console.log(res);
     } catch (error) {
       console.log(error);
     }
@@ -104,11 +105,12 @@ const Posts = () => {
       );
 
       result();
+      console.log(res);
     } catch (error) {
       console.log(error);
     }
   };
-  
+
   return (
     <ChakraProvider theme={theme}>
       <Box pt="5" pb="6" bg="rgba(242, 242, 242, 1)">
@@ -166,7 +168,7 @@ const Posts = () => {
                     color="white"
                     onClick={() => setshow(true)}
                   >
-                    Add Post   < AddIcon  ml='2' />
+                    Add Post <AddIcon ml="2" />
                   </Button>
                 </>
               )}
@@ -241,7 +243,7 @@ const Posts = () => {
                     </Text>
                     <>
                       {' '}
-                      {!logedin || e.userId._id != state.Login.user._id ? (
+                      {!logedin || e.userId._id !== state.Login.user._id ? (
                         <></>
                       ) : (
                         <DeleteIcon

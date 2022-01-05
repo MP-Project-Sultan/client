@@ -1,4 +1,4 @@
-import React, {useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import withReactContent from 'sweetalert2-react-content';
@@ -23,7 +23,7 @@ const Register = () => {
   const navigate = useNavigate();
   const signup = async () => {
     try {
-      const result = await axios.post(`${BASE_URL}/register`, {
+       await axios.post(`${BASE_URL}/register`, {
         email: email,
         username: username,
         password: password,
@@ -53,7 +53,6 @@ const Register = () => {
           <Box
             borderRadius="3px"
             boxShadow="dark-lg"
-            textAlign="center"
             w="400px"
             h="100%"
             mt="30px"
@@ -72,29 +71,24 @@ const Register = () => {
                 textAlign="center"
                 type="name"
                 w="200px"
-                placeholder="enter Email"
                 onChange={e => {
                   setUsername(e.target.value);
                 }}
                 mt="10px"
                 mb="10px"
                 placeholder="Name"
-                textAlign="Center"
               />
               <Input
                 bg="#222"
                 w="200px"
                 color="white"
                 textAlign="center"
-                type="email"
                 width="40"
-                placeholder="enter Email"
                 onChange={e => {
                   setEmail(e.target.value);
                 }}
                 mb="10px"
                 placeholder="Email"
-                textAlign="Center"
                 type="email"
               />{' '}
               <Input

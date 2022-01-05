@@ -28,12 +28,14 @@ function Message() {
   });
   useEffect(() => {
     socket = io(CONNECTION_PORT);
+    // eslint-disable-next-line
   }, [CONNECTION_PORT]);
 
   useEffect(() => {
     socket.on('recieve_message', data => {
       setMessagesList([...messagesList, data]);
     });
+    // eslint-disable-next-line
   }, [messagesList]);
 
   const send = () => {

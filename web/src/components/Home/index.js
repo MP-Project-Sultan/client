@@ -16,17 +16,19 @@ const News = () => {
 
   useEffect(() => {
     result();
+    // eslint-disable-next-line
   }, [text]);
   const result = async () => {
     try {
       const data = await axios
         .get(
-          `https://newsapi.org/v2/everything?q=${text}&from=2022-01-01&language=en&sortBy=publishedAt&apiKey=941e34ca80a2416498f8b4c2b895c22d`
+          `https://newsapi.org/v2/everything?q=${text}&from=2022-01-03&language=en&sortBy=publishedAt&apiKey=941e34ca80a2416498f8b4c2b895c22d`
           // `https://newsdata.io/api/1/news?apikey=pub_316749a1f9e311947558934e30ad0011951a&q=${text}`
         )
         .then(result => {
           SetNews(result.data.articles);
           // SetNews(result.data.results);
+          console.log(data);
         });
     } catch (error) {}
   };
@@ -47,7 +49,7 @@ const News = () => {
           onChange={e => setText(e.target.value)}
           w="190"
         ></Input>
-        <SimpleGrid mt="20" columns={[1,2]} spacing={0}>
+        <SimpleGrid mt="20" columns={[1, 2]} spacing={0}>
           {news.map(e => (
             <VStack>
               {' '}

@@ -17,7 +17,6 @@ import UserCP from './components/Admin/userCP';
 import Message from './components/Messages';
 import MyProfile from './components/MyProfile';
 import Footer from './components/Fot';
-import Mess from './components/Messages/mess';
 import NotFound from './components/NotFound';
 
 
@@ -52,7 +51,6 @@ function App() {
             <Route exact path="/postCp/" element={<PostCP />} />
             <Route exact path="/userCp/" element={<UserCP />} />
             <Route exact path="/MyProfile/" element={<MyProfile />} />
-            <Route exact path="/mess/:id" element={<Mess />} />
             <Route exact path="/*" element={<NotFound />} />
           </Routes>
           <Footer />
