@@ -33,7 +33,7 @@ const Navbar = () => {
   }, [state]);
 
   return (
-    <>
+    <Box width="100%">
       <Nav>
         <NavLogo to="/">
           <Image
@@ -41,13 +41,13 @@ const Navbar = () => {
             position="relative"
             right="120"
             mb="1"
-            w="17"
-            h="10"
+            w="11%"
+            h="19%"
             src="/logo2.png"
           />
         </NavLogo>
         <Bars />
-        <Box ml="650px" position="absolute" fontSize="15">
+        <Box mr="2" position="static" fontSize="15">
           <NavMenu>
             <NavLink to="/" activeStyle>
               Home
@@ -71,12 +71,10 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                <NavLink to="/MyProfile" activeStyle>
-                  My Profile
-                </NavLink>
-                <NavLink to="/message" activeStyle>
+                <NavLink  to="/message" activeStyle>
                   ChatRooms
                 </NavLink>
+                <NavLink to="/MyProfile" activeStyle>Profile</NavLink>
                 <NavBtn
                   onClick={() => {
                     dispatch(logout());
@@ -90,7 +88,7 @@ const Navbar = () => {
           </NavMenu>
         </Box>
       </Nav>
-    </>
+    </Box>
   );
 };
 export default Navbar;

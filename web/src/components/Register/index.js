@@ -52,7 +52,7 @@ const Register = () => {
         <VStack>
           <Box
             borderRadius="3px"
-            boxShadow="dark-lg"
+            boxShadow="md"
             w="400px"
             h="100%"
             mt="30px"
@@ -67,7 +67,6 @@ const Register = () => {
               </Text>
               <Input
                 bg="rgb(48,47,47)"
-                color="black"
                 border="1.5px solid black"
                 textAlign="center"
                 type="name"

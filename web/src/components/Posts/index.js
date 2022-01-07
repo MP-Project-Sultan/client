@@ -182,6 +182,11 @@ const Posts = () => {
                   p="2"
                   mt="6"
                   key={e._id}
+                  transition="0.3s ease-in-out"
+                  _hover={{
+                    transition: '0.3s ease-in-out',
+                    transform: 'scale(1.02)',
+                  }}
                 >
                   <HStack>
                     <Image
@@ -207,9 +212,8 @@ const Posts = () => {
                     onClick={() => Nav(`/post/${e._id}`)}
                     fontSize="18px"
                     fontFamily="mono"
-                    color="black"
                   >
-                    {e.title} 
+                    {e.title}
                   </Text>
                   <HStack>
                     {' '}
@@ -232,11 +236,7 @@ const Posts = () => {
                       Like{' '}
                     </StarIcon>{' '}
                     )
-                    <Text
-                      as="strong"
-                      fontSize="12px"
-                      fontFamily="Roman"
-                    >
+                    <Text as="strong" fontSize="12px" fontFamily="Roman">
                       {e.like.length}
                     </Text>
                     <>
