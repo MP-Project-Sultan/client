@@ -58,7 +58,7 @@ const Register = () => {
             mt="30px"
             textAlign="center"
             bg="#fffb"
-            color="black"
+            color="white"
             mb="20"
           >
             <VStack>
@@ -71,6 +71,7 @@ const Register = () => {
                 textAlign="center"
                 type="name"
                 w="200px"
+                color="white"
                 onChange={e => {
                   setUsername(e.target.value);
                 }}
@@ -94,7 +95,7 @@ const Register = () => {
               <Input
                 bg="rgb(48,47,47)"
                 id="resetPasswordButton"
-                color="white"
+                color="black"
                 textAlign="center"
                 w="200px"
                 type="password"
