@@ -13,7 +13,7 @@ import {
 import axios from 'axios';
 
 const News = () => {
-  const [text, setText] = useState('google');
+  const [text, setText] = useState('');
   const [news, SetNews] = useState([]);
 
   useEffect(() => {
@@ -23,14 +23,14 @@ const News = () => {
   const result = async () => {
     try {
       const data = await axios
-        .get(
-          `https://newsapi.org/v2/everything?q=${text}&from=2022-01-07&language=en&pageSize=100&sortBy=publishedAt&apiKey=941e34ca80a2416498f8b4c2b895c22d`
-          // `https://newsdata.io/api/1/news?apikey=pub_316749a1f9e311947558934e30ad0011951a&q=${text}`
+        .get(`http://api.mediastack.com/v1/news?access_key=d92fabe5e337e24d52f512d0cf4d8279&keywords=${text}&languages=en&categories=technology`
         )
         .then(result => {
-          SetNews(result.data.articles);
+          SetNews(result.data.data);
           // SetNews(result.data.results);
-          console.log(data);
+          console.log(result.data.data);
+                    // console.log(result.data);
+
         });
     } catch (error) {
       console.log(error);
@@ -38,13 +38,16 @@ const News = () => {
   };
   return (
     <Box p="5" bg="rgba(242, 242, 242, 1)">
-      <Text mb="12" color="rgb(100, 107, 119)" fontSize="3rem">
-        All News
+      <Text mt="0" mb="12" fontSize="3rem">
+        Pull-Stack-Developers
       </Text>
       <Input
         placeholder="Search News"
         textAlign="center"
         value={text}
+        cursor="default"
+        color="white"
+        bg="rgb(48,47,47)"
         onChange={e => setText(e.target.value)}
         w="190"
       ></Input>
@@ -77,13 +80,13 @@ const News = () => {
               >
                 <HStack>
                   {' '}
-                  <Image w="200px" height="200px" src={e.urlToImage} />
-                  <VStack>
+                  <Image w="30vw"  alt="image" height="35.29vw" src={e.image} />
+                  <VStack  w="100%" h="100%">
                     {' '}
                     <Text mb="20">{e.title}</Text>
-                    <Text mt="5" fontSize="12px">
-                      {e.content}
-                    </Text>
+                   <Box p='3'> <Text fontSize="12px">
+                      {e.description}
+                    </Text></Box>
                   </VStack>
                   <br />
                   <Box pt="200px">
@@ -98,6 +101,7 @@ const News = () => {
                     >
                       More
                     </Link>
+                    
                   </Box>
                 </HStack>
               </Box>

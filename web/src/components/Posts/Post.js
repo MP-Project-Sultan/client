@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
-import { StarIcon } from '@chakra-ui/icons';
+import { ArrowBackIcon, StarIcon } from '@chakra-ui/icons';
 import axios from 'axios';
 import {
   ChakraProvider,
@@ -126,36 +126,35 @@ export default function Post() {
             padding="20px"
             borderRadius="4"
           >
-            {post.map(e => (
+            {post.map(s => (
               <>
                 {
-                  <>
+                  
                     <HStack mb="5">
                       <Image
                         display="inline"
                         w="8"
                         h="8"
                         borderRadius="full"
-                        src={e.userId.img}
+                        src={s.userId.img}
                       />
                       <Link
-                        onClick={() => Nav(`/profile/${e.userId._id}`)}
+                        onClick={() => Nav(`/profile/${s.userId._id}`)}
                         mr="400"
                         color="black"
                         fontSize="12px"
                         as="strong"
                       >
-                        by {e.userId.username}
-                      </Link>{' '}
-                    </HStack>{' '}
-                  </>
-                }{' '}
+                        by {s.userId.username}
+                      </Link>
+                    </HStack>
+                  
+                }
               </>
             ))}
             {comments.length && (
               <>
                 {' '}
-                {}
                 <Text mb="9" color="black" fontFamily="Roman" fontSize="29">
                   {comments[0].postId.title}
                 </Text>
@@ -264,9 +263,9 @@ export default function Post() {
                 );
               })
               .reverse()}{' '}
-            <Button bg="rgb(48,47,47)" color="white" mt="4" onClick={redirect}>
+            <ArrowBackIcon cursor='pointer' bg="rgb(48,47,47)" color="white" mt="4" onClick={redirect}>
               Back
-            </Button>{' '}
+            </ArrowBackIcon>{' '}
           </Box>
         </VStack>
       </ChakraProvider>
