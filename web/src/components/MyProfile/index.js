@@ -9,6 +9,8 @@ import {
   theme,
   Input,
   Image,
+  useToast,
+  CircularProgress,
 } from '@chakra-ui/react';
 import { EditIcon } from '@chakra-ui/icons';
 
@@ -19,6 +21,7 @@ const MyProfile = () => {
   const [img, setImg] = useState('');
   const [flag, setFlag] = useState(false);
   const BASE_URL = process.env.REACT_APP_BASE_URL;
+    const toast = useToast();
 
   const state = useSelector(state => {
     return {
@@ -62,7 +65,16 @@ const MyProfile = () => {
       <ChakraProvider theme={theme}>
         <VStack>
           <Box bg="rgba(242, 242, 242, 1)" h="80%" w="50%">
-            {user.length &&
+            {user.length ===0?((
+              <CircularProgress
+                size="120px"
+                mt="3"
+                mb="3"
+                position=""
+                isIndeterminate
+                color="blue.300"
+              />
+            ) ):
               user.map(e => (
                 <Box key={e._id} mt="30" mb="250" pt="20" w="50">
                   <VStack bg="white" boxShadow="md" borderRadius="5">
@@ -109,6 +121,14 @@ const MyProfile = () => {
                         setFlag(true);
                         if (flag) {
                           updateUser();
+                          toast({
+                            position: 'bottom-left',
+                            render: () => (
+                              <Box color="white" p={3} bg="green.500">
+                                your Profile updated successfully
+                              </Box>
+                            ),
+                          });
                         }
                       }}
                     >
