@@ -66,14 +66,12 @@ console.log(local);
 
   return (
     <ChakraProvider theme={theme}>
-      { 
-      state?.Login?.user?.role === ROLE && local ? (
+      {state?.Login?.user?.role === ROLE && local ? (
         <Box bg="rgba(0, 0, 0, 0.87)">
           <Link color="white" href="/userCp">
             Users cpanel
           </Link>
           <br />
-
           <Link color="white" href="/postCp">
             Post cpanel
           </Link>{' '}
@@ -143,7 +141,7 @@ console.log(local);
       ) : (
         <Text h="344px" color="red" fontSize="4rem">
           {' '}
-          Forbidden 403
+          you don't have permission to visit this page{' '}
         </Text>
       )}
     </ChakraProvider>

@@ -293,7 +293,7 @@ const PostCP = () => {
       ) : (
         <Text h="344px" color="red" fontSize="4rem">
           {' '}
-          Forbidden 403
+          you don't have permission to visit this page
         </Text>
       )}
     </ChakraProvider>
