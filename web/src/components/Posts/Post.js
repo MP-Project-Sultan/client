@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowBackIcon, StarIcon } from '@chakra-ui/icons';
+import { ArrowBackIcon, DeleteIcon, StarIcon } from '@chakra-ui/icons';
 import axios from 'axios';
 import {
   ChakraProvider,
@@ -96,7 +96,7 @@ export default function Post() {
     Nav('/posts');
   };
 
-    const toast = useToast();
+  const toast = useToast();
 
   const addVot = async commentId => {
     try {
@@ -105,6 +105,44 @@ export default function Post() {
         {
           commentId: commentId,
         },
+        {
+          headers: {
+            Authorization: `Bearer ${state.Login.token}`,
+          },
+        }
+      );
+
+      result();
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const delVot = async id => {
+    console.log(id);
+    try {
+      const res = await axios.put(
+        `${BASE_URL}/deleteVot/${id._id}`,
+        {},
+
+        {
+          headers: {
+            Authorization: `Bearer ${state.Login.token}`,
+          },
+        }
+      );
+
+      result();
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const del = async id => {
+    try {
+      const res = await axios.put(
+        `${BASE_URL}/deleteComment/${id}`,
+        {},
         {
           headers: {
             Authorization: `Bearer ${state.Login.token}`,
@@ -165,15 +203,16 @@ export default function Post() {
                 }
               </>
             ))}
-            {comments.length === 0 ? (<CircularProgress
-                  size="120px"
-                  mt="3"
-                  mb="3"
-                  position=""
-                  
-                  isIndeterminate
-                  color="blue.300"
-                />) : (
+            {comments.length === 0 ? (
+              <CircularProgress
+                size="120px"
+                mt="3"
+                mb="3"
+                position=""
+                isIndeterminate
+                color="blue.300"
+              />
+            ) : (
               <>
                 {' '}
                 <Text mb="9" color="black" fontFamily="Roman" fontSize="29">
@@ -204,13 +243,16 @@ export default function Post() {
                       bg="rgb(48,47,47)"
                       color="white"
                       ml="4"
-                      onClick={() => {addcomment(id);toast({
-                        title: 'your Comment submitted successfully',
+                      onClick={() => {
+                        addcomment(id);
+                        toast({
+                          title: 'your Comment submitted successfully',
 
-                        status: 'success',
-                        duration: 4000,
-                        isClosable: true,
-                      });}}
+                          status: 'success',
+                          duration: 4000,
+                          isClosable: true,
+                        });
+                      }}
                     >
                       {' '}
                       Reply
@@ -219,52 +261,54 @@ export default function Post() {
                 )}
               </Box>{' '}
             </>{' '}
-            {comments
-              .map((item, index) => {
-                return (
-                  <div key={item._id}>
+            {comments.map((item, index) => {
+              return (
+                <div key={item._id}>
+                  {' '}
+                  <HStack pt="4">
                     {' '}
-                    <HStack pt="4">
-                      {' '}
-                      <Image
-                        display="inline"
-                        w="8"
-                        h="8"
-                        borderRadius="full"
-                        src={item.userId.img}
-                      />{' '}
-                      <Link
-                        onClick={() =>
-                          logedin
-                            ? Nav(`/profile/${item.userId._id}`)
-                            : toast({
-                                position: 'bottom-left',
-                                render: () => (
-                                  <Box color="white" p={3} bg="red.500">
-                                    please log in
-                                  </Box>
-                                ),
-                              })
-                        }
-                        mr="400"
-                        color="black"
-                        fontSize="12px"
-                        as="strong"
-                      >
-                        by {item.userId.username}
-                      </Link>{' '}
-                      <Text color="black" mr="400" fontSize="12px">
-                        on {item.time.slice(0, 10)} {item.time.slice(11, 16)}
-                      </Text>
-                      <br />
-                      <ht />
-                    </HStack>
-                    <Box mt="5" position="right">
-                      <HStack>
+                    <Image
+                      display="inline"
+                      w="8"
+                      h="8"
+                      borderRadius="full"
+                      src={item.userId.img}
+                    />{' '}
+                    <Link
+                      onClick={() =>
+                        logedin
+                          ? Nav(`/profile/${item.userId._id}`)
+                          : toast({
+                              position: 'bottom-left',
+                              render: () => (
+                                <Box color="white" p={3} bg="red.500">
+                                  please log in
+                                </Box>
+                              ),
+                            })
+                      }
+                      mr="400"
+                      color="black"
+                      fontSize="12px"
+                      as="strong"
+                    >
+                      by {item.userId.username}
+                    </Link>{' '}
+                    <Text color="black" mr="400" fontSize="12px">
+                      on {item.time.slice(0, 10)} {item.time.slice(11, 16)}
+                    </Text>
+                    <br />
+                    <ht />
+                  </HStack>
+                  <Box mt="5" position="right">
+                    <HStack>
+                      {!item.vot.some(
+                        v => v.userId === state.Login.user?._id
+                      ) ? (
                         <StarIcon
                           w="3"
                           cursor="pointer"
-                          color="#c5a087"
+                          color="silver"
                           onClick={() =>
                             logedin
                               ? addVot(item._id)
@@ -277,36 +321,69 @@ export default function Post() {
                                   ),
                                 })
                           }
-                        >
-                          Like{' '}
-                        </StarIcon>
-                        <Text
-                          as="strong"
-                          fontSize="12px"
-                          fontFamily="Roman"
-                          color="black"
-                        >
-                          {item.vot.length}
-                        </Text>
-                      </HStack>{' '}
-                    </Box>
-                    <Text
-                      pt="33"
-                      m="5"
-                      p="3"
-                      boxShadow="md"
-                      borderRadius="3"
-                      bg="white"
-                      color="black"
-                      fontSize="15px"
-                    >
-                      {item.description}
-                    </Text>
-                    <hr />
-                  </div>
-                );
-              })
-              .reverse()}{' '}
+                        />
+                      ) : (
+                        <StarIcon
+                          w="3"
+                          cursor="pointer"
+                          color="#c5a087"
+                          onClick={() =>
+                            logedin
+                              ? delVot(
+                                  item.vot.find(
+                                    l => l.userId === state.Login.user._id
+                                  )
+                                )
+                              : toast({
+                                  position: 'bottom-left',
+                                  render: () => (
+                                    <Box color="white" p={3} bg="red.500">
+                                      please log in
+                                    </Box>
+                                  ),
+                                })
+                          }
+                        />
+                      )}
+                      <Text
+                        as="strong"
+                        fontSize="12px"
+                        fontFamily="Roman"
+                        color="black"
+                      >
+                        {item.vot.length}
+                      </Text>{' '}
+                      {!logedin || item.userId._id !== state.Login.user._id ? (
+                        <></>
+                      ) : (
+                        <DeleteIcon
+                          w="3"
+                          cursor="pointer"
+                          position="end"
+                          marginBottom="33"
+                          onClick={() => {
+                            del(item._id);
+                          }}
+                        />
+                      )}
+                    </HStack>
+                  </Box>
+                  <Text
+                    pt="33"
+                    m="5"
+                    p="3"
+                    boxShadow="md"
+                    borderRadius="3"
+                    bg="white"
+                    color="black"
+                    fontSize="15px"
+                  >
+                    {item.description}
+                  </Text>
+                  <hr />
+                </div>
+              );
+            }).reverse()}{' '}
             <ArrowBackIcon
               cursor="pointer"
               bg="rgb(48,47,47)"
